@@ -1,3 +1,15 @@
+
+/**
+ * Twelve Data 설정
+ * 1) https://twelvedata.com 에서 무료 API Key 발급
+ * 2) 아래 TWELVE_DATA_API_KEY 값만 교체
+ *
+ * 무료 Basic: 미국 주식/ETF 정규장 실시간(또는 최신 이용 가능 가격)
+ * 프리/애프터장: Twelve Data Pro 이상에서 TWELVE_DATA_USE_EXTENDED_HOURS = true
+ */
+var TWELVE_DATA_API_KEY = '여기에_TWELVE_DATA_API_KEY_입력';
+var TWELVE_DATA_USE_EXTENDED_HOURS = false;
+
 /**
  * 자산관리 HTML용 시세 프록시 (Google Apps Script)
  * 배포: 배포 > 새 배포 > 웹 앱 > 실행 사용자: 나 > 액세스 권한: 모든 사용자
@@ -39,27 +51,112 @@ function splitList_(s) {
 
 function fetchUS_(symbols, out) {
   if (!symbols.length) return;
-  var reqs = symbols.map(function(sym){
+
+  function makeReq_(host, sym) {
     return {
-      url: 'https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?range=1d&interval=1d',
-      method: 'get', muteHttpExceptions: true,
-      headers: {'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/3.0)'}
+      url: 'https://' + host + '/v8/finance/chart/' + encodeURIComponent(sym) +
+           '?range=1d&interval=1m&includePrePost=true',
+      method: 'get',
+      muteHttpExceptions: true,
+      headers: {
+        'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36',
+        'Accept':'application/json,text/plain,*/*',
+        'Referer':'https://finance.yahoo.com/'
+      }
     };
-  });
-  var res = UrlFetchApp.fetchAll(reqs);
-  res.forEach(function(r,i){
+  }
+
+  function parseYahoo_(r) {
+    var code = r.getResponseCode();
+    if (code < 200 || code >= 300) throw new Error('HTTP ' + code);
+
+    var j = JSON.parse(r.getContentText());
+    var result = j && j.chart && j.chart.result && j.chart.result[0];
+    if (!result) {
+      var err = j && j.chart && j.chart.error;
+      throw new Error(err && err.description ? err.description : 'Yahoo 응답 없음');
+    }
+
+    var meta = result.meta || {};
+    var ts = result.timestamp || [];
+    var quote = result.indicators && result.indicators.quote &&
+                result.indicators.quote[0] || {};
+    var closes = quote.close || [];
+
+    var latestPrice = null;
+    var latestTs = null;
+
+    // includePrePost=true 이므로 프리/정규/애프터 중 가장 최근 유효 1분봉 가격을 사용.
+    for (var k = closes.length - 1; k >= 0; k--) {
+      var p = Number(closes[k]);
+      if (p > 0) {
+        latestPrice = p;
+        latestTs = ts[k] || null;
+        break;
+      }
+    }
+
+    // 1분봉이 비어 있는 경우 Yahoo meta 값으로 폴백.
+    if (!(latestPrice > 0)) {
+      latestPrice = Number(meta.postMarketPrice) ||
+                    Number(meta.preMarketPrice) ||
+                    Number(meta.regularMarketPrice);
+    }
+
+    if (!(latestPrice > 0)) throw new Error('유효한 가격 없음');
+
+    var session = 'LATEST';
+    var ctp = meta.currentTradingPeriod || {};
+    var checkTs = latestTs || Math.floor(Date.now()/1000);
+
+    function inPeriod_(period, t) {
+      return period && Number(period.start) && Number(period.end) &&
+             t >= Number(period.start) && t <= Number(period.end);
+    }
+
+    if (inPeriod_(ctp.pre, checkTs)) session = 'PRE';
+    else if (inPeriod_(ctp.regular, checkTs)) session = 'REGULAR';
+    else if (inPeriod_(ctp.post, checkTs)) session = 'POST';
+
+    return {
+      price: latestPrice,
+      currency: meta.currency || 'USD',
+      source: 'Yahoo Finance',
+      session: session,
+      timestamp: latestTs
+    };
+  }
+
+  // 1차: query1
+  var reqs1 = symbols.map(function(sym){ return makeReq_('query1.finance.yahoo.com', sym); });
+  var res1 = UrlFetchApp.fetchAll(reqs1);
+
+  var failed = [];
+  res1.forEach(function(r, i){
     var sym = symbols[i];
     try {
-      if (r.getResponseCode() < 200 || r.getResponseCode() >= 300) throw new Error('HTTP ' + r.getResponseCode());
-      var j = JSON.parse(r.getContentText());
-      var meta = j.chart && j.chart.result && j.chart.result[0] && j.chart.result[0].meta;
-      var price = meta && Number(meta.regularMarketPrice);
-      if (!(price > 0)) throw new Error('price 없음');
-      out.prices['US:' + sym] = {price: price, currency: meta.currency || 'USD', source:'Yahoo Finance'};
-    } catch(err) { out.errors['US:' + sym] = String(err); }
+      out.prices['US:' + sym] = parseYahoo_(r);
+    } catch(err) {
+      failed.push(sym);
+    }
   });
-}
 
+  // 2차: query2 재시도
+  if (failed.length) {
+    var reqs2 = failed.map(function(sym){ return makeReq_('query2.finance.yahoo.com', sym); });
+    var res2 = UrlFetchApp.fetchAll(reqs2);
+
+    res2.forEach(function(r, i){
+      var sym = failed[i];
+      try {
+        out.prices['US:' + sym] = parseYahoo_(r);
+      } catch(err) {
+        out.errors['US:' + sym] = 'Yahoo Finance 조회 실패: ' +
+          String(err && err.message ? err.message : err);
+      }
+    });
+  }
+}
 function fetchKR_(codes, out) {
   if (!codes.length) return;
 
@@ -174,7 +271,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r = UrlFetchApp.fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=krw', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/3.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/6.0)'}
     });
     if (r.getResponseCode() >= 200 && r.getResponseCode() < 300) {
       var j = JSON.parse(r.getContentText());
@@ -190,7 +287,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r2 = UrlFetchApp.fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/3.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/6.0)'}
     });
     if (r2.getResponseCode() >= 200 && r2.getResponseCode() < 300) {
       var j2 = JSON.parse(r2.getContentText());
@@ -232,43 +329,24 @@ function fetchFx_(out) {
     }
   } catch(e0) {}
 
-  // 2순위: Yahoo Finance
+  // 2순위: Frankfurter(일일 환율)
   try {
-    var r = UrlFetchApp.fetch('https://query1.finance.yahoo.com/v8/finance/chart/KRW=X?range=1d&interval=1d', {
+    var r1 = UrlFetchApp.fetch('https://api.frankfurter.app/latest?from=USD&to=KRW', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/3.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/6.0)'}
     });
-    if (r.getResponseCode() >= 200 && r.getResponseCode() < 300) {
-      var j = JSON.parse(r.getContentText());
-      var meta = j.chart && j.chart.result && j.chart.result[0] && j.chart.result[0].meta;
-      var fx = meta && Number(meta.regularMarketPrice);
-      if (fx > 0) {
-        out.fx = fx;
-        out.fxSource = 'Yahoo Finance';
+    if (r1.getResponseCode() >= 200 && r1.getResponseCode() < 300) {
+      var j1 = JSON.parse(r1.getContentText());
+      var fx1 = j1.rates && Number(j1.rates.KRW);
+      if (fx1 > 0) {
+        out.fx = fx1;
+        out.fxSource = 'Frankfurter';
         out.fxTimestamp = new Date().toISOString();
         return;
       }
     }
   } catch(e1) {}
 
-  // 3순위: Frankfurter(일일 환율)
-  try {
-    var r2 = UrlFetchApp.fetch('https://api.frankfurter.app/latest?from=USD&to=KRW', {
-      muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/3.0)'}
-    });
-    if (r2.getResponseCode() >= 200 && r2.getResponseCode() < 300) {
-      var j2 = JSON.parse(r2.getContentText());
-      var fx2 = j2.rates && Number(j2.rates.KRW);
-      if (fx2 > 0) {
-        out.fx = fx2;
-        out.fxSource = 'Frankfurter';
-        out.fxTimestamp = new Date().toISOString();
-        return;
-      }
-    }
-  } catch(e2) {}
-
-  out.errors['FX:USDKRW'] = 'Naver/Yahoo/Frankfurter 모두 조회 실패';
+  out.errors['FX:USDKRW'] = 'Naver/Frankfurter 모두 조회 실패';
 }
 
