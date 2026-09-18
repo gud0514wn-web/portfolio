@@ -243,110 +243,204 @@ function fetchUS_(symbols, out) {
 function fetchKR_(codes, out) {
   if (!codes.length) return;
 
-  // 1차: 네이버 모바일 basic API (가장 가볍고 빠름)
-  var reqs = codes.map(function(code){
-    return {
-      url: 'https://m.stock.naver.com/api/stock/' + encodeURIComponent(code) + '/basic',
-      method:'get', muteHttpExceptions:true,
-      headers:{
-        'User-Agent':'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/120 Mobile Safari/537.36',
-        'Referer':'https://m.stock.naver.com/'
-      }
-    };
-  });
-
-  var res = UrlFetchApp.fetchAll(reqs);
-
-  res.forEach(function(r,i){
-    var code = codes[i];
+  codes.forEach(function(code){
     var ok = false;
+    var errs = [];
 
-    // 방법 A: /api/stock/{code}/basic
+    // A. 네이버 모바일 basic
     try {
-      if (r.getResponseCode() >= 200 && r.getResponseCode() < 300) {
-        var j = JSON.parse(r.getContentText());
-        var price = Number(String(j.closePrice || '').replace(/,/g,''));
-        if (price > 0) {
+      var r1 = UrlFetchApp.fetch(
+        'https://m.stock.naver.com/api/stock/' + encodeURIComponent(code) + '/basic',
+        {
+          method:'get',
+          muteHttpExceptions:true,
+          headers:{
+            'User-Agent':'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/124 Mobile Safari/537.36',
+            'Accept':'application/json,text/plain,*/*',
+            'Referer':'https://m.stock.naver.com/'
+          }
+        }
+      );
+      if (r1.getResponseCode() >= 200 && r1.getResponseCode() < 300) {
+        var j1 = JSON.parse(r1.getContentText());
+        var p1 = Number(String(
+          j1.closePrice || j1.currentPrice || j1.tradePrice || ''
+        ).replace(/,/g,''));
+        if (p1 > 0) {
           out.prices['KR:' + code] = {
-            price: price,
+            price:p1,
             currency:'KRW',
-            name:j.stockName || '',
+            name:j1.stockName || '',
             source:'Naver Basic',
-            marketStatus:j.marketStatus || ''
+            marketStatus:j1.marketStatus || ''
           };
           ok = true;
         }
+      } else {
+        errs.push('NaverBasic HTTP ' + r1.getResponseCode());
       }
-    } catch(e1) {}
-
+    } catch(e1) {
+      errs.push('NaverBasic ' + String(e1 && e1.message ? e1.message : e1));
+    }
     if (ok) return;
 
-    // 방법 B: 신규/영문 혼합 ETF 코드 대응용 실시간 domestic endpoint
+    // B. 네이버 실시간 domestic endpoint
     try {
-      var url2 = 'https://polling.finance.naver.com/api/realtime/domestic/stock/' + encodeURIComponent(code);
-      var r2 = UrlFetchApp.fetch(url2, {
-        method:'get',
-        muteHttpExceptions:true,
-        headers:{
-          'User-Agent':'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/120 Mobile Safari/537.36',
-          'Referer':'https://finance.naver.com/'
+      var r2 = UrlFetchApp.fetch(
+        'https://polling.finance.naver.com/api/realtime/domestic/stock/' + encodeURIComponent(code),
+        {
+          method:'get',
+          muteHttpExceptions:true,
+          headers:{
+            'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36',
+            'Accept':'application/json,text/plain,*/*',
+            'Referer':'https://finance.naver.com/'
+          }
         }
-      });
-
+      );
       if (r2.getResponseCode() >= 200 && r2.getResponseCode() < 300) {
         var j2 = JSON.parse(r2.getContentText());
         var d2 = j2 && j2.datas && j2.datas[0];
-        var price2 = d2 && Number(String(d2.closePrice || '').replace(/,/g,''));
-        if (price2 > 0) {
+        var p2 = d2 && Number(String(
+          d2.closePrice || d2.currentPrice || d2.tradePrice || d2.nv || ''
+        ).replace(/,/g,''));
+        if (p2 > 0) {
           out.prices['KR:' + code] = {
-            price:price2,
+            price:p2,
             currency:'KRW',
             name:d2.stockName || d2.name || '',
             source:'Naver Realtime',
-            marketStatus:d2.marketStatus || ''
+            marketStatus:d2.marketStatus || d2.ms || ''
           };
           ok = true;
         }
+      } else {
+        errs.push('NaverRealtime HTTP ' + r2.getResponseCode());
       }
-    } catch(e2) {}
-
+    } catch(e2) {
+      errs.push('NaverRealtime ' + String(e2 && e2.message ? e2.message : e2));
+    }
     if (ok) return;
 
-    // 방법 C: 구형 polling query endpoint
+    // C. 네이버 구형 polling endpoint
     try {
-      var url3 = 'https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:' + encodeURIComponent(code);
-      var r3 = UrlFetchApp.fetch(url3, {
-        method:'get',
-        muteHttpExceptions:true,
-        headers:{
-          'User-Agent':'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/120 Mobile Safari/537.36',
-          'Referer':'https://finance.naver.com/'
+      var r3 = UrlFetchApp.fetch(
+        'https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:' + encodeURIComponent(code),
+        {
+          method:'get',
+          muteHttpExceptions:true,
+          headers:{
+            'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36',
+            'Accept':'application/json,text/plain,*/*',
+            'Referer':'https://finance.naver.com/'
+          }
         }
-      });
-
+      );
       if (r3.getResponseCode() >= 200 && r3.getResponseCode() < 300) {
         var j3 = JSON.parse(r3.getContentText());
         var d3 = j3 && j3.result && j3.result.areas && j3.result.areas[0] &&
                  j3.result.areas[0].datas && j3.result.areas[0].datas[0];
-        var price3 = d3 && Number(d3.nv);
-        if (price3 > 0) {
+        var p3 = d3 && Number(String(d3.nv || d3.closePrice || '').replace(/,/g,''));
+        if (p3 > 0) {
           out.prices['KR:' + code] = {
-            price:price3,
+            price:p3,
             currency:'KRW',
             source:'Naver Polling',
             marketStatus:d3.ms || ''
           };
           ok = true;
         }
+      } else {
+        errs.push('NaverPolling HTTP ' + r3.getResponseCode());
       }
-    } catch(e3) {}
+    } catch(e3) {
+      errs.push('NaverPolling ' + String(e3 && e3.message ? e3.message : e3));
+    }
+    if (ok) return;
+
+    // D. 네이버 종목 메인 HTML 백업
+    try {
+      var r4 = UrlFetchApp.fetch(
+        'https://finance.naver.com/item/main.naver?code=' + encodeURIComponent(code),
+        {
+          method:'get',
+          muteHttpExceptions:true,
+          headers:{
+            'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36',
+            'Accept-Language':'ko-KR,ko;q=0.9,en-US;q=0.8',
+            'Referer':'https://finance.naver.com/'
+          }
+        }
+      );
+      if (r4.getResponseCode() >= 200 && r4.getResponseCode() < 300) {
+        var txt4 = r4.getContentText('UTF-8');
+        var m4 = txt4.match(/no_today[\s\S]{0,1800}?<span class="blind">([\d,]+)<\/span>/i);
+        if (!m4) m4 = txt4.match(/<dd>현재가\s*([\d,]+)\s*/i);
+        var p4 = m4 && Number(String(m4[1] || '').replace(/,/g,''));
+        if (p4 > 0) {
+          out.prices['KR:' + code] = {
+            price:p4,
+            currency:'KRW',
+            source:'Naver HTML'
+          };
+          ok = true;
+        } else {
+          errs.push('NaverHTML price 없음');
+        }
+      } else {
+        errs.push('NaverHTML HTTP ' + r4.getResponseCode());
+      }
+    } catch(e4) {
+      errs.push('NaverHTML ' + String(e4 && e4.message ? e4.message : e4));
+    }
+    if (ok) return;
+
+    // E. 다음 금융 백업
+    try {
+      var symbol = 'A' + code;
+      var r5 = UrlFetchApp.fetch(
+        'https://finance.daum.net/api/quotes/' + encodeURIComponent(symbol),
+        {
+          method:'get',
+          muteHttpExceptions:true,
+          headers:{
+            'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36',
+            'Accept':'application/json,text/plain,*/*',
+            'Referer':'https://finance.daum.net/quotes/' + symbol
+          }
+        }
+      );
+      if (r5.getResponseCode() >= 200 && r5.getResponseCode() < 300) {
+        var j5 = JSON.parse(r5.getContentText());
+        var p5 = Number(
+          j5.tradePrice || j5.currentPrice || j5.closePrice ||
+          j5.regularMarketPrice || j5.price || 0
+        );
+        if (p5 > 0) {
+          out.prices['KR:' + code] = {
+            price:p5,
+            currency:'KRW',
+            name:j5.name || j5.symbolName || '',
+            source:'Daum Finance',
+            marketStatus:j5.marketStatus || ''
+          };
+          ok = true;
+        } else {
+          errs.push('Daum price 없음');
+        }
+      } else {
+        errs.push('Daum HTTP ' + r5.getResponseCode());
+      }
+    } catch(e5) {
+      errs.push('Daum ' + String(e5 && e5.message ? e5.message : e5));
+    }
 
     if (!ok) {
-      out.errors['KR:' + code] = '네이버 국내시세 3개 경로 모두 조회 실패';
+      out.errors['KR:' + code] =
+        '국내시세 조회 실패 (' + errs.slice(-4).join(' / ') + ')';
     }
   });
 }
-
 function fetchCrypto_(symbols, out) {
   if (symbols.indexOf('BTC') === -1) return;
 
@@ -354,7 +448,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r = UrlFetchApp.fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=krw', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/8.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/9.0)'}
     });
     if (r.getResponseCode() >= 200 && r.getResponseCode() < 300) {
       var j = JSON.parse(r.getContentText());
@@ -370,7 +464,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r2 = UrlFetchApp.fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/8.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/9.0)'}
     });
     if (r2.getResponseCode() >= 200 && r2.getResponseCode() < 300) {
       var j2 = JSON.parse(r2.getContentText());
@@ -416,7 +510,7 @@ function fetchFx_(out) {
   try {
     var r1 = UrlFetchApp.fetch('https://api.frankfurter.app/latest?from=USD&to=KRW', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/8.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/9.0)'}
     });
     if (r1.getResponseCode() >= 200 && r1.getResponseCode() < 300) {
       var j1 = JSON.parse(r1.getContentText());
