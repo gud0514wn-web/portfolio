@@ -435,9 +435,61 @@ function fetchKR_(codes, out) {
       errs.push('Daum ' + String(e5 && e5.message ? e5.message : e5));
     }
 
+    // F. Google Finance 최종 백업
+    // 예: https://www.google.com/finance/quote/000660:KRX
+    try {
+      var r6 = UrlFetchApp.fetch(
+        'https://www.google.com/finance/quote/' + encodeURIComponent(code) + ':KRX?hl=ko&gl=KR',
+        {
+          method:'get',
+          muteHttpExceptions:true,
+          followRedirects:true,
+          headers:{
+            'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36',
+            'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language':'ko-KR,ko;q=0.9,en-US;q=0.8'
+          }
+        }
+      );
+
+      if (r6.getResponseCode() >= 200 && r6.getResponseCode() < 300) {
+        var txt6 = r6.getContentText('UTF-8');
+        var p6 = null;
+
+        // Google Finance 페이지에서 자주 쓰이는 값들을 순서대로 시도
+        var m61 = txt6.match(/data-last-price="([0-9.,]+)"/i);
+        if (m61) p6 = Number(String(m61[1]).replace(/,/g,''));
+
+        if (!(p6 > 0)) {
+          var m62 = txt6.match(/class="YMlKec fxKbKc"[^>]*>\s*(?:₩|&#8361;)?\s*([0-9,]+(?:\.[0-9]+)?)/i);
+          if (m62) p6 = Number(String(m62[1]).replace(/,/g,''));
+        }
+
+        if (!(p6 > 0)) {
+          var m63 = txt6.match(/"price"\s*:\s*"?([0-9]+(?:\.[0-9]+)?)"?/i);
+          if (m63) p6 = Number(m63[1]);
+        }
+
+        if (p6 > 0) {
+          out.prices['KR:' + code] = {
+            price:p6,
+            currency:'KRW',
+            source:'Google Finance'
+          };
+          ok = true;
+        } else {
+          errs.push('GoogleFinance price 없음');
+        }
+      } else {
+        errs.push('GoogleFinance HTTP ' + r6.getResponseCode());
+      }
+    } catch(e6) {
+      errs.push('GoogleFinance ' + String(e6 && e6.message ? e6.message : e6));
+    }
+
     if (!ok) {
       out.errors['KR:' + code] =
-        '국내시세 조회 실패 (' + errs.slice(-4).join(' / ') + ')';
+        '국내시세 조회 실패 (' + errs.slice(-5).join(' / ') + ')';
     }
   });
 }
@@ -448,7 +500,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r = UrlFetchApp.fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=krw', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/9.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/10.0)'}
     });
     if (r.getResponseCode() >= 200 && r.getResponseCode() < 300) {
       var j = JSON.parse(r.getContentText());
@@ -464,7 +516,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r2 = UrlFetchApp.fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/9.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/10.0)'}
     });
     if (r2.getResponseCode() >= 200 && r2.getResponseCode() < 300) {
       var j2 = JSON.parse(r2.getContentText());
@@ -510,7 +562,7 @@ function fetchFx_(out) {
   try {
     var r1 = UrlFetchApp.fetch('https://api.frankfurter.app/latest?from=USD&to=KRW', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/9.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/10.0)'}
     });
     if (r1.getResponseCode() >= 200 && r1.getResponseCode() < 300) {
       var j1 = JSON.parse(r1.getContentText());
