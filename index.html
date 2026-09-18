@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="icon" href="icon-192.png" />
-<title>내 자산 포트폴리오 v47</title>
+<title>내 자산 포트폴리오 v52</title>
 <style>
 :root{--bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#7b879d;--line:#e8edf5;--primary:#3769f6;--up:#e5484d;--down:#2f6fed;--ok:#159a63;--warn:#d98310;--shadow:0 10px 30px rgba(25,40,80,.08);--safe-top:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-bottom)}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Roboto,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}.app{max-width:760px;margin:auto;padding:calc(14px + var(--safe-top)) 14px calc(92px + var(--safe-bottom))}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px}.brand{min-width:0}.brand h1{font-size:21px;margin:0;font-weight:800;letter-spacing:-.5px}.brand .date{display:none}.top-actions{display:flex;gap:7px}.icon-btn{border:0;background:#fff;border-radius:13px;padding:10px 11px;box-shadow:var(--shadow);color:var(--text);white-space:nowrap}.icon-btn.refreshing{opacity:.55;pointer-events:none}.install-btn{display:none;color:var(--primary);font-weight:800}.hero{background:linear-gradient(135deg,#15223d,#284c9d);border-radius:24px;color:#fff;padding:20px;box-shadow:0 18px 38px rgba(26,53,115,.2)}.hero-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.hero .label{font-size:12px;opacity:.75}.hero-return{font-size:15px;font-weight:850;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap}.hero-return.up{color:#ffd5d8}.hero-return.down{color:#d9e6ff}.hero .total{font-size:30px;font-weight:850;letter-spacing:-1px;margin-top:5px}.hero-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.mini{background:rgba(255,255,255,.1);padding:12px;border-radius:15px}.mini .k{font-size:11px;opacity:.75}.mini .v{font-size:15px;font-weight:750;margin-top:3px}.section{margin-top:18px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px}.section-title h2{font-size:16px;margin:0}.linkbtn{border:0;background:transparent;color:var(--primary);font-weight:700;font-size:12px}.card{background:var(--card);border-radius:20px;padding:16px;box-shadow:var(--shadow)}.alloc-wrap{display:flex;align-items:center;gap:18px}.donut{width:150px;aspect-ratio:1;border-radius:50%;position:relative;flex:0 0 auto}.donut:after{content:"";position:absolute;inset:22px;background:#fff;border-radius:50%;box-shadow:inset 0 0 0 1px #f1f4f9}.donut-center{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;flex-direction:column;pointer-events:none}.donut-center b{font-size:17px}.donut-center span{font-size:10px;color:var(--muted);margin-top:2px}.legend{flex:1;min-width:0}.legend-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin:9px 0}.legend-row .name{display:flex;align-items:center;min-width:0}.dot{width:9px;height:9px;border-radius:50%;margin-right:7px;flex:0 0 auto}.legend-row .name span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chips{display:flex;gap:7px;overflow:auto;padding-bottom:3px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{border:1px solid var(--line);background:#fff;color:#59647a;padding:8px 11px;border-radius:999px;font-size:12px;white-space:nowrap}.chip.active{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:700}.asset-list{display:flex;flex-direction:column;gap:12px;margin-top:10px}.asset{background:#fff;border-radius:18px;padding:15px 14px 14px;box-shadow:0 6px 18px rgba(36,52,85,.055);border:1px solid #f0f3f8}.asset-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.asset-left{flex:1;min-width:0}.asset-right{flex:0 0 auto;text-align:right;white-space:nowrap;min-width:112px}.asset-name{font-weight:800;font-size:14px;letter-spacing:-.2px;margin-bottom:8px;line-height:1.2}.asset-meta{font-size:10px;color:var(--muted);margin-top:0;line-height:1.3;white-space:nowrap;letter-spacing:-.15px}.quote-ok{color:var(--ok)}.quote-manual{color:var(--muted)}.asset-value{text-align:right;white-space:nowrap}.asset-value .won{font-weight:800;font-size:13.5px}.asset-value .pct{font-size:11px;color:var(--muted);margin-top:4px}.asset-bottom{display:flex;justify-content:space-between;align-items:end;margin-top:11px}.profit{font-weight:750;font-size:12px}.profit.up{color:var(--up)}.profit.down{color:var(--down)}.weight-row{margin-top:13px}.weight-label{display:none}.bar{height:8px;background:#edf1f7;border-radius:999px;position:relative;overflow:visible;width:100%;min-width:90px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.weight-pct{position:absolute;top:50%;transform:translate(7px,-50%);font-size:11px;color:#174ea6;white-space:nowrap;font-weight:900;text-align:left;line-height:1}.target-row{font-size:10px;color:#7b879d;margin-top:11px;padding-left:0;line-height:1.45;word-break:keep-all}.target-row b{color:#334155;font-weight:800}.target-action{color:#174ea6;font-weight:800}.target-action.sell{color:#a3444b}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.tiny-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:5px 8px;font-size:10.5px;color:#59647a;margin-top:10px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.summary-box{background:#fff;border-radius:16px;padding:13px;box-shadow:var(--shadow)}.summary-box .k{font-size:10px;color:var(--muted)}.summary-box .v{font-size:14px;font-weight:800;margin-top:5px}.status-card{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border-radius:14px;padding:10px 12px;box-shadow:var(--shadow);margin-top:18px;margin-bottom:6px}.status-card .left{min-width:0}.status-card .title{font-size:11px;font-weight:800}.status-card .sub{font-size:10px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.status-pill{font-size:10px;border-radius:999px;padding:5px 8px;background:#eef8f3;color:var(--ok);font-weight:800}.bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(760px,100%);padding:10px 14px calc(10px + var(--safe-bottom));background:rgba(246,248,252,.92);backdrop-filter:blur(16px);display:grid;grid-template-columns:1fr;gap:10px;z-index:20}.nav-btn{border:0;border-radius:16px;padding:13px 10px;font-weight:800}.nav-btn.primary{background:var(--primary);color:#fff}.nav-btn.secondary{background:#fff;color:var(--text);box-shadow:var(--shadow)}.modal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:flex-end;z-index:100}.modal.show{display:flex}.sheet{background:#fff;width:min(760px,100%);margin:auto;border-radius:24px 24px 0 0;padding:18px 16px calc(24px + var(--safe-bottom));max-height:90vh;overflow:auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.sheet-head h3{margin:0;font-size:18px}.close{border:0;background:#f2f5fa;border-radius:10px;width:36px;height:36px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin:9px 0}.field label{display:block;font-size:11px;color:var(--muted);margin:0 0 5px 2px}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px;background:#fbfcfe;color:var(--text);outline:none}.checkrow{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}.checkrow .ct{font-size:12px;font-weight:700}.checkrow .cs{font-size:10px;color:var(--muted);margin-top:3px}.switch{position:relative;width:46px;height:26px;flex:0 0 auto}.switch input{display:none}.switch span{position:absolute;inset:0;background:#d7deea;border-radius:999px;transition:.2s}.switch span:after{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.18);transition:.2s}.switch input:checked+span{background:var(--primary)}.switch input:checked+span:after{transform:translateX(20px)}.sheet-actions{display:flex;gap:8px;margin-top:14px}.sheet-actions button{flex:1;border:0;border-radius:14px;padding:13px;font-weight:800}.save{background:var(--primary);color:#fff}.danger{background:#fff0f0;color:#c23d43;border:1px solid #ffd4d6!important}.settings-list{display:grid;gap:10px}.settings-btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;text-align:left}.settings-btn.primary{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:800}.note{font-size:11px;line-height:1.55;color:var(--muted);margin-top:8px}.empty{text-align:center;color:var(--muted);padding:28px 8px}.toast{position:fixed;left:50%;bottom:calc(90px + var(--safe-bottom));transform:translate(-50%,20px);background:#15223d;color:#fff;padding:10px 14px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:200;max-width:calc(100% - 30px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
@@ -1607,6 +1607,738 @@ textarea,
   padding-right:0 !important;
 }
 
+
+/* =========================================================
+   v48: 종목 손익 정렬 + 정수 수익률 + 비중바 위치 재정렬
+   ========================================================= */
+
+.asset-topline{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto !important;
+  gap:8px !important;
+  align-items:start !important;
+  margin-bottom:0 !important;
+}
+.asset-info-left{
+  min-width:0;
+}
+.asset-info-left .asset-name{
+  display:block;
+  max-width:100% !important;
+  margin:0 !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  font-size:var(--asset-name-size,14px) !important;
+  line-height:1.12 !important;
+}
+.asset-meta-edit-row{
+  display:flex;
+  align-items:center;
+  min-width:0;
+  gap:5px;
+  margin-top:6px;
+}
+.asset-inline-meta{
+  flex:0 1 auto !important;
+  min-width:0 !important;
+  width:auto !important;
+  margin:0 !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+  font-size:10.4px !important;
+  line-height:1.1 !important;
+}
+.asset-edit-btn{
+  flex:0 0 20px !important;
+  width:20px !important;
+  height:20px !important;
+}
+
+.asset-summary-right{
+  min-width:164px;
+  text-align:right;
+}
+.asset-current-value{
+  min-height:16px;
+  font-size:13.6px !important;
+  line-height:1.12 !important;
+  font-weight:900 !important;
+  white-space:nowrap;
+}
+.asset-metrics{
+  margin-top:6px;
+}
+
+/* 총/일: 라벨 고정 + 금액/천원 + 수익률/% 각각 고정 열 */
+.asset-metric-row{
+  display:grid !important;
+  grid-template-columns:14px minmax(58px,1fr) 24px 34px 9px !important;
+  column-gap:2px !important;
+  align-items:baseline !important;
+  justify-content:stretch !important;
+  width:100%;
+  margin:0 !important;
+  font-size:10.2px !important;
+  line-height:1.12 !important;
+  letter-spacing:0 !important;
+}
+.asset-metric-row.daily{
+  margin-top:5px !important;
+  font-size:10.2px !important;
+}
+.asset-metric-row .metric-tag{
+  text-align:left !important;
+  width:auto !important;
+  font-size:9.2px !important;
+  margin:0 !important;
+}
+.metric-money-num,
+.metric-rate-num{
+  text-align:right !important;
+  font-weight:850 !important;
+  white-space:nowrap;
+}
+.metric-money-unit,
+.metric-rate-unit{
+  text-align:left !important;
+  font-weight:750 !important;
+  white-space:nowrap;
+}
+.metric-money-num{letter-spacing:.14px !important}
+.metric-rate-num{letter-spacing:.08px !important}
+
+/* 개수~가격 / 총·일 블록 아래와 목표비중 사이의 중앙에 비중바 배치 */
+.weight-row{
+  width:100%;
+  margin-top:10px !important;
+  margin-bottom:10px !important;
+  overflow:visible;
+}
+.bar{
+  width:88% !important;
+  height:11px !important;
+  background:transparent !important;
+}
+.target-row{
+  margin-top:0 !important;
+}
+
+/* 현금은 손익 블록이 없으므로 간격만 자연스럽게 */
+.cash-asset .weight-row{
+  margin-top:9px !important;
+}
+
+/* Galaxy S25+급 390~430px */
+@media(max-width:430px){
+  .asset{
+    padding:9px 10px 8px !important;
+  }
+  .asset-topline{
+    grid-template-columns:minmax(0,1fr) 158px !important;
+    gap:7px !important;
+  }
+  .asset-meta-edit-row{
+    margin-top:6px !important;
+  }
+  .asset-inline-meta{
+    font-size:10.1px !important;
+  }
+  .asset-summary-right{
+    min-width:0 !important;
+    width:158px !important;
+  }
+  .asset-current-value{
+    font-size:13.3px !important;
+  }
+  .asset-metrics{
+    margin-top:6px !important; /* '총'을 개수~가격 줄과 같은 높이로 */
+  }
+  .asset-metric-row,
+  .asset-metric-row.daily{
+    grid-template-columns:14px minmax(54px,1fr) 24px 31px 9px !important;
+    font-size:9.8px !important;
+  }
+  .asset-metric-row .metric-tag{
+    font-size:8.9px !important;
+  }
+  .weight-row{
+    margin-top:10px !important;
+    margin-bottom:10px !important;
+  }
+  .target-row{
+    margin-top:0 !important;
+  }
+}
+
+/* 더 좁은 화면 */
+@media(max-width:389px){
+  .asset-topline{
+    grid-template-columns:minmax(0,1fr) 146px !important;
+    gap:6px !important;
+  }
+  .asset-inline-meta{
+    font-size:9.5px !important;
+  }
+  .asset-summary-right{
+    width:146px !important;
+  }
+  .asset-metric-row,
+  .asset-metric-row.daily{
+    grid-template-columns:13px minmax(48px,1fr) 23px 28px 8px !important;
+    font-size:9.2px !important;
+  }
+}
+
+
+/* =========================================================
+   v49: 총매입/총수익/일일수익 3개 동일 카드 + 최근최고 억원/날짜
+   ========================================================= */
+.hero-row{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:7px !important;
+  align-items:stretch !important;
+}
+.hero-row .mini{
+  min-width:0 !important;
+  min-height:58px !important;
+  padding:9px 8px !important;
+  justify-content:flex-start !important;
+}
+.hero-row .mini .k{
+  margin:0 0 5px 0 !important;
+  padding:0 !important;
+  font-size:11.5px !important;
+  line-height:1.15 !important;
+  font-weight:800 !important;
+  white-space:nowrap !important;
+}
+.hero-row .mini .v{
+  margin:0 !important;
+  padding:0 !important;
+  font-size:clamp(10.4px,2.8vw,12.2px) !important;
+  line-height:1.15 !important;
+  font-weight:850 !important;
+  white-space:nowrap !important;
+  letter-spacing:-.08px !important;
+}
+.hero-row .mini .v.up{color:#ffd5d8}
+.hero-row .mini .v.down{color:#d9e6ff}
+.hero-row .mini .v.muted{color:#eef3ff}
+
+/* 최근최고: 한 줄에 0.0억원 (YY.MM.DD) */
+.history-stat-date{
+  font-size:8.4px;
+  font-weight:750;
+  color:#8a95a8;
+  white-space:nowrap;
+  margin-left:1px;
+}
+.history-stat .v{
+  white-space:nowrap;
+}
+
+@media(min-width:390px) and (max-width:430px){
+  .hero-row{
+    gap:6px !important;
+  }
+  .hero-row .mini{
+    min-height:56px !important;
+    padding:9px 7px !important;
+  }
+  .hero-row .mini .k{
+    font-size:11px !important;
+  }
+  .hero-row .mini .v{
+    font-size:clamp(10px,2.65vw,11.4px) !important;
+  }
+  .history-stat-date{
+    font-size:8px;
+  }
+}
+
+@media(max-width:389px){
+  .hero-row{
+    gap:5px !important;
+  }
+  .hero-row .mini{
+    padding:8px 6px !important;
+  }
+  .hero-row .mini .k{
+    font-size:10.2px !important;
+  }
+  .hero-row .mini .v{
+    font-size:9.7px !important;
+  }
+}
+
+
+/* =========================================================
+   v50: PC에서도 모바일 앱 크기/레이아웃 고정
+   ========================================================= */
+
+/* 데스크톱에서는 모바일 앱 한 대를 가운데 띄운 형태 */
+html, body{
+  min-height:100%;
+}
+body{
+  background:#eef2f7 !important;
+}
+.app{
+  width:100% !important;
+  max-width:430px !important;
+  margin:0 auto !important;
+  min-height:100vh;
+  background:var(--bg,#f6f8fc);
+}
+
+/* PC 넓은 화면에서도 Galaxy S25+급 모바일 규칙을 강제로 동일 적용 */
+@media(min-width:431px){
+  .app{
+    width:430px !important;
+    max-width:430px !important;
+    padding-left:14px !important;
+    padding-right:14px !important;
+  }
+
+  .top{gap:6px !important}
+  .top-actions{gap:6px !important}
+  .top-icon-btn{
+    width:33px !important;
+    height:33px !important;
+  }
+  .top-icon-btn svg{
+    width:22px !important;
+    height:22px !important;
+  }
+  .top-icon-btn.more{
+    font-size:24px !important;
+  }
+
+  .hero{
+    padding:19px 18px !important;
+  }
+  .hero-title-row{
+    gap:7px !important;
+  }
+  .hero .label{
+    font-size:14.5px !important;
+  }
+  .hero-return{
+    font-size:13.5px !important;
+    padding:0 !important;
+  }
+  .hero .total{
+    font-size:28px !important;
+  }
+  .hero-row{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:6px !important;
+  }
+  .hero-row .mini{
+    min-height:56px !important;
+    padding:9px 7px !important;
+  }
+  .hero-row .mini .k{
+    font-size:11px !important;
+    line-height:1.15 !important;
+    margin-bottom:5px !important;
+  }
+  .hero-row .mini .v{
+    font-size:11.4px !important;
+    line-height:1.15 !important;
+  }
+
+  .asset{
+    padding:9px 10px 8px !important;
+  }
+  .asset-topline{
+    grid-template-columns:minmax(0,1fr) 158px !important;
+    gap:7px !important;
+  }
+  .asset-meta-edit-row{
+    margin-top:6px !important;
+  }
+  .asset-inline-meta{
+    font-size:10.1px !important;
+  }
+  .asset-summary-right{
+    min-width:0 !important;
+    width:158px !important;
+  }
+  .asset-current-value{
+    font-size:13.3px !important;
+  }
+  .asset-metrics{
+    margin-top:6px !important;
+  }
+  .asset-metric-row,
+  .asset-metric-row.daily{
+    grid-template-columns:14px minmax(54px,1fr) 24px 31px 9px !important;
+    font-size:9.8px !important;
+  }
+  .asset-metric-row .metric-tag{
+    font-size:8.9px !important;
+  }
+  .weight-row{
+    margin-top:10px !important;
+    margin-bottom:10px !important;
+  }
+  .target-row{
+    font-size:10.2px !important;
+    margin-top:0 !important;
+  }
+
+  .allocation-card{
+    padding:12px 12px 11px !important;
+  }
+  .alloc-bar{
+    height:14px !important;
+  }
+  .alloc-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:6px 12px !important;
+    margin-top:9px !important;
+  }
+  .alloc-name,
+  .alloc-pct{
+    font-size:10.3px !important;
+  }
+
+  .history-toolbar{
+    gap:4px !important;
+  }
+  .history-toolbar .history-range{
+    gap:4px !important;
+  }
+  .history-toolbar .history-range button{
+    padding:5px 8px !important;
+    font-size:9px !important;
+  }
+  .history-stat{
+    gap:3px !important;
+    padding:5px 7px !important;
+  }
+  .history-stat .k{
+    font-size:8.2px !important;
+  }
+  .history-stat .v{
+    font-size:8.9px !important;
+  }
+  .history-stat-date{
+    font-size:8px !important;
+  }
+}
+
+/* 데스크톱에서 모바일 앱 카드가 너무 넓게 퍼지지 않도록 */
+@media(min-width:900px){
+  body{
+    padding:12px 0 24px;
+  }
+  .app{
+    border-radius:18px;
+    box-shadow:0 12px 40px rgba(30,44,72,.10);
+    overflow:clip;
+  }
+}
+
+
+/* =========================================================
+   v51: 상단 카드 숫자 축소 + 종목 총/일 라벨 제거 + 비중바 축소
+   ========================================================= */
+
+/* 1) 총 평가자산 옆 총/일 수익률은 한 단계 축소 */
+.hero-return{
+  font-size:11.5px !important;
+  line-height:1.1 !important;
+}
+
+/* 총 매입금액 / 총수익 / 일일수익 카드 숫자를 카드 폭에 맞게 축소 */
+.hero-row .mini .v{
+  font-size:10.3px !important;
+  line-height:1.1 !important;
+  letter-spacing:-0.12px !important;
+  font-weight:850 !important;
+}
+
+/* 카드 제목도 숫자와 균형 맞춤 */
+.hero-row .mini .k{
+  font-size:10.7px !important;
+  line-height:1.1 !important;
+}
+
+/* 2) 종목별 총/일 라벨 삭제 후 정렬 재구성
+      금액 / 천원 / 수익률 / % 4열만 사용 */
+.asset-metric-row,
+.asset-metric-row.daily{
+  grid-template-columns:minmax(58px,1fr) 24px 34px 9px !important;
+  column-gap:2px !important;
+  justify-content:stretch !important;
+  text-align:right !important;
+}
+.asset-metric-row .metric-tag{
+  display:none !important;
+}
+
+/* 3) 비중바 전체 길이 축소 */
+.bar{
+  width:72% !important;
+}
+
+/* 모바일/PC 모두 동일하게 보이도록 세부 보정 */
+@media(max-width:430px), (min-width:431px){
+  .hero-return{
+    font-size:11.2px !important;
+  }
+  .hero-row .mini .v{
+    font-size:10px !important;
+  }
+  .hero-row .mini .k{
+    font-size:10.5px !important;
+  }
+  .asset-metric-row,
+  .asset-metric-row.daily{
+    grid-template-columns:minmax(54px,1fr) 24px 31px 9px !important;
+  }
+  .bar{
+    width:72% !important;
+  }
+}
+
+@media(max-width:389px){
+  .hero-return{
+    font-size:10.6px !important;
+  }
+  .hero-row .mini .v{
+    font-size:9.4px !important;
+  }
+  .hero-row .mini .k{
+    font-size:9.8px !important;
+  }
+  .asset-metric-row,
+  .asset-metric-row.daily{
+    grid-template-columns:minmax(48px,1fr) 23px 28px 8px !important;
+  }
+}
+
+
+/* =========================================================
+   v52: 카드 숫자 실제 폭에 맞춤 + 비중바 위치를 구조로 고정
+   ========================================================= */
+
+/* 삼성인터넷/모바일 브라우저의 작은 글자 자동확대 방지 */
+html{
+  -webkit-text-size-adjust:100% !important;
+  text-size-adjust:100% !important;
+}
+
+/* 1) 상단 3개 카드: 긴 금액도 카드 안에서 무조건 한 줄 */
+.hero-row{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:6px !important;
+}
+.hero-row .mini{
+  min-width:0 !important;
+  overflow:hidden !important;
+  padding:9px 6px !important;
+}
+.hero-row .mini .k{
+  font-size:10.2px !important;
+  line-height:1.05 !important;
+  margin-bottom:6px !important;
+  white-space:nowrap !important;
+}
+#totalCost,
+#totalPL,
+#dailyPL{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  min-width:0 !important;
+  overflow:visible !important;
+  white-space:nowrap !important;
+  font-size:9.2px !important;
+  line-height:1.05 !important;
+  letter-spacing:-.38px !important;
+  font-weight:850 !important;
+  transform:none !important;
+}
+
+/* 총 평가자산 옆 총/일 수익률도 작게 */
+.hero-return{
+  font-size:10.2px !important;
+  line-height:1 !important;
+  letter-spacing:-.08px !important;
+}
+
+/* 2~3) 종목카드 위치를 행 단위로 고정
+   row1 종목명 | 평가금액
+   row2 개수·평균·현재 | 총수익
+   row3 비중바 | 일일수익
+   row4 목표비중 (전체폭)
+*/
+.asset-layout{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) 158px !important;
+  grid-template-rows:auto auto auto auto;
+  column-gap:7px !important;
+  row-gap:7px !important;
+  align-items:center !important;
+}
+.asset-name-cell{
+  grid-column:1;
+  grid-row:1;
+  min-width:0;
+}
+.asset-name-cell .asset-name{
+  display:block;
+  max-width:100% !important;
+  margin:0 !important;
+  line-height:1.1 !important;
+}
+.asset-current-value{
+  grid-column:2;
+  grid-row:1;
+  align-self:start !important;
+  justify-self:end !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+.asset-meta-edit-row{
+  grid-column:1;
+  grid-row:2;
+  display:flex !important;
+  align-items:center !important;
+  gap:5px !important;
+  min-width:0 !important;
+  margin:0 !important;
+}
+.asset-inline-meta{
+  min-width:0 !important;
+  margin:0 !important;
+  font-size:10.1px !important;
+  line-height:1.05 !important;
+  white-space:nowrap !important;
+}
+.asset-edit-btn{
+  flex:0 0 20px !important;
+  width:20px !important;
+  height:20px !important;
+}
+
+/* 총수익은 개수·평균·현재와 정확히 같은 행 */
+.asset-metric-row.metric-total{
+  grid-column:2;
+  grid-row:2;
+}
+
+/* 비중바는 개수·평균·현재 바로 아래 / 목표비중 바로 위 */
+.weight-row{
+  grid-column:1;
+  grid-row:3;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  align-self:center !important;
+}
+
+/* 비중바 자체 길이도 짧게 */
+.bar{
+  width:82% !important;
+  height:8px !important;
+  margin:0 !important;
+}
+
+/* 일일수익은 비중바와 같은 행 */
+.asset-metric-row.daily{
+  grid-column:2;
+  grid-row:3;
+  margin:0 !important;
+}
+
+/* 목표비중은 비중바 바로 아래, 전체 폭 */
+.target-row{
+  grid-column:1 / -1;
+  grid-row:4;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 1px !important;
+  white-space:nowrap !important;
+}
+
+/* 총/일 글자는 이미 삭제된 상태: 금액/천원 + 수익률/%만 정렬 */
+.asset-metric-row,
+.asset-metric-row.daily{
+  display:grid !important;
+  grid-template-columns:minmax(54px,1fr) 24px 31px 9px !important;
+  column-gap:2px !important;
+  align-items:baseline !important;
+  width:100% !important;
+  font-size:9.8px !important;
+  line-height:1.05 !important;
+}
+.metric-money-num,
+.metric-rate-num{
+  text-align:right !important;
+}
+.metric-money-unit,
+.metric-rate-unit{
+  text-align:left !important;
+}
+
+/* 현금도 동일하게: 수익 영역 없이 bar가 meta와 목표비중 사이 */
+.cash-asset .asset-layout{
+  grid-template-columns:minmax(0,1fr) 158px !important;
+}
+
+/* PC도 모바일 폭이므로 동일 규칙 */
+@media(min-width:431px){
+  #totalCost,
+  #totalPL,
+  #dailyPL{
+    font-size:9.2px !important;
+  }
+  .hero-return{
+    font-size:10.2px !important;
+  }
+}
+
+/* 더 좁은 화면 */
+@media(max-width:389px){
+  .hero-row .mini{
+    padding-left:5px !important;
+    padding-right:5px !important;
+  }
+  .hero-row .mini .k{
+    font-size:9.6px !important;
+  }
+  #totalCost,
+  #totalPL,
+  #dailyPL{
+    font-size:8.5px !important;
+    letter-spacing:-.45px !important;
+  }
+  .hero-return{
+    font-size:9.6px !important;
+  }
+  .asset-layout{
+    grid-template-columns:minmax(0,1fr) 146px !important;
+    column-gap:6px !important;
+    row-gap:6px !important;
+  }
+  .asset-inline-meta{
+    font-size:9.5px !important;
+  }
+  .asset-metric-row,
+  .asset-metric-row.daily{
+    grid-template-columns:minmax(48px,1fr) 23px 28px 8px !important;
+    font-size:9.2px !important;
+  }
+  .bar{
+    width:80% !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1618,7 +2350,7 @@ textarea,
   </div>
   <div class="main-tabs" id="mainTabs"><button class="main-tab active" id="portfolioTab" onclick="switchMainView('portfolio')">포트폴리오</button><button class="main-tab" id="historyTab" onclick="switchMainView('history')">자산변화</button></div>
   <div class="app-view" id="portfolioView">
-  <section class="hero"><div class="hero-title-row"><div class="label">총 평가자산</div><div class="hero-return" id="heroReturn"><span class="metric-total">총 +0.00%</span><span> / </span><span class="metric-day">일 +0.00%</span></div></div><div class="total" id="totalValue">₩0</div><div class="hero-row"><div class="mini"><div class="k">총 매입금액</div><div class="v" id="totalCost">₩0</div></div><div class="mini profit-mini"><div class="k combined-label">총수익 / 일일수익</div><div class="v combined-value" id="totalPL"><div class="hero-profit-line"><span>총</span><b>₩0</b></div><div class="hero-profit-line daily"><span>일</span><b>₩0</b></div></div></div></div></section>
+  <section class="hero"><div class="hero-title-row"><div class="label">총 평가자산</div><div class="hero-return" id="heroReturn"><span class="metric-total">총 +0.00%</span><span> / </span><span class="metric-day">일 +0.00%</span></div></div><div class="total" id="totalValue">₩0</div><div class="hero-row"><div class="mini"><div class="k">총 매입금액</div><div class="v" id="totalCost">₩0</div></div><div class="mini"><div class="k">총수익</div><div class="v" id="totalPL">₩0</div></div><div class="mini"><div class="k">일일수익</div><div class="v" id="dailyPL">₩0</div></div></div></section>
 <section class="section"><div class="section-title"><h2>자산 배분</h2><button class="linkbtn" onclick="toggleAllocMode()">계좌별/자산별</button></div><div class="card allocation-card"><div class="alloc-bar" id="allocBar" title="자산 배분"></div><div class="alloc-grid" id="legend"></div></div></section>
   <section class="section"><div class="section-title"><h2>보유 자산</h2></div><div class="chips" id="chips"></div><div class="asset-list" id="assetList"></div></section>
   <div class="status-card"><div class="left"><div class="title">시세 · 환율 업데이트</div><div class="sub" id="quoteStatus">아직 자동 시세를 불러오지 않았습니다.</div><div class="sub" id="fxStatus">USD/KRW 수동값 사용 중</div></div><div class="status-pill" id="quotePill">수동</div></div>
@@ -1672,7 +2404,7 @@ textarea,
 <div class="note">자동 조회: 미국주식/ETF는 Yahoo Finance(프리장·정규장·애프터장 포함)를 우선 사용합니다. Yahoo에서 시세를 못 불러오면 해당 종목명을 알림으로 표시하고 기존 가격을 유지합니다. 한국주식/ETF는 네이버 증권, 비트코인은 CoinGecko/Upbit, USD/KRW 환율은 Yahoo Finance 1분 시세 → 네이버 → Frankfurter 순으로 조회합니다.</div></div></div>
 
 <script>
-const SAMPLE={version:47,displayCurrency:"KRW",cloudSync:false,syncPending:[],syncLastAt:"",syncSheetUrl:"",accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"],fx:1367.44,fxSource:"수동",fxUpdatedAt:"",updatedAt:"2026-09-16",priceUpdatedAt:"",apiUrl:"",autoRefresh:false,assets:[
+const SAMPLE={version:52,displayCurrency:"KRW",cloudSync:false,syncPending:[],syncLastAt:"",syncSheetUrl:"",accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"],fx:1367.44,fxSource:"수동",fxUpdatedAt:"",updatedAt:"2026-09-16",priceUpdatedAt:"",apiUrl:"",autoRefresh:false,assets:[
 {id:1,account:"해외주식",name:"팔란티어",qty:1040,avg:15.5111,purchaseFx:1203.3600,cost:19412055,price:172.22,currency:"USD",market:"US",ticker:"PLTR",memo:"PLTR"},
 {id:2,account:"해외주식",name:"알파벳 C",qty:255,avg:327.3023,purchaseFx:1341.1800,cost:111937681,price:342.04,currency:"USD",market:"US",ticker:"GOOG",memo:"GOOG"},
 {id:3,account:"해외주식",name:"모더나",qty:70,avg:134.6172,purchaseFx:1378.0601,cost:12985741,price:144.50,currency:"USD",market:"US",ticker:"MRNA",memo:"MRNA"},
@@ -1720,7 +2452,7 @@ let mainView="portfolio",
     historyDetailCache=initialHistoryCache.details&&typeof initialHistoryCache.details==="object"?initialHistoryCache.details:{};
 
 
-function loadState(){let s=null;try{s=JSON.parse(localStorage.getItem("portfolioMobileV1")||"null")}catch(e){}if(!s)s=structuredClone(SAMPLE);s.version=47;
+function loadState(){let s=null;try{s=JSON.parse(localStorage.getItem("portfolioMobileV1")||"null")}catch(e){}if(!s)s=structuredClone(SAMPLE);s.version=52;
 s.displayCurrency="KRW";
 s.assets=(s.assets||[]).map(a=>{
   if(a&&a.market==="KR"){
@@ -1746,6 +2478,14 @@ const won=n=>"₩"+Math.round(n||0).toLocaleString("ko-KR"),
       moneyK=n=>{
         const v=Math.round(Math.abs(Number(n||0))/1000);
         return (Number(n||0)>=0?"+":"-")+v.toLocaleString("ko-KR")+"천원";
+      },
+      moneyKNum=n=>{
+        const v=Math.round(Math.abs(Number(n||0))/1000);
+        return (Number(n||0)>=0?"+":"-")+v.toLocaleString("ko-KR");
+      },
+      pct0Num=n=>{
+        const v=Math.round(Math.abs(Number(n||0)));
+        return (Number(n||0)>=0?"+":"-")+v.toLocaleString("ko-KR");
       },
       pct=n=>(n>=0?"+":"")+n.toFixed(2)+"%";
 function valueOf(a){return Number(a.qty||0)*Number(a.price||0)*(a.currency==="USD"?Number(state.fx||0):1)}
@@ -1785,8 +2525,12 @@ function render(){
 
   const totalPlText=(t.pl>=0?"+":"")+money(t.pl);
   const dayPlText=d.available?((d.pl>=0?"+":"")+money(d.pl)):"-";
-  totalPL.innerHTML=`<span class="hero-profit-value ${t.pl>=0?"up":"down"}">${totalPlText}</span><span class="hero-profit-sep">/</span><span class="hero-profit-value daily ${d.available?(d.pl>=0?"up":"down"):"muted"}">${dayPlText}</span>`;
-  totalPL.title=d.available
+  totalPL.textContent=totalPlText;
+  totalPL.className="v "+(t.pl>=0?"up":"down");
+  const dailyPLEl=document.getElementById("dailyPL");
+  dailyPLEl.textContent=dayPlText;
+  dailyPLEl.className="v "+(d.available?(d.pl>=0?"up":"down"):"muted");
+  dailyPLEl.title=d.available
     ?"일일수익: 시세 사이트에서 불러온 전일 정규장 종가(암호화폐는 전일 기준가)와 현재가격 비교"
     :`일일수익 계산 대기: ${d.covered}/${d.required}개 종목의 전일 종가 확보`;
 
@@ -1886,30 +2630,35 @@ function renderAssets(){
       }
     }
 
-    return `<div class="asset">
-      <div class="asset-topline">
-        <div class="asset-title-line">
+    return `<div class="asset${a.market==="CASH"?" cash-asset":""}">
+      <div class="asset-layout">
+        <div class="asset-name-cell">
           <div class="asset-name" style="--asset-name-size:${nameSize}px" title="${a.name}">${a.name}</div>
+        </div>
+        <div class="asset-current-value">${money(v)}</div>
+
+        <div class="asset-meta-edit-row">
           <div class="asset-inline-meta" title="${metaText}">${metaText}</div>
           <button class="asset-edit-btn" type="button" aria-label="${a.name} 수정" onclick="openAsset(${a.id})" title="수정"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l10.2-10.2a2.1 2.1 0 0 0-3-3L5 17v3z"></path><path d="M13.8 8.2l3 3"></path></svg></button>
         </div>
-        <div class="asset-current-value">${money(v)}</div>
-      </div>
-      <div class="asset-body-row${a.market==="CASH"?" cash-body":""}">
-        <div class="asset-left">
-          <div class="weight-row">
-            <div class="bar" title="전체 자산 비중 ${w.toFixed(2)}%">
-              <i style="width:${fillW}%"></i>
-              <span class="weight-pct" style="left:${fillW}%">${w.toFixed(2)}%</span>
-            </div>
+        ${a.market==="CASH"?"<div></div>":`<div class="asset-metric-row metric-total ${pl>=0?"up":"down"}">
+          <span class="metric-money-num">${moneyKNum(pl)}</span><span class="metric-money-unit">천원</span>
+          <span class="metric-rate-num">${pct0Num(rr)}</span><span class="metric-rate-unit">%</span>
+        </div>`}
+
+        <div class="weight-row">
+          <div class="bar" title="전체 자산 비중 ${w.toFixed(2)}%">
+            <i style="width:${fillW}%"></i>
+            <span class="weight-pct" style="left:${fillW}%">${w.toFixed(2)}%</span>
           </div>
         </div>
-        ${a.market==="CASH"?"":`<div class="asset-right">
-          <div class="asset-metric-row ${pl>=0?"up":"down"}"><span class="metric-tag">총</span><span class="metric-money">${moneyK(pl)}</span><span class="metric-dot">·</span><span class="metric-rate">${pct(rr)}</span></div>
-          <div class="asset-metric-row daily ${day.available?(day.pl>=0?"up":"down"):"muted"}"><span class="metric-tag">일</span><span class="metric-money">${day.available?moneyK(day.pl):"-"}</span>${day.available?`<span class="metric-dot">·</span><span class="metric-rate">${pct(day.rr)}</span>`:""}</div>
+        ${a.market==="CASH"?"<div></div>":`<div class="asset-metric-row daily ${day.available?(day.pl>=0?"up":"down"):"muted"}">
+          <span class="metric-money-num">${day.available?moneyKNum(day.pl):"-"}</span><span class="metric-money-unit">${day.available?"천원":""}</span>
+          <span class="metric-rate-num">${day.available?pct0Num(day.rr):"-"}</span><span class="metric-rate-unit">${day.available?"%":""}</span>
         </div>`}
+
+        <div class="target-row">${targetText}</div>
       </div>
-      <div class="target-row">${targetText}</div>
     </div>`;
   }).join(""):"<div class='empty'>보유 자산이 없습니다.</div>";
 }
@@ -2336,7 +3085,10 @@ function renderHistory(){
     drawHistoryChart();return;
   }
   const last=historyData[historyData.length-1];
-  latest.innerHTML=`<div class="history-stat" title="최근 최고자산 · ${last.date}"><span class="k">최근최고</span><span class="v">${historyMoney(last.totalValue)}</span></div><div class="history-stat"><span class="k">기록일수</span><span class="v">${historyData.length}일</span></div>`;
+  const latestDate=String(last.date||"").replace(/-/g,".");
+  const shortLatestDate=latestDate.length>=10?latestDate.slice(2):latestDate;
+  const latestEok=(Number(last.totalValue||0)/100000000).toFixed(1)+"억원";
+  latest.innerHTML=`<div class="history-stat" title="최근 최고자산 · ${last.date}"><span class="k">최근최고</span><span class="v">${latestEok}</span><span class="history-stat-date">(${shortLatestDate})</span></div><div class="history-stat"><span class="k">기록일수</span><span class="v">${historyData.length}일</span></div>`;
   const desc=[...historyData].reverse();
   list.innerHTML=desc.map((h,i)=>{
     const prevIdx=historyData.findIndex(x=>x.date===h.date)-1;
