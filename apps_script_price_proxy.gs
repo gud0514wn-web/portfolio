@@ -83,6 +83,7 @@ function setupPortfolioSync() {
     'currency','market','ticker','targetWeight','memo','updatedAt'
   ]);
   ensureSheet_(ss, SYNC_META_SHEET, ['syncKey','accountsJson','updatedAt']);
+  migrateKrTickers_(ss.getSheetByName(SYNC_ASSET_SHEET));
 
   Logger.log('Portfolio Cloud Sync 준비 완료: ' + ss.getUrl());
   return ss.getUrl();
@@ -110,11 +111,46 @@ function getSyncSpreadsheet_(){
 function ensureSheet_(ss,name,headers){
   var sh=ss.getSheetByName(name);if(!sh)sh=ss.insertSheet(name);
   if(sh.getLastRow()===0){sh.getRange(1,1,1,headers.length).setValues([headers]);sh.setFrozenRows(1)}
+  if(name===SYNC_ASSET_SHEET){
+    sh.getRange('L:L').setNumberFormat('@');
+  }
   return sh;
 }
+
+function migrateKrTickers_(sh){
+  if(!sh)return;
+  var last=sh.getLastRow();
+  if(last<2)return;
+  var vals=sh.getRange(2,11,last-1,2).getValues(); // K=market, L=ticker
+  var changed=false;
+  for(var i=0;i<vals.length;i++){
+    var market=String(vals[i][0]||'');
+    var ticker=String(vals[i][1]||'');
+    if(market==='KR'){
+      var normalized=normalizeKrCode_(ticker);
+      if(normalized!==ticker){
+        vals[i][1]=normalized;
+        changed=true;
+      }
+    }
+  }
+  if(changed)sh.getRange(2,11,vals.length,2).setValues(vals);
+  sh.getRange('L:L').setNumberFormat('@');
+}
+
 function countAssetsForKey_(sh,key){var last=sh.getLastRow();if(last<2)return 0;var v=sh.getRange(2,1,last-1,1).getValues(),n=0;v.forEach(function(r){if(String(r[0])===key)n++});return n}
-function assetToRow_(key,a){return[key,Number(a.id||0),String(a.account||''),String(a.name||''),Number(a.qty||0),Number(a.avg||0),a.purchaseFx==null||a.purchaseFx===''?'':Number(a.purchaseFx),Number(a.cost||0),Number(a.price||0),String(a.currency||'KRW'),String(a.market||'MANUAL'),String(a.ticker||''),a.targetWeight==null||a.targetWeight===''?'':Number(a.targetWeight),String(a.memo||''),new Date().toISOString()]}
-function rowToAsset_(r){return{id:Number(r[1]||0),account:String(r[2]||''),name:String(r[3]||''),qty:Number(r[4]||0),avg:Number(r[5]||0),purchaseFx:r[6]===''?null:Number(r[6]),cost:Number(r[7]||0),price:Number(r[8]||0),currency:String(r[9]||'KRW'),market:String(r[10]||'MANUAL'),ticker:String(r[11]||''),targetWeight:r[12]===''?'':Number(r[12]),memo:String(r[13]||'')}}
+function assetToRow_(key,a){
+  var market=String(a.market||'MANUAL');
+  var ticker=String(a.ticker||'');
+  if(market==='KR')ticker=normalizeKrCode_(ticker);
+  return[key,Number(a.id||0),String(a.account||''),String(a.name||''),Number(a.qty||0),Number(a.avg||0),a.purchaseFx==null||a.purchaseFx===''?'':Number(a.purchaseFx),Number(a.cost||0),Number(a.price||0),String(a.currency||'KRW'),market,ticker,a.targetWeight==null||a.targetWeight===''?'':Number(a.targetWeight),String(a.memo||''),new Date().toISOString()]
+}
+function rowToAsset_(r){
+  var market=String(r[10]||'MANUAL');
+  var ticker=String(r[11]||'');
+  if(market==='KR')ticker=normalizeKrCode_(ticker);
+  return{id:Number(r[1]||0),account:String(r[2]||''),name:String(r[3]||''),qty:Number(r[4]||0),avg:Number(r[5]||0),purchaseFx:r[6]===''?null:Number(r[6]),cost:Number(r[7]||0),price:Number(r[8]||0),currency:String(r[9]||'KRW'),market:market,ticker:ticker,targetWeight:r[12]===''?'':Number(r[12]),memo:String(r[13]||'')}
+}
 function findAssetRow_(sh,key,id){var last=sh.getLastRow();if(last<2)return-1;var v=sh.getRange(2,1,last-1,2).getValues();for(var i=0;i<v.length;i++)if(String(v[i][0])===key&&String(v[i][1])===String(id))return i+2;return-1}
 function upsertAsset_(sh,key,a){if(!a||!a.id)throw new Error('자산 ID가 없습니다.');var row=assetToRow_(key,a),n=findAssetRow_(sh,key,a.id);if(n>0)sh.getRange(n,1,1,row.length).setValues([row]);else sh.appendRow(row)}
 function deleteAsset_(sh,key,id){var n=findAssetRow_(sh,key,id);if(n>0)sh.deleteRow(n)}
@@ -240,10 +276,20 @@ function fetchUS_(symbols, out) {
     });
   }
 }
+
+function normalizeKrCode_(code) {
+  var s = String(code == null ? '' : code).trim();
+  if (/^\d+$/.test(s) && s.length < 6) s = ('000000' + s).slice(-6);
+  return s;
+}
+
 function fetchKR_(codes, out) {
   if (!codes.length) return;
 
-  codes.forEach(function(code){
+  codes.forEach(function(rawCode){
+    var requestCode = String(rawCode == null ? '' : rawCode).trim();
+    var code = normalizeKrCode_(requestCode);
+    var responseKey = 'KR:' + requestCode;
     var ok = false;
     var errs = [];
 
@@ -267,7 +313,7 @@ function fetchKR_(codes, out) {
           j1.closePrice || j1.currentPrice || j1.tradePrice || ''
         ).replace(/,/g,''));
         if (p1 > 0) {
-          out.prices['KR:' + code] = {
+          out.prices[responseKey] = {
             price:p1,
             currency:'KRW',
             name:j1.stockName || '',
@@ -305,7 +351,7 @@ function fetchKR_(codes, out) {
           d2.closePrice || d2.currentPrice || d2.tradePrice || d2.nv || ''
         ).replace(/,/g,''));
         if (p2 > 0) {
-          out.prices['KR:' + code] = {
+          out.prices[responseKey] = {
             price:p2,
             currency:'KRW',
             name:d2.stockName || d2.name || '',
@@ -342,7 +388,7 @@ function fetchKR_(codes, out) {
                  j3.result.areas[0].datas && j3.result.areas[0].datas[0];
         var p3 = d3 && Number(String(d3.nv || d3.closePrice || '').replace(/,/g,''));
         if (p3 > 0) {
-          out.prices['KR:' + code] = {
+          out.prices[responseKey] = {
             price:p3,
             currency:'KRW',
             source:'Naver Polling',
@@ -378,7 +424,7 @@ function fetchKR_(codes, out) {
         if (!m4) m4 = txt4.match(/<dd>현재가\s*([\d,]+)\s*/i);
         var p4 = m4 && Number(String(m4[1] || '').replace(/,/g,''));
         if (p4 > 0) {
-          out.prices['KR:' + code] = {
+          out.prices[responseKey] = {
             price:p4,
             currency:'KRW',
             source:'Naver HTML'
@@ -417,7 +463,7 @@ function fetchKR_(codes, out) {
           j5.regularMarketPrice || j5.price || 0
         );
         if (p5 > 0) {
-          out.prices['KR:' + code] = {
+          out.prices[responseKey] = {
             price:p5,
             currency:'KRW',
             name:j5.name || j5.symbolName || '',
@@ -471,7 +517,7 @@ function fetchKR_(codes, out) {
         }
 
         if (p6 > 0) {
-          out.prices['KR:' + code] = {
+          out.prices[responseKey] = {
             price:p6,
             currency:'KRW',
             source:'Google Finance'
@@ -488,7 +534,7 @@ function fetchKR_(codes, out) {
     }
 
     if (!ok) {
-      out.errors['KR:' + code] =
+      out.errors[responseKey] =
         '국내시세 조회 실패 (' + errs.slice(-5).join(' / ') + ')';
     }
   });
@@ -500,7 +546,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r = UrlFetchApp.fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=krw', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/10.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/11.0)'}
     });
     if (r.getResponseCode() >= 200 && r.getResponseCode() < 300) {
       var j = JSON.parse(r.getContentText());
@@ -516,7 +562,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r2 = UrlFetchApp.fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/10.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/11.0)'}
     });
     if (r2.getResponseCode() >= 200 && r2.getResponseCode() < 300) {
       var j2 = JSON.parse(r2.getContentText());
@@ -562,7 +608,7 @@ function fetchFx_(out) {
   try {
     var r1 = UrlFetchApp.fetch('https://api.frankfurter.app/latest?from=USD&to=KRW', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/10.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/11.0)'}
     });
     if (r1.getResponseCode() >= 200 && r1.getResponseCode() < 300) {
       var j1 = JSON.parse(r1.getContentText());
