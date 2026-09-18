@@ -287,8 +287,14 @@ function fetchUS_(symbols, out) {
     else if (inPeriod_(ctp.regular, checkTs)) session = 'REGULAR';
     else if (inPeriod_(ctp.post, checkTs)) session = 'POST';
 
+    var previousClose =
+      Number(meta.chartPreviousClose) ||
+      Number(meta.previousClose) ||
+      Number(meta.regularMarketPreviousClose) || null;
+
     return {
       price: latestPrice,
+      previousClose: previousClose,
       currency: meta.currency || 'USD',
       source: 'Yahoo Finance',
       session: session,
@@ -331,6 +337,45 @@ function normalizeKrCode_(code) {
   var s = String(code == null ? '' : code).trim();
   if (/^\d+$/.test(s) && s.length < 6) s = ('000000' + s).slice(-6);
   return s;
+}
+
+
+function signedKrChange_(obj) {
+  if (!obj) return null;
+  var raw = obj.compareToPreviousClosePrice;
+  if (raw == null || raw === '') raw = obj.changePrice;
+  if (raw == null || raw === '') raw = obj.cv;
+  if (raw == null || raw === '') return null;
+
+  var v = Number(String(raw).replace(/,/g,''));
+  if (!isFinite(v)) return null;
+
+  // Naver basic often provides direction separately.
+  var code = String(
+    (obj.compareToPreviousPrice && obj.compareToPreviousPrice.code) ||
+    obj.compareToPreviousPriceCode || obj.rf || ''
+  ).toUpperCase();
+
+  // 2/5 or RISE/UP = 상승, 4/3 or FALL/DOWN = 하락 (unknown이면 원래 부호 사용)
+  if (v >= 0) {
+    if (code === '5' || code === '2' || code.indexOf('RISE') >= 0 || code.indexOf('UP') >= 0) return Math.abs(v);
+    if (code === '4' || code === '3' || code.indexOf('FALL') >= 0 || code.indexOf('DOWN') >= 0) return -Math.abs(v);
+  }
+  return v;
+}
+function deriveKrPreviousClose_(current, obj) {
+  if (!(Number(current) > 0)) return null;
+  var direct = Number(String(
+    (obj && (obj.previousClosePrice || obj.prevClosePrice || obj.previousClose || obj.pcv)) || ''
+  ).replace(/,/g,''));
+  if (direct > 0) return direct;
+
+  var change = signedKrChange_(obj);
+  if (change != null) {
+    var prev = Number(current) - Number(change);
+    if (prev > 0) return prev;
+  }
+  return null;
 }
 
 function fetchKR_(codes, out) {
@@ -592,43 +637,120 @@ function fetchKR_(codes, out) {
 function fetchCrypto_(symbols, out) {
   if (symbols.indexOf('BTC') === -1) return;
 
-  // 1순위: CoinGecko
+  // 1순위: Upbit - 현재가와 전일 기준 종가를 함께 제공
   try {
-    var r = UrlFetchApp.fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=krw', {
+    var r1 = UrlFetchApp.fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/12.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/14.0)'}
     });
-    if (r.getResponseCode() >= 200 && r.getResponseCode() < 300) {
-      var j = JSON.parse(r.getContentText());
-      var price = j.bitcoin && Number(j.bitcoin.krw);
-      if (price > 0) {
-        out.prices['CRYPTO:BTC'] = {price:price,currency:'KRW',source:'CoinGecko'};
+    if (r1.getResponseCode() >= 200 && r1.getResponseCode() < 300) {
+      var j1 = JSON.parse(r1.getContentText());
+      var d1 = j1 && j1[0];
+      var price1 = d1 && Number(d1.trade_price);
+      var prev1 = d1 && Number(d1.prev_closing_price);
+      if (price1 > 0) {
+        out.prices['CRYPTO:BTC'] = {
+          price:price1,
+          previousClose:prev1>0?prev1:null,
+          currency:'KRW',
+          source:'Upbit'
+        };
         return;
       }
     }
   } catch(e1) {}
 
-  // 2순위: Upbit KRW-BTC
+  // 2순위: CoinGecko (전일 종가가 없어 현재가만 백업)
   try {
-    var r2 = UrlFetchApp.fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC', {
+    var r2 = UrlFetchApp.fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=krw', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/12.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/14.0)'}
     });
     if (r2.getResponseCode() >= 200 && r2.getResponseCode() < 300) {
       var j2 = JSON.parse(r2.getContentText());
-      var price2 = j2 && j2[0] && Number(j2[0].trade_price);
+      var price2 = j2.bitcoin && Number(j2.bitcoin.krw);
       if (price2 > 0) {
-        out.prices['CRYPTO:BTC'] = {price:price2,currency:'KRW',source:'Upbit'};
+        out.prices['CRYPTO:BTC'] = {price:price2,currency:'KRW',source:'CoinGecko'};
         return;
       }
     }
   } catch(e2) {}
 
-  out.errors['CRYPTO:BTC'] = 'CoinGecko/Upbit 모두 조회 실패';
+  out.errors['CRYPTO:BTC'] = 'BTC 현재가 조회 실패';
 }
 
 function fetchFx_(out) {
-  // 1순위: 네이버 USD/KRW 시장지수
+  // FX는 주식처럼 하나의 '정규장'이 있는 시장이 아니라 평일 거의 24시간 거래됩니다.
+  // 앱에서는 Yahoo Finance의 USD/KRW(KRW=X) 1분 차트에서 가장 최근 유효값을 우선 사용합니다.
+  function yahooFx_(host) {
+    var url = 'https://' + host + '/v8/finance/chart/' + encodeURIComponent('KRW=X') +
+              '?range=1d&interval=1m&includePrePost=true';
+    var r = UrlFetchApp.fetch(url, {
+      muteHttpExceptions:true,
+      headers:{
+        'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36',
+        'Accept':'application/json,text/plain,*/*',
+        'Referer':'https://finance.yahoo.com/'
+      }
+    });
+    if (r.getResponseCode() < 200 || r.getResponseCode() >= 300) {
+      throw new Error('HTTP ' + r.getResponseCode());
+    }
+
+    var j = JSON.parse(r.getContentText());
+    var result = j && j.chart && j.chart.result && j.chart.result[0];
+    if (!result) throw new Error('Yahoo FX 응답 없음');
+
+    var meta = result.meta || {};
+    var ts = result.timestamp || [];
+    var quote = result.indicators && result.indicators.quote &&
+                result.indicators.quote[0] || {};
+    var closes = quote.close || [];
+
+    var latest = null, latestTs = null;
+    for (var i = closes.length - 1; i >= 0; i--) {
+      var p = Number(closes[i]);
+      if (p > 0) {
+        latest = p;
+        latestTs = Number(ts[i] || 0) || null;
+        break;
+      }
+    }
+
+    if (!(latest > 0)) {
+      latest = Number(meta.regularMarketPrice) ||
+               Number(meta.postMarketPrice) ||
+               Number(meta.preMarketPrice);
+      latestTs = Number(meta.regularMarketTime || 0) || null;
+    }
+
+    if (!(latest > 0)) throw new Error('유효한 USD/KRW 가격 없음');
+
+    return {
+      price: latest,
+      timestamp: latestTs ? new Date(latestTs * 1000).toISOString() : new Date().toISOString()
+    };
+  }
+
+  // 1순위: Yahoo Finance query1, 1분 시세
+  try {
+    var y1 = yahooFx_('query1.finance.yahoo.com');
+    out.fx = y1.price;
+    out.fxSource = 'Yahoo FX 1분';
+    out.fxTimestamp = y1.timestamp;
+    return;
+  } catch(e0) {}
+
+  // 2순위: Yahoo Finance query2 재시도
+  try {
+    var y2 = yahooFx_('query2.finance.yahoo.com');
+    out.fx = y2.price;
+    out.fxSource = 'Yahoo FX 1분';
+    out.fxTimestamp = y2.timestamp;
+    return;
+  } catch(e1) {}
+
+  // 3순위: 네이버 USD/KRW 시장지수
   try {
     var r0 = UrlFetchApp.fetch(
       'https://m.stock.naver.com/front-api/marketIndex/prices?category=exchange&reutersCode=FX_USDKRW&pageSize=1&page=1',
@@ -647,31 +769,31 @@ function fetchFx_(out) {
       var fx0 = d0 && Number(String(d0.closePrice || '').replace(/,/g,''));
       if (fx0 > 0) {
         out.fx = fx0;
-        out.fxSource = 'Naver Finance';
+        out.fxSource = 'Naver FX 백업';
         out.fxTimestamp = new Date().toISOString();
         return;
       }
     }
-  } catch(e0) {}
+  } catch(e2) {}
 
-  // 2순위: Frankfurter(일일 환율)
+  // 4순위: Frankfurter - 일일 기준 백업
   try {
     var r1 = UrlFetchApp.fetch('https://api.frankfurter.app/latest?from=USD&to=KRW', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/12.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/14.0)'}
     });
     if (r1.getResponseCode() >= 200 && r1.getResponseCode() < 300) {
       var j1 = JSON.parse(r1.getContentText());
       var fx1 = j1.rates && Number(j1.rates.KRW);
       if (fx1 > 0) {
         out.fx = fx1;
-        out.fxSource = 'Frankfurter';
+        out.fxSource = 'Frankfurter 일일 백업';
         out.fxTimestamp = new Date().toISOString();
         return;
       }
     }
-  } catch(e1) {}
+  } catch(e3) {}
 
-  out.errors['FX:USDKRW'] = 'Naver/Frankfurter 모두 조회 실패';
+  out.errors['FX:USDKRW'] = 'Yahoo/Naver/Frankfurter 환율 조회 실패';
 }
 
