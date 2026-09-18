@@ -59,12 +59,53 @@ function handleSyncAction_(action,p){
     throw new Error('지원하지 않는 동기화 작업입니다: '+action);
   }finally{lock.releaseLock()}
 }
+
+/**
+ * 최초 1회만 Apps Script 편집기에서 직접 실행하세요.
+ * Google Sheets 생성 권한 승인을 받은 뒤 동기화용 스프레드시트를 준비합니다.
+ */
+function setupPortfolioSync() {
+  var props = PropertiesService.getScriptProperties();
+  var id = props.getProperty(SYNC_SPREADSHEET_PROPERTY);
+  var ss = null;
+
+  if (id) {
+    try { ss = SpreadsheetApp.openById(id); } catch (e) {}
+  }
+
+  if (!ss) {
+    ss = SpreadsheetApp.create('Portfolio Cloud Sync');
+    props.setProperty(SYNC_SPREADSHEET_PROPERTY, ss.getId());
+  }
+
+  ensureSheet_(ss, SYNC_ASSET_SHEET, [
+    'syncKey','id','account','name','qty','avg','purchaseFx','cost','price',
+    'currency','market','ticker','targetWeight','memo','updatedAt'
+  ]);
+  ensureSheet_(ss, SYNC_META_SHEET, ['syncKey','accountsJson','updatedAt']);
+
+  Logger.log('Portfolio Cloud Sync 준비 완료: ' + ss.getUrl());
+  return ss.getUrl();
+}
+
 function getSyncSpreadsheet_(){
-  var props=PropertiesService.getScriptProperties(),id=props.getProperty(SYNC_SPREADSHEET_PROPERTY),ss=null;
-  if(id){try{ss=SpreadsheetApp.openById(id)}catch(e){}}
-  if(!ss){ss=SpreadsheetApp.create('Portfolio Cloud Sync');props.setProperty(SYNC_SPREADSHEET_PROPERTY,ss.getId())}
+  var props=PropertiesService.getScriptProperties();
+  var id=props.getProperty(SYNC_SPREADSHEET_PROPERTY);
+
+  if(!id){
+    throw new Error('초기 설정이 필요합니다. Apps Script 편집기에서 setupPortfolioSync 함수를 1회 실행해 Google Sheets 권한을 승인한 뒤 다시 시도하세요.');
+  }
+
+  var ss;
+  try{
+    ss=SpreadsheetApp.openById(id);
+  }catch(e){
+    throw new Error('동기화용 스프레드시트를 열 수 없습니다. Apps Script 편집기에서 setupPortfolioSync 함수를 다시 실행해 주세요.');
+  }
+
   ensureSheet_(ss,SYNC_ASSET_SHEET,['syncKey','id','account','name','qty','avg','purchaseFx','cost','price','currency','market','ticker','targetWeight','memo','updatedAt']);
-  ensureSheet_(ss,SYNC_META_SHEET,['syncKey','accountsJson','updatedAt']);return ss;
+  ensureSheet_(ss,SYNC_META_SHEET,['syncKey','accountsJson','updatedAt']);
+  return ss;
 }
 function ensureSheet_(ss,name,headers){
   var sh=ss.getSheetByName(name);if(!sh)sh=ss.insertSheet(name);
@@ -313,7 +354,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r = UrlFetchApp.fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=krw', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/7.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/8.0)'}
     });
     if (r.getResponseCode() >= 200 && r.getResponseCode() < 300) {
       var j = JSON.parse(r.getContentText());
@@ -329,7 +370,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r2 = UrlFetchApp.fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/7.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/8.0)'}
     });
     if (r2.getResponseCode() >= 200 && r2.getResponseCode() < 300) {
       var j2 = JSON.parse(r2.getContentText());
@@ -375,7 +416,7 @@ function fetchFx_(out) {
   try {
     var r1 = UrlFetchApp.fetch('https://api.frankfurter.app/latest?from=USD&to=KRW', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/7.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/8.0)'}
     });
     if (r1.getResponseCode() >= 200 && r1.getResponseCode() < 300) {
       var j1 = JSON.parse(r1.getContentText());
