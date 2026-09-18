@@ -331,6 +331,40 @@ function fetchUS_(symbols, out) {
       }
     });
   }
+
+  // 드물게 chartPreviousClose가 빠지는 경우 5일 일봉으로 보완.
+  var prevMissing = symbols.filter(function(sym){
+    var q = out.prices['US:' + sym];
+    return q && Number(q.price) > 0 && !(Number(q.previousClose) > 0);
+  });
+  if (prevMissing.length) {
+    try {
+      var dailyReqs = prevMissing.map(function(sym){
+        return makeReq_('query1.finance.yahoo.com', sym);
+      }).map(function(req){
+        req.url = req.url.replace('range=1d&interval=1m&includePrePost=true','range=5d&interval=1d&includePrePost=false');
+        return req;
+      });
+      var dailyRes = UrlFetchApp.fetchAll(dailyReqs);
+      dailyRes.forEach(function(r,i){
+        try{
+          if(r.getResponseCode()<200||r.getResponseCode()>=300)return;
+          var j=JSON.parse(r.getContentText());
+          var result=j&&j.chart&&j.chart.result&&j.chart.result[0];
+          if(!result)return;
+          var meta=result.meta||{};
+          var prev=Number(meta.chartPreviousClose)||Number(meta.previousClose)||null;
+          if(!(prev>0)){
+            var closes=result.indicators&&result.indicators.quote&&result.indicators.quote[0]&&result.indicators.quote[0].close||[];
+            var good=closes.map(Number).filter(function(v){return v>0});
+            if(good.length>=2) prev=good[good.length-2];
+          }
+          if(prev>0&&out.prices['US:'+prevMissing[i]]) out.prices['US:'+prevMissing[i]].previousClose=prev;
+        }catch(_e){}
+      });
+    }catch(_e2){}
+  }
+
 }
 
 function normalizeKrCode_(code) {
@@ -352,7 +386,7 @@ function signedKrChange_(obj) {
 
   // Naver basic often provides direction separately.
   var code = String(
-    (obj.compareToPreviousPrice && obj.compareToPreviousPrice.code) ||
+    (obj.compareToPreviousPrice && (obj.compareToPreviousPrice.code || obj.compareToPreviousPrice.name)) ||
     obj.compareToPreviousPriceCode || obj.rf || ''
   ).toUpperCase();
 
@@ -374,6 +408,12 @@ function deriveKrPreviousClose_(current, obj) {
   if (change != null) {
     var prev = Number(current) - Number(change);
     if (prev > 0) return prev;
+  }
+
+  var ratio = Number(String((obj && (obj.fluctuationsRatio || obj.changeRate || obj.cr)) || '').replace(/,/g,''));
+  if (isFinite(ratio) && ratio > -100 && ratio !== 0) {
+    var prevByRatio = Number(current) / (1 + ratio / 100);
+    if (prevByRatio > 0) return prevByRatio;
   }
   return null;
 }
@@ -413,6 +453,7 @@ function fetchKR_(codes, out) {
             currency:'KRW',
             name:j1.stockName || '',
             source:'Naver Basic',
+            previousClose:deriveKrPreviousClose_(p1,j1),
             marketStatus:j1.marketStatus || ''
           };
           ok = true;
@@ -451,6 +492,7 @@ function fetchKR_(codes, out) {
             currency:'KRW',
             name:d2.stockName || d2.name || '',
             source:'Naver Realtime',
+            previousClose:deriveKrPreviousClose_(p2,d2),
             marketStatus:d2.marketStatus || d2.ms || ''
           };
           ok = true;
@@ -487,6 +529,7 @@ function fetchKR_(codes, out) {
             price:p3,
             currency:'KRW',
             source:'Naver Polling',
+            previousClose:deriveKrPreviousClose_(p3,d3),
             marketStatus:d3.ms || ''
           };
           ok = true;
@@ -563,6 +606,7 @@ function fetchKR_(codes, out) {
             currency:'KRW',
             name:j5.name || j5.symbolName || '',
             source:'Daum Finance',
+            previousClose:deriveKrPreviousClose_(p5,j5),
             marketStatus:j5.marketStatus || ''
           };
           ok = true;
@@ -633,6 +677,56 @@ function fetchKR_(codes, out) {
         '국내시세 조회 실패 (' + errs.slice(-5).join(' / ') + ')';
     }
   });
+
+  // 전일 종가는 앱의 자산변화 기록과 무관하게 시세 사이트에서 직접 가져온다.
+  // 현재가 소스에 전일대비가 없었던 종목만 Naver 일봉 API를 fetchAll로 한 번에 보완.
+  var prevTargets = [];
+  codes.forEach(function(rawCode){
+    var requestCode = String(rawCode == null ? '' : rawCode).trim();
+    var key = 'KR:' + requestCode;
+    var q = out.prices[key];
+    if (q && Number(q.price) > 0 && !(Number(q.previousClose) > 0)) {
+      prevTargets.push({key:key, code:normalizeKrCode_(requestCode)});
+    }
+  });
+
+  if (prevTargets.length) {
+    try {
+      var prevReqs = prevTargets.map(function(x){
+        return {
+          url:'https://m.stock.naver.com/api/stock/' + encodeURIComponent(x.code) + '/price?pageSize=3&page=1',
+          method:'get',
+          muteHttpExceptions:true,
+          headers:{
+            'User-Agent':'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/124 Mobile Safari/537.36',
+            'Accept':'application/json,text/plain,*/*',
+            'Referer':'https://m.stock.naver.com/'
+          }
+        };
+      });
+      var prevRes = UrlFetchApp.fetchAll(prevReqs);
+
+      prevRes.forEach(function(r, i){
+        if (r.getResponseCode() < 200 || r.getResponseCode() >= 300) return;
+        try {
+          var j = JSON.parse(r.getContentText());
+          var rows = Array.isArray(j) ? j : (Array.isArray(j.result) ? j.result : (Array.isArray(j.prices) ? j.prices : []));
+          var valid = rows.filter(function(x){
+            return Number(String((x && (x.closePrice || x.tradePrice || x.currentPrice)) || '').replace(/,/g,'')) > 0;
+          });
+          if (valid.length >= 2) {
+            var prevRow = valid[1];
+            var prev = Number(String(prevRow.closePrice || prevRow.tradePrice || prevRow.currentPrice || '').replace(/,/g,''));
+            if (prev > 0 && out.prices[prevTargets[i].key]) {
+              out.prices[prevTargets[i].key].previousClose = prev;
+              out.prices[prevTargets[i].key].previousCloseDate = prevRow.localTradedAt || prevRow.date || '';
+            }
+          }
+        } catch(_e) {}
+      });
+    } catch(_batchErr) {}
+  }
+
 }
 function fetchCrypto_(symbols, out) {
   if (symbols.indexOf('BTC') === -1) return;
@@ -641,7 +735,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r1 = UrlFetchApp.fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/14.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/15.0)'}
     });
     if (r1.getResponseCode() >= 200 && r1.getResponseCode() < 300) {
       var j1 = JSON.parse(r1.getContentText());
@@ -664,7 +758,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r2 = UrlFetchApp.fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=krw', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/14.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/15.0)'}
     });
     if (r2.getResponseCode() >= 200 && r2.getResponseCode() < 300) {
       var j2 = JSON.parse(r2.getContentText());
@@ -780,7 +874,7 @@ function fetchFx_(out) {
   try {
     var r1 = UrlFetchApp.fetch('https://api.frankfurter.app/latest?from=USD&to=KRW', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/14.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/15.0)'}
     });
     if (r1.getResponseCode() >= 200 && r1.getResponseCode() < 300) {
       var j1 = JSON.parse(r1.getContentText());
