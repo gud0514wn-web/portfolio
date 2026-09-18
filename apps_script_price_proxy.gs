@@ -1,15 +1,3 @@
-
-/**
- * Twelve Data 설정
- * 1) https://twelvedata.com 에서 무료 API Key 발급
- * 2) 아래 TWELVE_DATA_API_KEY 값만 교체
- *
- * 무료 Basic: 미국 주식/ETF 정규장 실시간(또는 최신 이용 가능 가격)
- * 프리/애프터장: Twelve Data Pro 이상에서 TWELVE_DATA_USE_EXTENDED_HOURS = true
- */
-var TWELVE_DATA_API_KEY = '여기에_TWELVE_DATA_API_KEY_입력';
-var TWELVE_DATA_USE_EXTENDED_HOURS = false;
-
 /**
  * 자산관리 HTML용 시세 프록시 (Google Apps Script)
  * 배포: 배포 > 새 배포 > 웹 앱 > 실행 사용자: 나 > 액세스 권한: 모든 사용자
@@ -17,30 +5,84 @@ var TWELVE_DATA_USE_EXTENDED_HOURS = false;
  */
 function doGet(e) {
   var p = (e && e.parameter) || {};
-  var out = { ok: true, timestamp: new Date().toISOString(), prices: {}, fx: null, fxSource: null, fxTimestamp: null, errors: {} };
-
+  var out;
   try {
-    var us = splitList_(p.us);
-    var kr = splitList_(p.kr);
-    var crypto = splitList_(p.crypto);
-
-    fetchUS_(us, out);
-    fetchKR_(kr, out);
-    fetchCrypto_(crypto, out);
-    if (p.fx === '1') fetchFx_(out);
+    var action = String(p.action || '');
+    if (action.indexOf('sync') === 0) {
+      out = handleSyncAction_(action, p);
+    } else {
+      out = { ok: true, timestamp: new Date().toISOString(), prices: {}, fx: null, fxSource: null, fxTimestamp: null, errors: {} };
+      var us = splitList_(p.us), kr = splitList_(p.kr), crypto = splitList_(p.crypto);
+      fetchUS_(us, out); fetchKR_(kr, out); fetchCrypto_(crypto, out);
+      if (p.fx === '1') fetchFx_(out);
+    }
   } catch (err) {
-    out.ok = false;
-    out.message = String(err && err.message ? err.message : err);
+    out = { ok:false, timestamp:new Date().toISOString(), message:String(err && err.message ? err.message : err) };
   }
-
-  var body = JSON.stringify(out);
-  var cb = String(p.callback || '');
+  return output_(out, p.callback);
+}
+function output_(obj, callback) {
+  var body = JSON.stringify(obj), cb = String(callback || '');
   if (/^[A-Za-z_$][0-9A-Za-z_$\.]*$/.test(cb)) {
-    return ContentService.createTextOutput(cb + '(' + body + ');')
-      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+    return ContentService.createTextOutput(cb + '(' + body + ');').setMimeType(ContentService.MimeType.JAVASCRIPT);
   }
   return ContentService.createTextOutput(body).setMimeType(ContentService.MimeType.JSON);
 }
+
+
+var SYNC_SPREADSHEET_PROPERTY='PORTFOLIO_SYNC_SPREADSHEET_ID';
+var SYNC_ASSET_SHEET='Assets';
+var SYNC_META_SHEET='Meta';
+
+function handleSyncAction_(action,p){
+  var key=String(p.key||'').trim();
+  if(!key||key.length<6)throw new Error('동기화 코드가 올바르지 않습니다.');
+  var ss=getSyncSpreadsheet_(),ash=ss.getSheetByName(SYNC_ASSET_SHEET),msh=ss.getSheetByName(SYNC_META_SHEET);
+  if(action==='syncInit')return{ok:true,updatedAt:new Date().toISOString(),assetCount:countAssetsForKey_(ash,key),spreadsheetUrl:ss.getUrl()};
+  var lock=LockService.getScriptLock();lock.waitLock(15000);
+  try{
+    if(action==='syncGet'){
+      var assets=readAssetsForKey_(ash,key),meta=readMetaForKey_(msh,key);
+      return{ok:true,assets:assets,accounts:meta.accounts,updatedAt:meta.updatedAt||latestAssetUpdatedAt_(ash,key),spreadsheetUrl:ss.getUrl()};
+    }
+    if(action==='syncUpsert'){upsertAsset_(ash,key,JSON.parse(String(p.data||'{}')));return{ok:true,updatedAt:new Date().toISOString()}}
+    if(action==='syncBatchUpsert'){
+      var list=JSON.parse(String(p.data||'[]'));if(!Array.isArray(list))throw new Error('자산 데이터 형식 오류');
+      list.forEach(function(a){upsertAsset_(ash,key,a)});return{ok:true,updatedAt:new Date().toISOString(),count:list.length}
+    }
+    if(action==='syncDelete'){deleteAsset_(ash,key,String(p.id||''));return{ok:true,updatedAt:new Date().toISOString()}}
+    if(action==='syncClear'){clearKeyAssets_(ash,key);return{ok:true,updatedAt:new Date().toISOString()}}
+    if(action==='syncMeta'){
+      var acc=[];try{acc=JSON.parse(String(p.accounts||'[]'))}catch(e){}if(!Array.isArray(acc))acc=[];
+      upsertMeta_(msh,key,acc);return{ok:true,updatedAt:new Date().toISOString()}
+    }
+    throw new Error('지원하지 않는 동기화 작업입니다: '+action);
+  }finally{lock.releaseLock()}
+}
+function getSyncSpreadsheet_(){
+  var props=PropertiesService.getScriptProperties(),id=props.getProperty(SYNC_SPREADSHEET_PROPERTY),ss=null;
+  if(id){try{ss=SpreadsheetApp.openById(id)}catch(e){}}
+  if(!ss){ss=SpreadsheetApp.create('Portfolio Cloud Sync');props.setProperty(SYNC_SPREADSHEET_PROPERTY,ss.getId())}
+  ensureSheet_(ss,SYNC_ASSET_SHEET,['syncKey','id','account','name','qty','avg','purchaseFx','cost','price','currency','market','ticker','targetWeight','memo','updatedAt']);
+  ensureSheet_(ss,SYNC_META_SHEET,['syncKey','accountsJson','updatedAt']);return ss;
+}
+function ensureSheet_(ss,name,headers){
+  var sh=ss.getSheetByName(name);if(!sh)sh=ss.insertSheet(name);
+  if(sh.getLastRow()===0){sh.getRange(1,1,1,headers.length).setValues([headers]);sh.setFrozenRows(1)}
+  return sh;
+}
+function countAssetsForKey_(sh,key){var last=sh.getLastRow();if(last<2)return 0;var v=sh.getRange(2,1,last-1,1).getValues(),n=0;v.forEach(function(r){if(String(r[0])===key)n++});return n}
+function assetToRow_(key,a){return[key,Number(a.id||0),String(a.account||''),String(a.name||''),Number(a.qty||0),Number(a.avg||0),a.purchaseFx==null||a.purchaseFx===''?'':Number(a.purchaseFx),Number(a.cost||0),Number(a.price||0),String(a.currency||'KRW'),String(a.market||'MANUAL'),String(a.ticker||''),a.targetWeight==null||a.targetWeight===''?'':Number(a.targetWeight),String(a.memo||''),new Date().toISOString()]}
+function rowToAsset_(r){return{id:Number(r[1]||0),account:String(r[2]||''),name:String(r[3]||''),qty:Number(r[4]||0),avg:Number(r[5]||0),purchaseFx:r[6]===''?null:Number(r[6]),cost:Number(r[7]||0),price:Number(r[8]||0),currency:String(r[9]||'KRW'),market:String(r[10]||'MANUAL'),ticker:String(r[11]||''),targetWeight:r[12]===''?'':Number(r[12]),memo:String(r[13]||'')}}
+function findAssetRow_(sh,key,id){var last=sh.getLastRow();if(last<2)return-1;var v=sh.getRange(2,1,last-1,2).getValues();for(var i=0;i<v.length;i++)if(String(v[i][0])===key&&String(v[i][1])===String(id))return i+2;return-1}
+function upsertAsset_(sh,key,a){if(!a||!a.id)throw new Error('자산 ID가 없습니다.');var row=assetToRow_(key,a),n=findAssetRow_(sh,key,a.id);if(n>0)sh.getRange(n,1,1,row.length).setValues([row]);else sh.appendRow(row)}
+function deleteAsset_(sh,key,id){var n=findAssetRow_(sh,key,id);if(n>0)sh.deleteRow(n)}
+function clearKeyAssets_(sh,key){var last=sh.getLastRow();if(last<2)return;var v=sh.getRange(2,1,last-1,1).getValues();for(var i=v.length-1;i>=0;i--)if(String(v[i][0])===key)sh.deleteRow(i+2)}
+function readAssetsForKey_(sh,key){var last=sh.getLastRow();if(last<2)return[];var v=sh.getRange(2,1,last-1,15).getValues(),o=[];v.forEach(function(r){if(String(r[0])===key)o.push(rowToAsset_(r))});return o}
+function latestAssetUpdatedAt_(sh,key){var last=sh.getLastRow();if(last<2)return'';var v=sh.getRange(2,1,last-1,15).getValues(),x='';v.forEach(function(r){if(String(r[0])===key&&String(r[14]||'')>x)x=String(r[14]||'')});return x}
+function findMetaRow_(sh,key){var last=sh.getLastRow();if(last<2)return-1;var v=sh.getRange(2,1,last-1,1).getValues();for(var i=0;i<v.length;i++)if(String(v[i][0])===key)return i+2;return-1}
+function upsertMeta_(sh,key,accounts){var row=[key,JSON.stringify(accounts||[]),new Date().toISOString()],n=findMetaRow_(sh,key);if(n>0)sh.getRange(n,1,1,3).setValues([row]);else sh.appendRow(row)}
+function readMetaForKey_(sh,key){var n=findMetaRow_(sh,key);if(n<0)return{accounts:[],updatedAt:''};var r=sh.getRange(n,1,1,3).getValues()[0],a=[];try{a=JSON.parse(String(r[1]||'[]'))}catch(e){}if(!Array.isArray(a))a=[];return{accounts:a,updatedAt:String(r[2]||'')}}
 
 function splitList_(s) {
   if (!s) return [];
@@ -271,7 +313,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r = UrlFetchApp.fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=krw', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/6.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/7.0)'}
     });
     if (r.getResponseCode() >= 200 && r.getResponseCode() < 300) {
       var j = JSON.parse(r.getContentText());
@@ -287,7 +329,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r2 = UrlFetchApp.fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/6.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/7.0)'}
     });
     if (r2.getResponseCode() >= 200 && r2.getResponseCode() < 300) {
       var j2 = JSON.parse(r2.getContentText());
@@ -333,7 +375,7 @@ function fetchFx_(out) {
   try {
     var r1 = UrlFetchApp.fetch('https://api.frankfurter.app/latest?from=USD&to=KRW', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/6.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/7.0)'}
     });
     if (r1.getResponseCode() >= 200 && r1.getResponseCode() < 300) {
       var j1 = JSON.parse(r1.getContentText());

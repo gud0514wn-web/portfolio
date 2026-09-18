@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="icon" href="icon-192.png" />
-<title>내 자산 포트폴리오 v24</title>
+<title>내 자산 포트폴리오 v26</title>
 <style>
 :root{--bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#7b879d;--line:#e8edf5;--primary:#3769f6;--up:#e5484d;--down:#2f6fed;--ok:#159a63;--warn:#d98310;--shadow:0 10px 30px rgba(25,40,80,.08);--safe-top:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-bottom)}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Roboto,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}.app{max-width:760px;margin:auto;padding:calc(14px + var(--safe-top)) 14px calc(92px + var(--safe-bottom))}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px}.brand{min-width:0}.brand h1{font-size:21px;margin:0;font-weight:800;letter-spacing:-.5px}.brand .date{display:none}.top-actions{display:flex;gap:7px}.icon-btn{border:0;background:#fff;border-radius:13px;padding:10px 11px;box-shadow:var(--shadow);color:var(--text);white-space:nowrap}.icon-btn.refreshing{opacity:.55;pointer-events:none}.install-btn{display:none;color:var(--primary);font-weight:800}.hero{background:linear-gradient(135deg,#15223d,#284c9d);border-radius:24px;color:#fff;padding:20px;box-shadow:0 18px 38px rgba(26,53,115,.2)}.hero-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.hero .label{font-size:12px;opacity:.75}.hero-return{font-size:15px;font-weight:850;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap}.hero-return.up{color:#ffd5d8}.hero-return.down{color:#d9e6ff}.hero .total{font-size:30px;font-weight:850;letter-spacing:-1px;margin-top:5px}.hero-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.mini{background:rgba(255,255,255,.1);padding:12px;border-radius:15px}.mini .k{font-size:11px;opacity:.75}.mini .v{font-size:15px;font-weight:750;margin-top:3px}.section{margin-top:18px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px}.section-title h2{font-size:16px;margin:0}.linkbtn{border:0;background:transparent;color:var(--primary);font-weight:700;font-size:12px}.card{background:var(--card);border-radius:20px;padding:16px;box-shadow:var(--shadow)}.alloc-wrap{display:flex;align-items:center;gap:18px}.donut{width:150px;aspect-ratio:1;border-radius:50%;position:relative;flex:0 0 auto}.donut:after{content:"";position:absolute;inset:22px;background:#fff;border-radius:50%;box-shadow:inset 0 0 0 1px #f1f4f9}.donut-center{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;flex-direction:column;pointer-events:none}.donut-center b{font-size:17px}.donut-center span{font-size:10px;color:var(--muted);margin-top:2px}.legend{flex:1;min-width:0}.legend-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin:9px 0}.legend-row .name{display:flex;align-items:center;min-width:0}.dot{width:9px;height:9px;border-radius:50%;margin-right:7px;flex:0 0 auto}.legend-row .name span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chips{display:flex;gap:7px;overflow:auto;padding-bottom:3px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{border:1px solid var(--line);background:#fff;color:#59647a;padding:8px 11px;border-radius:999px;font-size:12px;white-space:nowrap}.chip.active{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:700}.asset-list{display:flex;flex-direction:column;gap:12px;margin-top:10px}.asset{background:#fff;border-radius:18px;padding:15px 14px 14px;box-shadow:0 6px 18px rgba(36,52,85,.055);border:1px solid #f0f3f8}.asset-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.asset-left{flex:1;min-width:0}.asset-right{flex:0 0 auto;text-align:right;white-space:nowrap;min-width:112px}.asset-name{font-weight:800;font-size:14px;letter-spacing:-.2px;margin-bottom:8px;line-height:1.2}.asset-meta{font-size:10px;color:var(--muted);margin-top:0;line-height:1.3;white-space:nowrap;letter-spacing:-.15px}.quote-ok{color:var(--ok)}.quote-manual{color:var(--muted)}.asset-value{text-align:right;white-space:nowrap}.asset-value .won{font-weight:800;font-size:13.5px}.asset-value .pct{font-size:11px;color:var(--muted);margin-top:4px}.asset-bottom{display:flex;justify-content:space-between;align-items:end;margin-top:11px}.profit{font-weight:750;font-size:12px}.profit.up{color:var(--up)}.profit.down{color:var(--down)}.weight-row{margin-top:13px}.weight-label{display:none}.bar{height:8px;background:#edf1f7;border-radius:999px;position:relative;overflow:visible;width:100%;min-width:90px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.weight-pct{position:absolute;top:50%;transform:translate(7px,-50%);font-size:11px;color:#174ea6;white-space:nowrap;font-weight:900;text-align:left;line-height:1}.target-row{font-size:10px;color:#7b879d;margin-top:11px;padding-left:0;line-height:1.45;word-break:keep-all}.target-row b{color:#334155;font-weight:800}.target-action{color:#174ea6;font-weight:800}.target-action.sell{color:#a3444b}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.tiny-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:5px 8px;font-size:10.5px;color:#59647a;margin-top:10px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.summary-box{background:#fff;border-radius:16px;padding:13px;box-shadow:var(--shadow)}.summary-box .k{font-size:10px;color:var(--muted)}.summary-box .v{font-size:14px;font-weight:800;margin-top:5px}.status-card{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border-radius:14px;padding:10px 12px;box-shadow:var(--shadow);margin-top:18px;margin-bottom:6px}.status-card .left{min-width:0}.status-card .title{font-size:11px;font-weight:800}.status-card .sub{font-size:10px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.status-pill{font-size:10px;border-radius:999px;padding:5px 8px;background:#eef8f3;color:var(--ok);font-weight:800}.bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(760px,100%);padding:10px 14px calc(10px + var(--safe-bottom));background:rgba(246,248,252,.92);backdrop-filter:blur(16px);display:grid;grid-template-columns:1fr;gap:10px;z-index:20}.nav-btn{border:0;border-radius:16px;padding:13px 10px;font-weight:800}.nav-btn.primary{background:var(--primary);color:#fff}.nav-btn.secondary{background:#fff;color:var(--text);box-shadow:var(--shadow)}.modal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:flex-end;z-index:100}.modal.show{display:flex}.sheet{background:#fff;width:min(760px,100%);margin:auto;border-radius:24px 24px 0 0;padding:18px 16px calc(24px + var(--safe-bottom));max-height:90vh;overflow:auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.sheet-head h3{margin:0;font-size:18px}.close{border:0;background:#f2f5fa;border-radius:10px;width:36px;height:36px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin:9px 0}.field label{display:block;font-size:11px;color:var(--muted);margin:0 0 5px 2px}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px;background:#fbfcfe;color:var(--text);outline:none}.checkrow{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}.checkrow .ct{font-size:12px;font-weight:700}.checkrow .cs{font-size:10px;color:var(--muted);margin-top:3px}.switch{position:relative;width:46px;height:26px;flex:0 0 auto}.switch input{display:none}.switch span{position:absolute;inset:0;background:#d7deea;border-radius:999px;transition:.2s}.switch span:after{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.18);transition:.2s}.switch input:checked+span{background:var(--primary)}.switch input:checked+span:after{transform:translateX(20px)}.sheet-actions{display:flex;gap:8px;margin-top:14px}.sheet-actions button{flex:1;border:0;border-radius:14px;padding:13px;font-weight:800}.save{background:var(--primary);color:#fff}.danger{background:#fff0f0;color:#c23d43;border:1px solid #ffd4d6!important}.settings-list{display:grid;gap:10px}.settings-btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;text-align:left}.settings-btn.primary{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:800}.note{font-size:11px;line-height:1.55;color:var(--muted);margin-top:8px}.empty{text-align:center;color:var(--muted);padding:28px 8px}.toast{position:fixed;left:50%;bottom:calc(90px + var(--safe-bottom));transform:translate(-50%,20px);background:#15223d;color:#fff;padding:10px 14px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:200;max-width:calc(100% - 30px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
@@ -130,6 +130,37 @@ padding:8px 13px;font-size:11px;font-weight:850;color:#3769f6;opacity:0;transiti
 .asset-value .asset-pl{margin-top:5px !important}
 .asset-value .asset-rr{margin-top:3px !important}
 
+
+/* v25 mobile layout */
+.asset-title-line{display:flex;align-items:center;flex-wrap:wrap;gap:7px 9px}
+.asset-title-main{flex:0 1 auto;min-width:0;max-width:100%}
+.asset-title-line .asset-name{
+  white-space:nowrap!important;word-break:keep-all!important;writing-mode:horizontal-tb!important;
+  overflow:hidden;text-overflow:ellipsis;max-width:100%
+}
+.asset-inline-meta{flex:1 1 245px;min-width:0;white-space:nowrap}
+@media(max-width:700px){
+  .asset-title-line{display:block;margin-bottom:9px}
+  .asset-title-main{display:flex;width:100%;max-width:100%;align-items:center;gap:5px}
+  .asset-title-line .asset-name{
+    display:block;max-width:calc(100% - 32px);white-space:nowrap!important;
+    word-break:keep-all!important;overflow:hidden;text-overflow:ellipsis
+  }
+  .asset-inline-meta{
+    display:block;margin-top:7px;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+  }
+}
+.cloud-sync-box{margin-top:14px;padding:13px;border:1px solid #dbe4f3;border-radius:14px;background:#f8faff}
+.cloud-sync-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.cloud-sync-title b{font-size:13px;color:#22314f}
+.cloud-sync-badge{font-size:10px;font-weight:800;padding:4px 8px;border-radius:999px;background:#eef2f8;color:#758099}
+.cloud-sync-badge.on{background:#e8f3ff;color:#1763c5}
+.cloud-sync-status{font-size:10.5px;line-height:1.5;color:#6d7890;margin:6px 0 10px}
+.cloud-sync-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.cloud-sync-actions button{border:1px solid #d6deec;background:#fff;border-radius:10px;padding:9px 7px;font-size:10.5px;font-weight:800;color:#42516e}
+.cloud-sync-actions button.primary{background:#3769f6;color:#fff;border-color:#3769f6}
+.cloud-sync-actions button.full{grid-column:1/-1}
+
 </style>
 </head>
 <body>
@@ -158,15 +189,26 @@ padding:8px 13px;font-size:11px;font-weight:850;color:#3769f6;opacity:0;transiti
 <div class="sheet-actions"><button class="danger" id="deleteBtn" onclick="deleteAsset()" style="display:none">삭제</button><button class="save" onclick="saveAsset()">저장</button></div></div></div>
 
 <div class="modal" id="settingsModal"><div class="sheet"><div class="sheet-head"><h3>백업 · 설정</h3><button class="close" onclick="closeSettings()">✕</button></div>
-<div class="field"><label>Google Apps Script 시세 API URL</label><input id="apiUrl" placeholder="https://script.google.com/macros/s/.../exec"></div>
-<div class="note">아래 제공한 Apps Script를 웹 앱으로 1회 배포한 뒤 /exec 주소를 붙여 넣으면 됩니다. 로컬 HTML에서도 JSONP 방식으로 동작하도록 만들었습니다.</div>
+<div class="field"><label>Google Apps Script API URL (시세 · 동기화)</label><input id="apiUrl" placeholder="https://script.google.com/macros/s/.../exec"></div>
+<div class="note">Apps Script v7을 웹 앱으로 배포한 뒤 /exec 주소를 입력하세요. 시세 조회와 PC·모바일 동기화를 같은 주소에서 처리합니다.</div>
 <div class="checkrow"><div><div class="ct">앱을 열 때 자동 새로고침</div><div class="cs">앱 실행 시 자산 가격과 USD/KRW 환율을 1회 갱신합니다.</div></div><label class="switch"><input id="autoRefresh" type="checkbox"><span></span></label></div>
+<div class="cloud-sync-box">
+  <div class="cloud-sync-title"><b>☁ PC · 모바일 자동 동기화</b><span class="cloud-sync-badge" id="cloudSyncBadge">꺼짐</span></div>
+  <div class="field" style="margin-bottom:6px"><label>동기화 코드</label><input id="syncKey" autocomplete="off" placeholder="첫 기기에서는 비워두면 자동 생성"></div>
+  <div class="cloud-sync-status" id="cloudSyncStatus">같은 Apps Script URL과 동기화 코드를 PC와 모바일에서 사용하면 자산 내역이 공유됩니다.</div>
+  <div class="cloud-sync-actions">
+    <button class="primary full" type="button" onclick="enableCloudSync()">클라우드 동기화 시작</button>
+    <button type="button" onclick="pullCloudState(false,true)">클라우드 불러오기</button>
+    <button type="button" onclick="copySyncKey()">동기화 코드 복사</button>
+    <button class="full" type="button" onclick="disableCloudSync()">이 기기 자동 동기화 끄기</button>
+  </div>
+</div>
 <div class="field"><label>USD/KRW 환율</label><input id="fx" type="number" step="0.01" inputmode="decimal"></div><div class="note">‘새로고침’을 누르면 환율도 자동으로 불러옵니다. 조회가 실패할 때만 아래 수동값이 유지됩니다.</div>
 <div class="settings-list" style="margin-top:16px"><button class="settings-btn primary" onclick="saveSettings()">설정 저장</button><button class="settings-btn" onclick="closeSettings();refreshPrices()">지금 새로고침</button><button class="settings-btn" onclick="refreshFxOnly()">환율만 새로고침</button><button class="settings-btn" onclick="exportJSON()">JSON 백업 내보내기</button><button class="settings-btn" onclick="exportCSV()">CSV 내보내기</button><button class="settings-btn" onclick="document.getElementById('importFile').click()">JSON 백업 불러오기</button><input id="importFile" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><button class="settings-btn" onclick="resetSample()">초기 데이터로 복원</button></div>
 <div class="note">자동 조회: 미국주식/ETF는 Yahoo Finance(프리장·정규장·애프터장 포함)를 우선 사용합니다. Yahoo에서 시세를 못 불러오면 해당 종목명을 알림으로 표시하고 기존 가격을 유지합니다. 한국주식/ETF는 네이버 증권, 비트코인은 CoinGecko/Upbit, USD/KRW 환율은 네이버 → Frankfurter 순으로 조회합니다.</div></div></div>
 
 <script>
-const SAMPLE={version:24,displayCurrency:"KRW",accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"],fx:1367.44,fxSource:"수동",fxUpdatedAt:"",updatedAt:"2026-09-16",priceUpdatedAt:"",apiUrl:"",autoRefresh:false,assets:[
+const SAMPLE={version:26,displayCurrency:"KRW",cloudSync:false,syncPending:[],syncLastAt:"",syncSheetUrl:"",accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"],fx:1367.44,fxSource:"수동",fxUpdatedAt:"",updatedAt:"2026-09-16",priceUpdatedAt:"",apiUrl:"",autoRefresh:false,assets:[
 {id:1,account:"해외주식",name:"팔란티어",qty:1040,avg:15.5111,purchaseFx:1203.3600,cost:19412055,price:172.22,currency:"USD",market:"US",ticker:"PLTR",memo:"PLTR"},
 {id:2,account:"해외주식",name:"알파벳 C",qty:255,avg:327.3023,purchaseFx:1341.1800,cost:111937681,price:342.04,currency:"USD",market:"US",ticker:"GOOG",memo:"GOOG"},
 {id:3,account:"해외주식",name:"모더나",qty:70,avg:134.6172,purchaseFx:1378.0601,cost:12985741,price:144.50,currency:"USD",market:"US",ticker:"MRNA",memo:"MRNA"},
@@ -189,7 +231,11 @@ const SAMPLE={version:24,displayCurrency:"KRW",accounts:["해외주식","개인�
 const TICKER_MAP={"팔란티어":["US","PLTR"],"알파벳 C":["US","GOOG"],"모더나":["US","MRNA"],"비자":["US","V"],"SGOV":["US","SGOV"],"JAAA":["US","JAAA"],"RISE 대형고배당10TR":["KR","315960"],"RISE 미국나스닥100":["KR","368590"],"KIWOOM 미국S&P500모멘텀":["KR","0137V0"],"KODEX AI전력핵심설비":["KR","487240"],"SK하이닉스":["KR","000660"],"SOL 반도체후공정":["KR","475310"],"TIME 글로벌휴머노이드로봇산업액티브":["KR","0185L0"],"TIME 글로벌AI인공지능액티브":["KR","456600"],"ACE 미국S&P500미국채혼합50액티브":["KR","438080"],"KoAct 미국나스닥성장기업액티브":["KR","0015B0"],"RISE 삼성전자SK하이닉스채권혼합50":["KR","0162Z0"],"비트코인":["CRYPTO","BTC"]};
 const COLORS=["#3769f6","#7a5cf1","#14a0a0","#f59f45","#e45c81","#38a169","#9b6b43","#64748b","#d97706","#0ea5e9"];
 let state=loadState(),filter="전체",allocMode="account",deferredPrompt=null;
-function loadState(){let s=null;try{s=JSON.parse(localStorage.getItem("portfolioMobileV1")||"null")}catch(e){}if(!s)s=structuredClone(SAMPLE);s.version=24;s.displayCurrency=s.displayCurrency||"KRW";s.accounts=Array.isArray(s.accounts)&&s.accounts.length?s.accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"];s.apiUrl=s.apiUrl||"";s.autoRefresh=!!s.autoRefresh;s.priceUpdatedAt=s.priceUpdatedAt||"";s.fxUpdatedAt=s.fxUpdatedAt||"";s.fxSource=s.fxSource||"수동";s.assets=(s.assets||[]).map(a=>{
+const SYNC_KEY_STORAGE="portfolioCloudSyncKeyV1";
+const getSyncKey=()=>localStorage.getItem(SYNC_KEY_STORAGE)||"";
+function setSyncKey(v){const x=String(v||"").trim();if(x)localStorage.setItem(SYNC_KEY_STORAGE,x);else localStorage.removeItem(SYNC_KEY_STORAGE)}
+
+function loadState(){let s=null;try{s=JSON.parse(localStorage.getItem("portfolioMobileV1")||"null")}catch(e){}if(!s)s=structuredClone(SAMPLE);s.version=26;s.displayCurrency=s.displayCurrency||"KRW";s.cloudSync=!!s.cloudSync;s.syncPending=Array.isArray(s.syncPending)?s.syncPending:[];s.syncLastAt=s.syncLastAt||"";s.syncSheetUrl=s.syncSheetUrl||"";s.accounts=Array.isArray(s.accounts)&&s.accounts.length?s.accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"];s.apiUrl=s.apiUrl||"";s.autoRefresh=!!s.autoRefresh;s.priceUpdatedAt=s.priceUpdatedAt||"";s.fxUpdatedAt=s.fxUpdatedAt||"";s.fxSource=s.fxSource||"수동";s.assets=(s.assets||[]).map(a=>{
   if(a.name==="RISE 삼성전자SK하이닉스채권혼합50" && (String(a.ticker||"").toUpperCase()==="016220" || !a.ticker)){
     a.ticker="0162Z0";
     a.market="KR";
@@ -327,6 +373,7 @@ function addAccount(){
   renderAccountOptions(accountName);
   persist(false);
   renderChips();
+  if(state.cloudSync) cloudSaveMeta().catch(()=>queueSyncPending({type:"meta"}));
   toastMsg(`계좌 '${accountName}'를 추가했습니다.`);
 }
 function syncMarketCurrency(preserveCurrency=false){
@@ -482,6 +529,9 @@ function saveAsset(){
     closeAsset();
     persist();
     toastMsg("저장했습니다.");
+    if(state.cloudSync){
+      cloudUpsertAsset(obj).catch(()=>{queueSyncPending({type:"upsert",asset:obj});toastMsg("로컬 저장 완료 · 클라우드 동기화 대기")});
+    }
 
     if(!old && state.apiUrl && obj.market!=="MANUAL" && obj.market!=="CASH" && obj.ticker){
       setTimeout(()=>refreshPrices(true),100);
@@ -497,12 +547,17 @@ function deleteAsset(){
     state.assets=state.assets.filter(x=>x.id!==id);
     closeAsset();
     persist();
+    if(state.cloudSync){
+      cloudDeleteAsset(id).catch(()=>{queueSyncPending({type:"delete",id});toastMsg("로컬 삭제 완료 · 클라우드 동기화 대기")});
+    }
   }
 }
 function openSettings(){
   document.getElementById("apiUrl").value=state.apiUrl||"";
   document.getElementById("autoRefresh").checked=!!state.autoRefresh;
   document.getElementById("fx").value=state.fx;
+  document.getElementById("syncKey").value=getSyncKey();
+  updateCloudSyncStatus();
   document.getElementById("settingsModal").classList.add("show");
 }
 function closeSettings(){document.getElementById("settingsModal").classList.remove("show")}
@@ -510,8 +565,10 @@ function saveSettings(){
   const apiUrlEl=document.getElementById("apiUrl");
   const autoRefreshEl=document.getElementById("autoRefresh");
   const fxEl=document.getElementById("fx");
+  const syncKeyEl=document.getElementById("syncKey");
   state.apiUrl=apiUrlEl.value.trim();
   state.autoRefresh=autoRefreshEl.checked;
+  if(syncKeyEl)setSyncKey(syncKeyEl.value);
   const newFx=Number(fxEl.value||state.fx);
   if(newFx!==Number(state.fx)){state.fx=newFx;state.fxSource="수동";state.fxUpdatedAt=""}
   closeSettings();persist();toastMsg("설정을 저장했습니다.");
@@ -519,6 +576,116 @@ function saveSettings(){
 function toastMsg(msg){toast.textContent=msg;toast.classList.add("show");clearTimeout(window.__toastTimer);window.__toastTimer=setTimeout(()=>toast.classList.remove("show"),2500)}
 function unique(arr){return [...new Set(arr.filter(Boolean))]}
 function jsonp(url,params,timeout=18000){return new Promise((resolve,reject)=>{const cb="__portfolioPriceCb_"+Date.now()+"_"+Math.floor(Math.random()*10000);const s=document.createElement("script");const timer=setTimeout(()=>cleanup(new Error("시세 서버 응답 시간이 초과되었습니다.")),timeout);function cleanup(err,data){clearTimeout(timer);delete window[cb];s.remove();err?reject(err):resolve(data)}window[cb]=data=>cleanup(null,data);s.onerror=()=>cleanup(new Error("시세 서버에 연결하지 못했습니다."));const q=new URLSearchParams({...params,callback:cb,_:Date.now()});s.src=url+(url.includes("?")?"&":"?")+q.toString();document.head.appendChild(s)})}
+
+function generateSyncKey(){
+  const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",arr=new Uint8Array(12);
+  if(window.crypto&&crypto.getRandomValues)crypto.getRandomValues(arr);else for(let i=0;i<arr.length;i++)arr[i]=Math.floor(Math.random()*256);
+  let s="";for(let i=0;i<arr.length;i++)s+=chars[arr[i]%chars.length];
+  return `PF-${s.slice(0,4)}-${s.slice(4,8)}-${s.slice(8,12)}`;
+}
+function updateCloudSyncStatus(msg=""){
+  const badge=document.getElementById("cloudSyncBadge"),status=document.getElementById("cloudSyncStatus");
+  if(!badge||!status)return;
+  badge.textContent=state.cloudSync?"켜짐":"꺼짐";badge.classList.toggle("on",!!state.cloudSync);
+  if(msg){status.textContent=msg;return}
+  if(state.cloudSync){
+    const when=state.syncLastAt?` · 마지막 ${fmtTime(state.syncLastAt)}`:"";
+    const pending=(state.syncPending||[]).length?` · 대기 ${(state.syncPending||[]).length}건`:"";
+    status.textContent=`저장은 즉시 클라우드에 반영됩니다. 다른 기기의 변경사항은 화면 맨 위에서 아래로 당겨 새로고침하면 불러옵니다.${when}${pending}`;
+  }else status.textContent="같은 Apps Script URL과 동기화 코드를 PC와 모바일에서 사용하면 자산 내역이 공유됩니다.";
+}
+function cloudParams(extra={}){return{key:getSyncKey(),...extra}}
+function assertCloudReady(){if(!state.apiUrl)throw new Error("Apps Script API URL을 먼저 입력해 주세요.");if(!getSyncKey())throw new Error("동기화 코드를 입력해 주세요.")}
+function queueSyncPending(op){
+  state.syncPending=Array.isArray(state.syncPending)?state.syncPending:[];
+  if(op.type==="upsert")state.syncPending=state.syncPending.filter(x=>!(x.type==="upsert"&&Number(x.asset?.id)===Number(op.asset?.id))&&!(x.type==="delete"&&Number(x.id)===Number(op.asset?.id)));
+  else if(op.type==="delete")state.syncPending=state.syncPending.filter(x=>!(x.type==="upsert"&&Number(x.asset?.id)===Number(op.id))&&!(x.type==="delete"&&Number(x.id)===Number(op.id)));
+  else if(op.type==="meta")state.syncPending=state.syncPending.filter(x=>x.type!=="meta");
+  state.syncPending.push(op);persist(false);updateCloudSyncStatus();
+}
+async function cloudUpsertAsset(asset){
+  assertCloudReady();const data=await jsonp(state.apiUrl,cloudParams({action:"syncUpsert",data:JSON.stringify(asset)}),25000);
+  if(!data||data.ok===false)throw new Error(data?.message||"클라우드 저장 실패");
+  state.syncLastAt=data.updatedAt||new Date().toISOString();persist(false);updateCloudSyncStatus();return data;
+}
+async function cloudDeleteAsset(id){
+  assertCloudReady();const data=await jsonp(state.apiUrl,cloudParams({action:"syncDelete",id:String(id)}),25000);
+  if(!data||data.ok===false)throw new Error(data?.message||"클라우드 삭제 실패");
+  state.syncLastAt=data.updatedAt||new Date().toISOString();persist(false);updateCloudSyncStatus();return data;
+}
+async function cloudSaveMeta(){
+  assertCloudReady();const data=await jsonp(state.apiUrl,cloudParams({action:"syncMeta",accounts:JSON.stringify(state.accounts||[])}),25000);
+  if(!data||data.ok===false)throw new Error(data?.message||"계좌 정보 저장 실패");
+  state.syncLastAt=data.updatedAt||new Date().toISOString();persist(false);updateCloudSyncStatus();return data;
+}
+async function processPendingSync(){
+  if(!state.cloudSync||!state.apiUrl||!getSyncKey())return;
+  const pending=[...(state.syncPending||[])],remain=[];
+  for(const op of pending){try{
+    if(op.type==="upsert")await cloudUpsertAsset(op.asset);else if(op.type==="delete")await cloudDeleteAsset(op.id);else if(op.type==="meta")await cloudSaveMeta();
+  }catch(e){remain.push(op)}}
+  state.syncPending=remain;persist(false);updateCloudSyncStatus();
+}
+async function pushAllToCloud(silent=false){
+  assertCloudReady();updateCloudSyncStatus("현재 기기 데이터를 클라우드에 저장하는 중…");
+  let r=await jsonp(state.apiUrl,cloudParams({action:"syncClear"}),25000);
+  if(!r||r.ok===false)throw new Error(r?.message||"클라우드 초기화 실패");
+  const assets=[...(state.assets||[])];
+  for(let i=0;i<assets.length;i+=3){
+    const chunk=assets.slice(i,i+3);
+    r=await jsonp(state.apiUrl,cloudParams({action:"syncBatchUpsert",data:JSON.stringify(chunk)}),30000);
+    if(!r||r.ok===false)throw new Error(r?.message||"클라우드 업로드 실패");
+  }
+  r=await jsonp(state.apiUrl,cloudParams({action:"syncMeta",accounts:JSON.stringify(state.accounts||[])}),25000);
+  if(!r||r.ok===false)throw new Error(r?.message||"계좌 정보 업로드 실패");
+  state.syncPending=[];state.syncLastAt=r.updatedAt||new Date().toISOString();persist(false);updateCloudSyncStatus();
+  if(!silent)toastMsg("현재 기기 데이터를 클라우드에 저장했습니다.");
+}
+async function pullCloudState(silent=false,fromButton=false){
+  try{
+    const apiInput=document.getElementById("apiUrl"),keyInput=document.getElementById("syncKey");
+    if(apiInput&&apiInput.value.trim())state.apiUrl=apiInput.value.trim();
+    if(keyInput&&keyInput.value.trim())setSyncKey(keyInput.value.trim());
+    assertCloudReady();await processPendingSync();
+    const data=await jsonp(state.apiUrl,cloudParams({action:"syncGet"}),30000);
+    if(!data||data.ok===false)throw new Error(data?.message||"클라우드 불러오기 실패");
+    if(!Array.isArray(data.assets))throw new Error("클라우드 데이터 형식 오류");
+    if(data.assets.length===0&&state.assets.length&&!fromButton){if(!silent)toastMsg("클라우드에 저장된 자산이 없습니다.");return}
+    const localById=new Map((state.assets||[]).map(a=>[String(a.id),a]));
+    state.assets=data.assets.map(remote=>{
+      const local=localById.get(String(remote.id));
+      if(local&&["US","KR","CRYPTO"].includes(remote.market)&&Number(local.price)>0)return{...remote,price:local.price};
+      return remote;
+    });
+    state.accounts=Array.isArray(data.accounts)&&data.accounts.length?data.accounts:[...new Set(state.assets.map(a=>a.account).filter(Boolean))];
+    state.cloudSync=true;state.syncPending=[];state.syncLastAt=data.updatedAt||new Date().toISOString();if(data.spreadsheetUrl)state.syncSheetUrl=data.spreadsheetUrl;
+    persist(false);render();updateCloudSyncStatus();if(!silent)toastMsg("클라우드 데이터를 불러왔습니다.");
+  }catch(e){console.warn(e);if(!silent)alert(e.message||"클라우드 동기화에 실패했습니다.")}
+}
+async function enableCloudSync(){
+  try{
+    const apiInput=document.getElementById("apiUrl"),keyInput=document.getElementById("syncKey");
+    state.apiUrl=(apiInput?.value||state.apiUrl||"").trim();if(!state.apiUrl)throw new Error("Apps Script API URL을 먼저 입력해 주세요.");
+    let key=(keyInput?.value||getSyncKey()).trim();if(!key){key=generateSyncKey();if(keyInput)keyInput.value=key}setSyncKey(key);
+    updateCloudSyncStatus("Google Sheets 동기화 저장소에 연결하는 중…");
+    const init=await jsonp(state.apiUrl,cloudParams({action:"syncInit"}),30000);
+    if(!init||init.ok===false)throw new Error(init?.message||"클라우드 초기화 실패");
+    state.cloudSync=true;state.syncSheetUrl=init.spreadsheetUrl||"";persist(false);
+    if(Number(init.assetCount||0)>0){await pullCloudState(true,true);toastMsg("기존 클라우드 자산을 불러왔습니다.")}
+    else{await pushAllToCloud(true);toastMsg("현재 자산을 클라우드에 처음 저장했습니다.")}
+    updateCloudSyncStatus();
+  }catch(e){console.error(e);state.cloudSync=false;persist(false);updateCloudSyncStatus(e.message||"동기화 실패");alert((e.message||"클라우드 동기화에 실패했습니다.")+"\n\nApps Script v7을 새 버전으로 배포했는지 확인해 주세요.")}
+}
+function disableCloudSync(){state.cloudSync=false;state.syncPending=[];persist(false);updateCloudSyncStatus();toastMsg("이 기기의 자동 동기화를 껐습니다.")}
+async function copySyncKey(){
+  const key=(document.getElementById("syncKey")?.value||getSyncKey()).trim();if(!key){alert("먼저 클라우드 동기화를 시작해 주세요.");return}
+  try{await navigator.clipboard.writeText(key);toastMsg("동기화 코드를 복사했습니다.")}catch(e){prompt("이 동기화 코드를 다른 기기에 입력하세요.",key)}
+}
+function setupCloudAutoSync(){
+  // v26: 자동 폴링/앱 복귀 자동 불러오기 제거.
+  // 다른 기기 변경사항은 사용자가 아래로 당겨 새로고침할 때만 불러옵니다.
+}
+
 async function refreshPrices(silent=false){
   if(!state.apiUrl){
     if(!silent){
@@ -791,11 +958,11 @@ function setupPullToRefresh(){
     indicator.classList.remove("show","ready");
     if(shouldRefresh){
       if(navigator.vibrate) navigator.vibrate(20);
-      refreshPrices(false);
+      (async()=>{if(state.cloudSync)await pullCloudState(true).catch(()=>{});await refreshPrices(false)})();
     }
   },{passive:true});
 }
 
-render();setupPullToRefresh();if(state.autoRefresh&&state.apiUrl)setTimeout(()=>refreshPrices(true),700);
+render();setupPullToRefresh();setupCloudAutoSync();if(state.autoRefresh&&state.apiUrl)setTimeout(()=>refreshPrices(true),900);
 </script>
 </body></html>
