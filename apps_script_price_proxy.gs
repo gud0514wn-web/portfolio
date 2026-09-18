@@ -33,11 +33,12 @@ function output_(obj, callback) {
 var SYNC_SPREADSHEET_PROPERTY='PORTFOLIO_SYNC_SPREADSHEET_ID';
 var SYNC_ASSET_SHEET='Assets';
 var SYNC_META_SHEET='Meta';
+var SYNC_HISTORY_SHEET='History';
 
 function handleSyncAction_(action,p){
   var key=String(p.key||'').trim();
   if(!key||key.length<6)throw new Error('동기화 코드가 올바르지 않습니다.');
-  var ss=getSyncSpreadsheet_(),ash=ss.getSheetByName(SYNC_ASSET_SHEET),msh=ss.getSheetByName(SYNC_META_SHEET);
+  var ss=getSyncSpreadsheet_(),ash=ss.getSheetByName(SYNC_ASSET_SHEET),msh=ss.getSheetByName(SYNC_META_SHEET),hsh=ss.getSheetByName(SYNC_HISTORY_SHEET);
   if(action==='syncInit')return{ok:true,updatedAt:new Date().toISOString(),assetCount:countAssetsForKey_(ash,key),spreadsheetUrl:ss.getUrl()};
   var lock=LockService.getScriptLock();lock.waitLock(15000);
   try{
@@ -55,6 +56,17 @@ function handleSyncAction_(action,p){
     if(action==='syncMeta'){
       var acc=[];try{acc=JSON.parse(String(p.accounts||'[]'))}catch(e){}if(!Array.isArray(acc))acc=[];
       upsertMeta_(msh,key,acc);return{ok:true,updatedAt:new Date().toISOString()}
+    }
+    if(action==='syncHistoryUpsert'){
+      var snap=JSON.parse(String(p.data||'{}'));
+      var result=upsertDailyHistory_(hsh,key,snap);
+      return{ok:true,saved:result.saved,keptValue:result.keptValue,updatedAt:result.updatedAt}
+    }
+    if(action==='syncHistoryGet'){
+      return{ok:true,history:readHistorySummaries_(hsh,key),updatedAt:new Date().toISOString()}
+    }
+    if(action==='syncHistoryDetail'){
+      return{ok:true,date:String(p.date||''),assets:readHistoryDetail_(hsh,key,String(p.date||'')),updatedAt:new Date().toISOString()}
     }
     throw new Error('지원하지 않는 동기화 작업입니다: '+action);
   }finally{lock.releaseLock()}
@@ -83,6 +95,7 @@ function setupPortfolioSync() {
     'currency','market','ticker','targetWeight','memo','updatedAt'
   ]);
   ensureSheet_(ss, SYNC_META_SHEET, ['syncKey','accountsJson','updatedAt']);
+  ensureSheet_(ss, SYNC_HISTORY_SHEET, ['syncKey','date','totalValue','totalCost','totalPL','returnPct','fx','assetsJson','updatedAt']);
   migrateKrTickers_(ss.getSheetByName(SYNC_ASSET_SHEET));
 
   Logger.log('Portfolio Cloud Sync 준비 완료: ' + ss.getUrl());
@@ -106,6 +119,7 @@ function getSyncSpreadsheet_(){
 
   ensureSheet_(ss,SYNC_ASSET_SHEET,['syncKey','id','account','name','qty','avg','purchaseFx','cost','price','currency','market','ticker','targetWeight','memo','updatedAt']);
   ensureSheet_(ss,SYNC_META_SHEET,['syncKey','accountsJson','updatedAt']);
+  ensureSheet_(ss,SYNC_HISTORY_SHEET,['syncKey','date','totalValue','totalCost','totalPL','returnPct','fx','assetsJson','updatedAt']);
   return ss;
 }
 function ensureSheet_(ss,name,headers){
@@ -113,6 +127,10 @@ function ensureSheet_(ss,name,headers){
   if(sh.getLastRow()===0){sh.getRange(1,1,1,headers.length).setValues([headers]);sh.setFrozenRows(1)}
   if(name===SYNC_ASSET_SHEET){
     sh.getRange('L:L').setNumberFormat('@');
+  }
+  if(name===SYNC_HISTORY_SHEET){
+    sh.getRange('B:B').setNumberFormat('@');
+    sh.getRange('H:H').setNumberFormat('@');
   }
   return sh;
 }
@@ -160,6 +178,38 @@ function latestAssetUpdatedAt_(sh,key){var last=sh.getLastRow();if(last<2)return
 function findMetaRow_(sh,key){var last=sh.getLastRow();if(last<2)return-1;var v=sh.getRange(2,1,last-1,1).getValues();for(var i=0;i<v.length;i++)if(String(v[i][0])===key)return i+2;return-1}
 function upsertMeta_(sh,key,accounts){var row=[key,JSON.stringify(accounts||[]),new Date().toISOString()],n=findMetaRow_(sh,key);if(n>0)sh.getRange(n,1,1,3).setValues([row]);else sh.appendRow(row)}
 function readMetaForKey_(sh,key){var n=findMetaRow_(sh,key);if(n<0)return{accounts:[],updatedAt:''};var r=sh.getRange(n,1,1,3).getValues()[0],a=[];try{a=JSON.parse(String(r[1]||'[]'))}catch(e){}if(!Array.isArray(a))a=[];return{accounts:a,updatedAt:String(r[2]||'')}}
+
+
+function findHistoryRow_(sh,key,date){
+  var last=sh.getLastRow();if(last<2)return-1;
+  var vals=sh.getRange(2,1,last-1,2).getValues();
+  for(var i=0;i<vals.length;i++)if(String(vals[i][0])===key&&String(vals[i][1])===date)return i+2;
+  return-1;
+}
+function upsertDailyHistory_(sh,key,snap){
+  var date=String(snap.date||'').trim();if(!/^\d{4}-\d{2}-\d{2}$/.test(date))throw new Error('자산변화 날짜 형식 오류');
+  var totalValue=Number(snap.totalValue||0);if(!(totalValue>=0))throw new Error('총자산 값 오류');
+  var now=String(snap.capturedAt||new Date().toISOString());
+  var rowNo=findHistoryRow_(sh,key,date),existing=-1;
+  if(rowNo>0)existing=Number(sh.getRange(rowNo,3).getValue()||0);
+  if(rowNo>0&&existing>=totalValue)return{saved:false,keptValue:existing,updatedAt:String(sh.getRange(rowNo,9).getValue()||now)};
+  var assets=Array.isArray(snap.assets)?snap.assets:[];
+  var row=[key,date,totalValue,Number(snap.totalCost||0),Number(snap.totalPL||0),Number(snap.returnPct||0),Number(snap.fx||0),JSON.stringify(assets),now];
+  if(rowNo>0)sh.getRange(rowNo,1,1,row.length).setValues([row]);else sh.appendRow(row);
+  sh.getRange('B:B').setNumberFormat('@');sh.getRange('H:H').setNumberFormat('@');
+  return{saved:true,keptValue:totalValue,updatedAt:now};
+}
+function readHistorySummaries_(sh,key){
+  var last=sh.getLastRow();if(last<2)return[];
+  var vals=sh.getRange(2,1,last-1,9).getValues(),out=[];
+  vals.forEach(function(r){if(String(r[0])===key)out.push({date:String(r[1]||''),totalValue:Number(r[2]||0),totalCost:Number(r[3]||0),totalPL:Number(r[4]||0),returnPct:Number(r[5]||0),fx:Number(r[6]||0),updatedAt:String(r[8]||'')})});
+  out.sort(function(a,b){return String(a.date).localeCompare(String(b.date))});return out;
+}
+function readHistoryDetail_(sh,key,date){
+  var rowNo=findHistoryRow_(sh,key,date);if(rowNo<0)return[];
+  var raw=String(sh.getRange(rowNo,8).getValue()||'[]'),arr=[];try{arr=JSON.parse(raw)}catch(e){};
+  if(!Array.isArray(arr))arr=[];return arr;
+}
 
 function splitList_(s) {
   if (!s) return [];
@@ -546,7 +596,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r = UrlFetchApp.fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=krw', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/11.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/12.0)'}
     });
     if (r.getResponseCode() >= 200 && r.getResponseCode() < 300) {
       var j = JSON.parse(r.getContentText());
@@ -562,7 +612,7 @@ function fetchCrypto_(symbols, out) {
   try {
     var r2 = UrlFetchApp.fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/11.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/12.0)'}
     });
     if (r2.getResponseCode() >= 200 && r2.getResponseCode() < 300) {
       var j2 = JSON.parse(r2.getContentText());
@@ -608,7 +658,7 @@ function fetchFx_(out) {
   try {
     var r1 = UrlFetchApp.fetch('https://api.frankfurter.app/latest?from=USD&to=KRW', {
       muteHttpExceptions:true,
-      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/11.0)'}
+      headers:{'User-Agent':'Mozilla/5.0 (compatible; PortfolioPriceProxy/12.0)'}
     });
     if (r1.getResponseCode() >= 200 && r1.getResponseCode() < 300) {
       var j1 = JSON.parse(r1.getContentText());

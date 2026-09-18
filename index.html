@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="icon" href="icon-192.png" />
-<title>내 자산 포트폴리오 v30</title>
+<title>내 자산 포트폴리오 v31</title>
 <style>
 :root{--bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#7b879d;--line:#e8edf5;--primary:#3769f6;--up:#e5484d;--down:#2f6fed;--ok:#159a63;--warn:#d98310;--shadow:0 10px 30px rgba(25,40,80,.08);--safe-top:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-bottom)}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Roboto,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}.app{max-width:760px;margin:auto;padding:calc(14px + var(--safe-top)) 14px calc(92px + var(--safe-bottom))}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px}.brand{min-width:0}.brand h1{font-size:21px;margin:0;font-weight:800;letter-spacing:-.5px}.brand .date{display:none}.top-actions{display:flex;gap:7px}.icon-btn{border:0;background:#fff;border-radius:13px;padding:10px 11px;box-shadow:var(--shadow);color:var(--text);white-space:nowrap}.icon-btn.refreshing{opacity:.55;pointer-events:none}.install-btn{display:none;color:var(--primary);font-weight:800}.hero{background:linear-gradient(135deg,#15223d,#284c9d);border-radius:24px;color:#fff;padding:20px;box-shadow:0 18px 38px rgba(26,53,115,.2)}.hero-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.hero .label{font-size:12px;opacity:.75}.hero-return{font-size:15px;font-weight:850;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap}.hero-return.up{color:#ffd5d8}.hero-return.down{color:#d9e6ff}.hero .total{font-size:30px;font-weight:850;letter-spacing:-1px;margin-top:5px}.hero-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.mini{background:rgba(255,255,255,.1);padding:12px;border-radius:15px}.mini .k{font-size:11px;opacity:.75}.mini .v{font-size:15px;font-weight:750;margin-top:3px}.section{margin-top:18px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px}.section-title h2{font-size:16px;margin:0}.linkbtn{border:0;background:transparent;color:var(--primary);font-weight:700;font-size:12px}.card{background:var(--card);border-radius:20px;padding:16px;box-shadow:var(--shadow)}.alloc-wrap{display:flex;align-items:center;gap:18px}.donut{width:150px;aspect-ratio:1;border-radius:50%;position:relative;flex:0 0 auto}.donut:after{content:"";position:absolute;inset:22px;background:#fff;border-radius:50%;box-shadow:inset 0 0 0 1px #f1f4f9}.donut-center{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;flex-direction:column;pointer-events:none}.donut-center b{font-size:17px}.donut-center span{font-size:10px;color:var(--muted);margin-top:2px}.legend{flex:1;min-width:0}.legend-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin:9px 0}.legend-row .name{display:flex;align-items:center;min-width:0}.dot{width:9px;height:9px;border-radius:50%;margin-right:7px;flex:0 0 auto}.legend-row .name span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chips{display:flex;gap:7px;overflow:auto;padding-bottom:3px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{border:1px solid var(--line);background:#fff;color:#59647a;padding:8px 11px;border-radius:999px;font-size:12px;white-space:nowrap}.chip.active{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:700}.asset-list{display:flex;flex-direction:column;gap:12px;margin-top:10px}.asset{background:#fff;border-radius:18px;padding:15px 14px 14px;box-shadow:0 6px 18px rgba(36,52,85,.055);border:1px solid #f0f3f8}.asset-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.asset-left{flex:1;min-width:0}.asset-right{flex:0 0 auto;text-align:right;white-space:nowrap;min-width:112px}.asset-name{font-weight:800;font-size:14px;letter-spacing:-.2px;margin-bottom:8px;line-height:1.2}.asset-meta{font-size:10px;color:var(--muted);margin-top:0;line-height:1.3;white-space:nowrap;letter-spacing:-.15px}.quote-ok{color:var(--ok)}.quote-manual{color:var(--muted)}.asset-value{text-align:right;white-space:nowrap}.asset-value .won{font-weight:800;font-size:13.5px}.asset-value .pct{font-size:11px;color:var(--muted);margin-top:4px}.asset-bottom{display:flex;justify-content:space-between;align-items:end;margin-top:11px}.profit{font-weight:750;font-size:12px}.profit.up{color:var(--up)}.profit.down{color:var(--down)}.weight-row{margin-top:13px}.weight-label{display:none}.bar{height:8px;background:#edf1f7;border-radius:999px;position:relative;overflow:visible;width:100%;min-width:90px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.weight-pct{position:absolute;top:50%;transform:translate(7px,-50%);font-size:11px;color:#174ea6;white-space:nowrap;font-weight:900;text-align:left;line-height:1}.target-row{font-size:10px;color:#7b879d;margin-top:11px;padding-left:0;line-height:1.45;word-break:keep-all}.target-row b{color:#334155;font-weight:800}.target-action{color:#174ea6;font-weight:800}.target-action.sell{color:#a3444b}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.tiny-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:5px 8px;font-size:10.5px;color:#59647a;margin-top:10px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.summary-box{background:#fff;border-radius:16px;padding:13px;box-shadow:var(--shadow)}.summary-box .k{font-size:10px;color:var(--muted)}.summary-box .v{font-size:14px;font-weight:800;margin-top:5px}.status-card{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border-radius:14px;padding:10px 12px;box-shadow:var(--shadow);margin-top:18px;margin-bottom:6px}.status-card .left{min-width:0}.status-card .title{font-size:11px;font-weight:800}.status-card .sub{font-size:10px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.status-pill{font-size:10px;border-radius:999px;padding:5px 8px;background:#eef8f3;color:var(--ok);font-weight:800}.bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(760px,100%);padding:10px 14px calc(10px + var(--safe-bottom));background:rgba(246,248,252,.92);backdrop-filter:blur(16px);display:grid;grid-template-columns:1fr;gap:10px;z-index:20}.nav-btn{border:0;border-radius:16px;padding:13px 10px;font-weight:800}.nav-btn.primary{background:var(--primary);color:#fff}.nav-btn.secondary{background:#fff;color:var(--text);box-shadow:var(--shadow)}.modal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:flex-end;z-index:100}.modal.show{display:flex}.sheet{background:#fff;width:min(760px,100%);margin:auto;border-radius:24px 24px 0 0;padding:18px 16px calc(24px + var(--safe-bottom));max-height:90vh;overflow:auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.sheet-head h3{margin:0;font-size:18px}.close{border:0;background:#f2f5fa;border-radius:10px;width:36px;height:36px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin:9px 0}.field label{display:block;font-size:11px;color:var(--muted);margin:0 0 5px 2px}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px;background:#fbfcfe;color:var(--text);outline:none}.checkrow{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}.checkrow .ct{font-size:12px;font-weight:700}.checkrow .cs{font-size:10px;color:var(--muted);margin-top:3px}.switch{position:relative;width:46px;height:26px;flex:0 0 auto}.switch input{display:none}.switch span{position:absolute;inset:0;background:#d7deea;border-radius:999px;transition:.2s}.switch span:after{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.18);transition:.2s}.switch input:checked+span{background:var(--primary)}.switch input:checked+span:after{transform:translateX(20px)}.sheet-actions{display:flex;gap:8px;margin-top:14px}.sheet-actions button{flex:1;border:0;border-radius:14px;padding:13px;font-weight:800}.save{background:var(--primary);color:#fff}.danger{background:#fff0f0;color:#c23d43;border:1px solid #ffd4d6!important}.settings-list{display:grid;gap:10px}.settings-btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;text-align:left}.settings-btn.primary{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:800}.note{font-size:11px;line-height:1.55;color:var(--muted);margin-top:8px}.empty{text-align:center;color:var(--muted);padding:28px 8px}.toast{position:fixed;left:50%;bottom:calc(90px + var(--safe-bottom));transform:translate(-50%,20px);background:#15223d;color:#fff;padding:10px 14px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:200;max-width:calc(100% - 30px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
@@ -161,6 +161,70 @@ padding:8px 13px;font-size:11px;font-weight:850;color:#3769f6;opacity:0;transiti
 .cloud-sync-actions button.primary{background:#3769f6;color:#fff;border-color:#3769f6}
 .cloud-sync-actions button.full{grid-column:1/-1}
 
+
+/* v31: 상단 고정 + 자산변화 탭 */
+.top{
+  position:sticky;top:var(--safe-top);z-index:40;
+  background:rgba(246,248,252,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  padding:8px 0;margin-top:-8px;border-bottom:1px solid rgba(232,237,245,.72)
+}
+.sheet-head{
+  position:sticky;top:-18px;z-index:8;background:#fff;
+  padding:18px 0 10px;margin-bottom:10px;border-bottom:1px solid #eef2f7
+}
+.main-tabs{display:flex;gap:7px;margin:4px 0 12px;padding:4px;background:#eaf0f8;border-radius:14px}
+.main-tab{flex:1;border:0;background:transparent;border-radius:11px;padding:10px 8px;font-size:12px;font-weight:850;color:#77839a}
+.main-tab.active{background:#fff;color:#172033;box-shadow:0 4px 14px rgba(25,40,80,.08)}
+.app-view.hidden{display:none!important}
+
+/* 자산변화 */
+.history-card{background:#fff;border-radius:20px;padding:15px;box-shadow:var(--shadow)}
+.history-sub{font-size:10.5px;color:var(--muted);line-height:1.45;margin-top:4px}
+.history-range{display:flex;gap:6px;margin-top:12px}
+.history-range button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 10px;font-size:10px;font-weight:800;color:#65728a}
+.history-range button.active{background:#172033;color:#fff;border-color:#172033}
+.history-chart-wrap{position:relative;margin-top:12px;width:100%;height:270px;border:1px solid var(--line);border-radius:15px;background:#fbfcff;overflow:hidden}
+#historyChart{display:block;width:100%;height:100%}
+.history-legend{display:flex;gap:13px;align-items:center;margin-top:9px;font-size:10px;color:var(--muted)}
+.history-legend span{display:inline-flex;align-items:center;gap:5px}
+.history-legend i{display:inline-block;width:12px;height:7px;border-radius:3px;background:#5b7cdb}
+.history-legend i.line{height:2px;background:#e05a64;position:relative}
+.history-legend i.line:after{content:"";position:absolute;width:5px;height:5px;border-radius:50%;background:#e05a64;left:4px;top:-1.5px}
+.history-latest{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.history-stat{padding:10px 11px;border-radius:13px;background:#f6f8fc}
+.history-stat .k{font-size:9.5px;color:var(--muted)}
+.history-stat .v{font-size:13px;font-weight:850;margin-top:3px}
+.history-list{display:flex;flex-direction:column;gap:8px}
+.history-day{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 5px 18px rgba(25,40,80,.035)}
+.history-day-head{display:flex;align-items:center;gap:9px;padding:12px 13px;cursor:pointer}
+.history-date{min-width:82px;font-size:11.5px;font-weight:850;color:#2c3850}
+.history-day-main{flex:1;min-width:0;text-align:right}
+.history-day-main .value{font-size:13.5px;font-weight:900;color:#172033}
+.history-day-main .sub{font-size:9.5px;color:var(--muted);margin-top:3px}
+.history-arrow{border:0;background:#f3f6fb;border-radius:9px;width:30px;height:30px;font-size:15px;color:#61708a;transition:transform .16s ease}
+.history-arrow.open{transform:rotate(180deg)}
+.history-detail{border-top:1px solid var(--line);padding:5px 12px 10px;background:#fbfcfe}
+.history-detail.hidden{display:none}
+.history-asset-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:8px 1px;border-bottom:1px solid #edf1f7}
+.history-asset-row:last-child{border-bottom:0}
+.history-asset-name{font-size:10.5px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.history-asset-meta{font-size:9px;color:var(--muted);margin-top:2px}
+.history-asset-value{text-align:right;font-size:10.5px;font-weight:850;white-space:nowrap}
+.history-asset-weight{font-size:9px;color:var(--muted);margin-top:2px}
+.history-empty{background:#fff;border:1px dashed #d8e0ec;border-radius:16px;padding:28px 16px;text-align:center;color:#7b879d;font-size:11px;line-height:1.55}
+.history-loading{padding:16px;text-align:center;color:var(--muted);font-size:11px}
+@media(max-width:560px){
+  .top{top:var(--safe-top);padding:7px 0}
+  .brand h1{font-size:19px}
+  .icon-btn{padding:9px 10px}
+  .main-tabs{margin-top:3px}
+  .history-chart-wrap{height:235px}
+  .history-card{padding:12px}
+  .history-day-head{padding:11px}
+  .history-date{min-width:72px;font-size:10.5px}
+  .history-day-main .value{font-size:12.5px}
+}
+
 </style>
 </head>
 <body>
@@ -170,12 +234,31 @@ padding:8px 13px;font-size:11px;font-weight:850;color:#3769f6;opacity:0;transiti
     <div class="brand"><h1>내 자산 포트폴리오</h1><div class="date" id="updatedAt"></div></div>
     <div class="top-actions"><button class="icon-btn install-btn" id="installBtn" onclick="installApp()">앱 설치</button><button class="icon-btn" id="currencyBtn" onclick="toggleDisplayCurrency()" title="원화/달러 전환">₩</button><button class="icon-btn" id="refreshBtn" onclick="refreshPrices()">↻ 새로고침</button><button class="icon-btn" onclick="openSettings()">⋯</button></div>
   </div>
+  <div class="main-tabs" id="mainTabs"><button class="main-tab active" id="portfolioTab" onclick="switchMainView('portfolio')">포트폴리오</button><button class="main-tab" id="historyTab" onclick="switchMainView('history')">자산변화</button></div>
+  <div class="app-view" id="portfolioView">
   <section class="hero"><div class="hero-title-row"><div class="label">총 평가자산</div><div class="hero-return" id="heroReturn">0.00%</div></div><div class="total" id="totalValue">₩0</div><div class="hero-row"><div class="mini"><div class="k">총 매입금액</div><div class="v" id="totalCost">₩0</div></div><div class="mini"><div class="k">평가손익</div><div class="v" id="totalPL">₩0</div></div></div></section>
 <section class="section"><div class="section-title"><h2>자산 배분</h2><button class="linkbtn" onclick="toggleAllocMode()">계좌별/자산별</button></div><div class="card"><div class="alloc-wrap"><div style="position:relative"><div class="donut" id="donut"></div><div class="donut-center"><b>100%</b><span id="donutSub">계좌별</span></div></div><div class="legend" id="legend"></div></div></div></section>
   <section class="section"><div class="section-title"><h2>보유 자산</h2></div><div class="chips" id="chips"></div><div class="llm-export-wrap"><button class="llm-export-btn" onclick="exportLLMImage()">LLM용 표 이미지 저장</button></div><div class="asset-list" id="assetList"></div></section>
   <div class="status-card"><div class="left"><div class="title">시세 · 환율 업데이트</div><div class="sub" id="quoteStatus">아직 자동 시세를 불러오지 않았습니다.</div><div class="sub" id="fxStatus">USD/KRW 수동값 사용 중</div></div><div class="status-pill" id="quotePill">수동</div></div>
+  </div>
+
+  <div class="app-view hidden" id="historyView">
+    <section class="section" style="margin-top:0">
+      <div class="section-title"><div><h2>자산 변화</h2><div class="history-sub">새로고침/동기화 시 같은 날짜의 최고 총자산만 Google Sheets에 보관합니다.</div></div><button class="linkbtn" onclick="loadHistory(false)">↻ 불러오기</button></div>
+      <div class="history-card">
+        <div class="history-range"><button class="active" data-range="30" onclick="setHistoryRange(30,this)">30일</button><button data-range="90" onclick="setHistoryRange(90,this)">90일</button><button data-range="0" onclick="setHistoryRange(0,this)">전체</button></div>
+        <div class="history-chart-wrap"><canvas id="historyChart"></canvas></div>
+        <div class="history-legend"><span><i></i>막대 · 총자산</span><span><i class="line"></i>선 · 평가손익</span></div>
+        <div class="history-latest" id="historyLatest"></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-title"><h2>일별 자산금액</h2></div>
+      <div class="history-list" id="historyList"><div class="history-empty">아직 저장된 자산 변화가 없습니다.<br>클라우드 동기화 후 새로고침하면 오늘 기록부터 쌓입니다.</div></div>
+    </section>
+  </div>
 </div>
-<div class="bottom-nav"><button class="nav-btn primary" onclick="openAsset()">+ 자산 추가</button></div>
+<div class="bottom-nav" id="bottomNav"><button class="nav-btn primary" onclick="openAsset()">+ 자산 추가</button></div>
 <div class="toast" id="toast"></div>
 
 <div class="modal" id="assetModal"><div class="sheet"><div class="sheet-head"><h3 id="modalTitle">자산 추가</h3><button class="close" onclick="closeAsset()">✕</button></div><input type="hidden" id="assetId">
@@ -190,7 +273,7 @@ padding:8px 13px;font-size:11px;font-weight:850;color:#3769f6;opacity:0;transiti
 
 <div class="modal" id="settingsModal"><div class="sheet"><div class="sheet-head"><h3>백업 · 설정</h3><button class="close" onclick="closeSettings()">✕</button></div>
 <div class="field"><label>Google Apps Script API URL (시세 · 동기화)</label><input id="apiUrl" placeholder="https://script.google.com/macros/s/.../exec"></div>
-<div class="note">Apps Script v8에서 setupPortfolioSync()를 1회 실행해 권한을 승인한 뒤 웹 앱으로 배포하고 /exec 주소를 입력하세요. 시세 조회와 PC·모바일 동기화를 같은 주소에서 처리합니다.</div>
+<div class="note">Apps Script v12에서 setupPortfolioSync()를 1회 실행해 권한을 승인한 뒤 웹 앱으로 배포하고 /exec 주소를 입력하세요. 시세 조회와 PC·모바일 동기화를 같은 주소에서 처리합니다.</div>
 <div class="checkrow"><div><div class="ct">앱을 열 때 자동 새로고침</div><div class="cs">앱 실행 시 자산 가격과 USD/KRW 환율을 1회 갱신합니다.</div></div><label class="switch"><input id="autoRefresh" type="checkbox"><span></span></label></div>
 <div class="cloud-sync-box">
   <div class="cloud-sync-title"><b>☁ PC · 모바일 자동 동기화</b><span class="cloud-sync-badge" id="cloudSyncBadge">꺼짐</span></div>
@@ -208,7 +291,7 @@ padding:8px 13px;font-size:11px;font-weight:850;color:#3769f6;opacity:0;transiti
 <div class="note">자동 조회: 미국주식/ETF는 Yahoo Finance(프리장·정규장·애프터장 포함)를 우선 사용합니다. Yahoo에서 시세를 못 불러오면 해당 종목명을 알림으로 표시하고 기존 가격을 유지합니다. 한국주식/ETF는 네이버 증권, 비트코인은 CoinGecko/Upbit, USD/KRW 환율은 네이버 → Frankfurter 순으로 조회합니다.</div></div></div>
 
 <script>
-const SAMPLE={version:30,displayCurrency:"KRW",cloudSync:false,syncPending:[],syncLastAt:"",syncSheetUrl:"",accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"],fx:1367.44,fxSource:"수동",fxUpdatedAt:"",updatedAt:"2026-09-16",priceUpdatedAt:"",apiUrl:"",autoRefresh:false,assets:[
+const SAMPLE={version:31,displayCurrency:"KRW",cloudSync:false,syncPending:[],syncLastAt:"",syncSheetUrl:"",accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"],fx:1367.44,fxSource:"수동",fxUpdatedAt:"",updatedAt:"2026-09-16",priceUpdatedAt:"",apiUrl:"",autoRefresh:false,assets:[
 {id:1,account:"해외주식",name:"팔란티어",qty:1040,avg:15.5111,purchaseFx:1203.3600,cost:19412055,price:172.22,currency:"USD",market:"US",ticker:"PLTR",memo:"PLTR"},
 {id:2,account:"해외주식",name:"알파벳 C",qty:255,avg:327.3023,purchaseFx:1341.1800,cost:111937681,price:342.04,currency:"USD",market:"US",ticker:"GOOG",memo:"GOOG"},
 {id:3,account:"해외주식",name:"모더나",qty:70,avg:134.6172,purchaseFx:1378.0601,cost:12985741,price:144.50,currency:"USD",market:"US",ticker:"MRNA",memo:"MRNA"},
@@ -234,8 +317,10 @@ let state=loadState(),filter="전체",allocMode="account",deferredPrompt=null;
 const SYNC_KEY_STORAGE="portfolioCloudSyncKeyV1";
 const getSyncKey=()=>localStorage.getItem(SYNC_KEY_STORAGE)||"";
 function setSyncKey(v){const x=String(v||"").trim();if(x)localStorage.setItem(SYNC_KEY_STORAGE,x);else localStorage.removeItem(SYNC_KEY_STORAGE)}
+let mainView="portfolio",historyData=[],historyRange=30,historyDetailCache={};
 
-function loadState(){let s=null;try{s=JSON.parse(localStorage.getItem("portfolioMobileV1")||"null")}catch(e){}if(!s)s=structuredClone(SAMPLE);s.version=30;
+
+function loadState(){let s=null;try{s=JSON.parse(localStorage.getItem("portfolioMobileV1")||"null")}catch(e){}if(!s)s=structuredClone(SAMPLE);s.version=31;
 s.displayCurrency=s.displayCurrency||"KRW";
 s.assets=(s.assets||[]).map(a=>{
   if(a&&a.market==="KR"){
@@ -541,7 +626,7 @@ function saveAsset(){
     persist();
     toastMsg("저장했습니다.");
     if(state.cloudSync){
-      cloudUpsertAsset(obj).catch(()=>{queueSyncPending({type:"upsert",asset:obj});toastMsg("로컬 저장 완료 · 클라우드 동기화 대기")});
+      cloudUpsertAsset(obj).then(()=>cloudSaveHistorySnapshot(true)).catch(()=>{queueSyncPending({type:"upsert",asset:obj});toastMsg("로컬 저장 완료 · 클라우드 동기화 대기")});
     }
 
     if(!old && state.apiUrl && obj.market!=="MANUAL" && obj.market!=="CASH" && obj.ticker){
@@ -559,7 +644,7 @@ function deleteAsset(){
     closeAsset();
     persist();
     if(state.cloudSync){
-      cloudDeleteAsset(id).catch(()=>{queueSyncPending({type:"delete",id});toastMsg("로컬 삭제 완료 · 클라우드 동기화 대기")});
+      cloudDeleteAsset(id).then(()=>cloudSaveHistorySnapshot(true)).catch(()=>{queueSyncPending({type:"delete",id});toastMsg("로컬 삭제 완료 · 클라우드 동기화 대기")});
     }
   }
 }
@@ -684,8 +769,9 @@ async function enableCloudSync(){
     state.cloudSync=true;state.syncSheetUrl=init.spreadsheetUrl||"";persist(false);
     if(Number(init.assetCount||0)>0){await pullCloudState(true,true);toastMsg("기존 클라우드 자산을 불러왔습니다.")}
     else{await pushAllToCloud(true);toastMsg("현재 자산을 클라우드에 처음 저장했습니다.")}
+    await cloudSaveHistorySnapshot(true);
     updateCloudSyncStatus();
-  }catch(e){console.error(e);state.cloudSync=false;persist(false);updateCloudSyncStatus(e.message||"동기화 실패");alert((e.message||"클라우드 동기화에 실패했습니다.")+"\n\nApps Script v8에서 setupPortfolioSync()를 1회 실행해 권한 승인 후 새 버전으로 배포했는지 확인해 주세요.")}
+  }catch(e){console.error(e);state.cloudSync=false;persist(false);updateCloudSyncStatus(e.message||"동기화 실패");alert((e.message||"클라우드 동기화에 실패했습니다.")+"\n\nApps Script v12에서 setupPortfolioSync()를 1회 실행해 권한 승인 후 새 버전으로 배포했는지 확인해 주세요.")}
 }
 function disableCloudSync(){state.cloudSync=false;state.syncPending=[];persist(false);updateCloudSyncStatus();toastMsg("이 기기의 자동 동기화를 껐습니다.")}
 async function copySyncKey(){
@@ -696,6 +782,138 @@ function setupCloudAutoSync(){
   // v26: 자동 폴링/앱 복귀 자동 불러오기 제거.
   // 다른 기기 변경사항은 사용자가 아래로 당겨 새로고침할 때만 불러옵니다.
 }
+
+
+function localDateKey(d=new Date()){
+  const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0"),day=String(d.getDate()).padStart(2,"0");
+  return `${y}-${m}-${day}`;
+}
+function historyMoney(n){return "₩"+Math.round(Number(n||0)).toLocaleString("ko-KR")}
+function historyCompactAssets(){
+  const total=totals().value||0;
+  return [...state.assets].map(a=>{
+    const v=valueOf(a);
+    return {name:a.name||"",account:a.account||"",ticker:a.ticker||"",value:Math.round(v),weight:total?v/total*100:0};
+  }).sort((a,b)=>b.value-a.value);
+}
+async function cloudSaveHistorySnapshot(silent=true){
+  if(!state.cloudSync||!state.apiUrl||!getSyncKey())return null;
+  const t=totals();
+  const snap={
+    date:localDateKey(),capturedAt:new Date().toISOString(),totalValue:Math.round(t.value),totalCost:Math.round(t.cost),
+    totalPL:Math.round(t.pl),returnPct:Number(t.rr||0),fx:Number(state.fx||0),assets:historyCompactAssets()
+  };
+  try{
+    const data=await jsonp(state.apiUrl,cloudParams({action:"syncHistoryUpsert",data:JSON.stringify(snap)}),30000);
+    if(!data||data.ok===false)throw new Error(data?.message||"자산변화 저장 실패");
+    if(mainView==="history")await loadHistory(true);
+    if(!silent&&data.saved)toastMsg("오늘 최고 자산금액을 기록했습니다.");
+    return data;
+  }catch(e){console.warn("history snapshot failed",e);if(!silent)toastMsg("자산변화 기록 실패");return null}
+}
+function switchMainView(view){
+  mainView=view==="history"?"history":"portfolio";
+  document.getElementById("portfolioView").classList.toggle("hidden",mainView!=="portfolio");
+  document.getElementById("historyView").classList.toggle("hidden",mainView!=="history");
+  document.getElementById("portfolioTab").classList.toggle("active",mainView==="portfolio");
+  document.getElementById("historyTab").classList.toggle("active",mainView==="history");
+  document.getElementById("bottomNav").style.display=mainView==="portfolio"?"grid":"none";
+  if(mainView==="history"){
+    loadHistory(true);
+    requestAnimationFrame(()=>drawHistoryChart());
+  }
+}
+function setHistoryRange(days,btn){
+  historyRange=Number(days)||0;
+  document.querySelectorAll(".history-range button").forEach(b=>b.classList.toggle("active",b===btn));
+  drawHistoryChart();
+}
+async function loadHistory(silent=true){
+  const list=document.getElementById("historyList");
+  if(!state.cloudSync||!state.apiUrl||!getSyncKey()){
+    historyData=[];renderHistory();
+    if(!silent)toastMsg("먼저 클라우드 동기화를 켜 주세요.");
+    return;
+  }
+  if(!silent)list.innerHTML='<div class="history-loading">자산 변화 불러오는 중…</div>';
+  try{
+    const data=await jsonp(state.apiUrl,cloudParams({action:"syncHistoryGet"}),30000);
+    if(!data||data.ok===false)throw new Error(data?.message||"자산변화 불러오기 실패");
+    historyData=Array.isArray(data.history)?data.history:[];
+    historyData.sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+    renderHistory();
+  }catch(e){console.warn(e);if(!silent)toastMsg("자산변화를 불러오지 못했습니다.");renderHistory()}
+}
+function renderHistory(){
+  const list=document.getElementById("historyList"),latest=document.getElementById("historyLatest");
+  if(!list||!latest)return;
+  if(!historyData.length){
+    latest.innerHTML='<div class="history-stat"><div class="k">최근 최고자산</div><div class="v">-</div></div><div class="history-stat"><div class="k">기록일수</div><div class="v">0일</div></div>';
+    list.innerHTML='<div class="history-empty">아직 저장된 자산 변화가 없습니다.<br>클라우드 동기화 후 새로고침하면 오늘 기록부터 쌓입니다.</div>';
+    drawHistoryChart();return;
+  }
+  const last=historyData[historyData.length-1];
+  const first=historyData[0];
+  const growth=Number(last.totalValue||0)-Number(first.totalValue||0);
+  latest.innerHTML=`<div class="history-stat"><div class="k">최근 최고자산 · ${last.date}</div><div class="v">${historyMoney(last.totalValue)}</div></div><div class="history-stat"><div class="k">기록 시작 대비</div><div class="v ${growth>=0?'up':'down'}">${growth>=0?'+':''}${historyMoney(growth)}</div></div>`;
+  const desc=[...historyData].reverse();
+  list.innerHTML=desc.map((h,i)=>{
+    const prevIdx=historyData.findIndex(x=>x.date===h.date)-1;
+    const prev=prevIdx>=0?historyData[prevIdx]:null;
+    const diff=prev?Number(h.totalValue)-Number(prev.totalValue):null;
+    const diffText=diff==null?'첫 기록':`${diff>=0?'+':''}${historyMoney(diff)}`;
+    return `<div class="history-day"><div class="history-day-head" onclick="toggleHistoryDay('${h.date}',this)"><div class="history-date">${h.date}</div><div class="history-day-main"><div class="value">${historyMoney(h.totalValue)}</div><div class="sub">평가손익 ${h.totalPL>=0?'+':''}${historyMoney(h.totalPL)} · ${Number(h.returnPct||0)>=0?'+':''}${Number(h.returnPct||0).toFixed(2)}% · 전일대비 ${diffText}</div></div><button class="history-arrow" type="button" aria-label="상세보기">⌄</button></div><div class="history-detail hidden" id="history-detail-${h.date}"></div></div>`;
+  }).join("");
+  drawHistoryChart();
+}
+async function toggleHistoryDay(date,head){
+  const detail=document.getElementById(`history-detail-${date}`),arrow=head.querySelector(".history-arrow");
+  if(!detail)return;
+  if(!detail.classList.contains("hidden")){detail.classList.add("hidden");arrow?.classList.remove("open");return}
+  detail.classList.remove("hidden");arrow?.classList.add("open");
+  if(historyDetailCache[date]){renderHistoryDetail(detail,historyDetailCache[date]);return}
+  detail.innerHTML='<div class="history-loading">자산별 금액 불러오는 중…</div>';
+  try{
+    const data=await jsonp(state.apiUrl,cloudParams({action:"syncHistoryDetail",date}),30000);
+    if(!data||data.ok===false)throw new Error(data?.message||"상세정보 실패");
+    const assets=Array.isArray(data.assets)?data.assets:[];historyDetailCache[date]=assets;renderHistoryDetail(detail,assets);
+  }catch(e){detail.innerHTML='<div class="history-loading">상세정보를 불러오지 못했습니다.</div>'}
+}
+function escapeHtml(s){return String(s??"").replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]))}
+function renderHistoryDetail(el,assets){
+  if(!assets.length){el.innerHTML='<div class="history-loading">저장된 자산별 내역이 없습니다.</div>';return}
+  el.innerHTML=assets.map(a=>`<div class="history-asset-row"><div><div class="history-asset-name">${escapeHtml(a.name)}</div><div class="history-asset-meta">${escapeHtml(a.account)}${a.ticker?` · ${escapeHtml(a.ticker)}`:''}</div></div><div><div class="history-asset-value">${historyMoney(a.value)}</div><div class="history-asset-weight">${Number(a.weight||0).toFixed(2)}%</div></div></div>`).join("");
+}
+function historyFiltered(){
+  if(!historyRange||historyData.length<=historyRange)return historyData;
+  return historyData.slice(-historyRange);
+}
+function drawHistoryChart(){
+  const canvas=document.getElementById("historyChart");if(!canvas||mainView!=="history")return;
+  const data=historyFiltered(),wrap=canvas.parentElement;
+  const cssW=Math.max(260,wrap.clientWidth),cssH=Math.max(210,wrap.clientHeight),dpr=Math.min(window.devicePixelRatio||1,2);
+  canvas.width=Math.round(cssW*dpr);canvas.height=Math.round(cssH*dpr);canvas.style.width=cssW+'px';canvas.style.height=cssH+'px';
+  const ctx=canvas.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,cssW,cssH);
+  if(!data.length){ctx.fillStyle="#7b879d";ctx.font="12px sans-serif";ctx.textAlign="center";ctx.fillText("기록이 쌓이면 일별 자산 그래프가 표시됩니다.",cssW/2,cssH/2);return}
+  const pad={l:48,r:14,t:20,b:34},w=cssW-pad.l-pad.r,h=cssH-pad.t-pad.b;
+  const totals=data.map(x=>Number(x.totalValue||0)),pls=data.map(x=>Number(x.totalPL||0));
+  const max=Math.max(...totals,...pls,1)*1.06,min=Math.min(0,...pls);
+  const span=Math.max(1,max-min);const y=v=>pad.t+(max-v)/span*h;
+  // grid + y labels
+  ctx.font="9px sans-serif";ctx.textAlign="right";ctx.textBaseline="middle";
+  for(let i=0;i<=4;i++){const val=max-(span*i/4),yy=pad.t+h*i/4;ctx.strokeStyle="#e7ecf4";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(cssW-pad.r,yy);ctx.stroke();ctx.fillStyle="#8390a6";ctx.fillText((val/100000000).toFixed(1)+"억",pad.l-6,yy)}
+  const step=w/data.length,barW=Math.max(3,Math.min(18,step*.56));
+  data.forEach((d,i)=>{const x=pad.l+step*i+step/2,top=y(Number(d.totalValue||0)),zero=y(0);ctx.fillStyle="rgba(69,105,201,.58)";ctx.beginPath();ctx.roundRect(x-barW/2,top,barW,Math.max(1,zero-top),3);ctx.fill()});
+  // PL line
+  ctx.strokeStyle="#e05a64";ctx.lineWidth=2;ctx.beginPath();
+  data.forEach((d,i)=>{const x=pad.l+step*i+step/2,yy=y(Number(d.totalPL||0));if(i===0)ctx.moveTo(x,yy);else ctx.lineTo(x,yy)});ctx.stroke();
+  data.forEach((d,i)=>{if(data.length>45&&i%Math.ceil(data.length/8)!==0&&i!==data.length-1)return;const x=pad.l+step*i+step/2,yy=y(Number(d.totalPL||0));ctx.fillStyle="#e05a64";ctx.beginPath();ctx.arc(x,yy,2.5,0,Math.PI*2);ctx.fill()});
+  // x labels sparse
+  ctx.fillStyle="#8390a6";ctx.font="9px sans-serif";ctx.textAlign="center";ctx.textBaseline="top";
+  const every=Math.max(1,Math.ceil(data.length/6));
+  data.forEach((d,i)=>{if(i%every===0||i===data.length-1){const s=String(d.date||"");ctx.fillText(s.slice(5).replace('-','.'),pad.l+step*i+step/2,cssH-pad.b+9)}});
+}
+window.addEventListener("resize",()=>{if(mainView==="history")drawHistoryChart()});
 
 async function refreshPrices(silent=false){
   if(!state.apiUrl){
@@ -742,6 +960,7 @@ async function refreshPrices(silent=false){
     state.priceUpdatedAt=data.timestamp||new Date().toISOString();
     persist(false);
     render();
+    if(state.cloudSync) await cloudSaveHistorySnapshot(true);
 
     const errorKeys=Object.keys(data.errors||{});
     const usErrors=errorKeys.filter(k=>k.startsWith("US:"));
