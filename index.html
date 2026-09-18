@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="icon" href="icon-192.png" />
-<title>내 자산 포트폴리오 v22</title>
+<title>내 자산 포트폴리오 v24</title>
 <style>
 :root{--bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#7b879d;--line:#e8edf5;--primary:#3769f6;--up:#e5484d;--down:#2f6fed;--ok:#159a63;--warn:#d98310;--shadow:0 10px 30px rgba(25,40,80,.08);--safe-top:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-bottom)}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Roboto,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}.app{max-width:760px;margin:auto;padding:calc(14px + var(--safe-top)) 14px calc(92px + var(--safe-bottom))}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px}.brand{min-width:0}.brand h1{font-size:21px;margin:0;font-weight:800;letter-spacing:-.5px}.brand .date{display:none}.top-actions{display:flex;gap:7px}.icon-btn{border:0;background:#fff;border-radius:13px;padding:10px 11px;box-shadow:var(--shadow);color:var(--text);white-space:nowrap}.icon-btn.refreshing{opacity:.55;pointer-events:none}.install-btn{display:none;color:var(--primary);font-weight:800}.hero{background:linear-gradient(135deg,#15223d,#284c9d);border-radius:24px;color:#fff;padding:20px;box-shadow:0 18px 38px rgba(26,53,115,.2)}.hero-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.hero .label{font-size:12px;opacity:.75}.hero-return{font-size:15px;font-weight:850;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap}.hero-return.up{color:#ffd5d8}.hero-return.down{color:#d9e6ff}.hero .total{font-size:30px;font-weight:850;letter-spacing:-1px;margin-top:5px}.hero-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.mini{background:rgba(255,255,255,.1);padding:12px;border-radius:15px}.mini .k{font-size:11px;opacity:.75}.mini .v{font-size:15px;font-weight:750;margin-top:3px}.section{margin-top:18px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px}.section-title h2{font-size:16px;margin:0}.linkbtn{border:0;background:transparent;color:var(--primary);font-weight:700;font-size:12px}.card{background:var(--card);border-radius:20px;padding:16px;box-shadow:var(--shadow)}.alloc-wrap{display:flex;align-items:center;gap:18px}.donut{width:150px;aspect-ratio:1;border-radius:50%;position:relative;flex:0 0 auto}.donut:after{content:"";position:absolute;inset:22px;background:#fff;border-radius:50%;box-shadow:inset 0 0 0 1px #f1f4f9}.donut-center{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;flex-direction:column;pointer-events:none}.donut-center b{font-size:17px}.donut-center span{font-size:10px;color:var(--muted);margin-top:2px}.legend{flex:1;min-width:0}.legend-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin:9px 0}.legend-row .name{display:flex;align-items:center;min-width:0}.dot{width:9px;height:9px;border-radius:50%;margin-right:7px;flex:0 0 auto}.legend-row .name span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chips{display:flex;gap:7px;overflow:auto;padding-bottom:3px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{border:1px solid var(--line);background:#fff;color:#59647a;padding:8px 11px;border-radius:999px;font-size:12px;white-space:nowrap}.chip.active{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:700}.asset-list{display:flex;flex-direction:column;gap:12px;margin-top:10px}.asset{background:#fff;border-radius:18px;padding:15px 14px 14px;box-shadow:0 6px 18px rgba(36,52,85,.055);border:1px solid #f0f3f8}.asset-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.asset-left{flex:1;min-width:0}.asset-right{flex:0 0 auto;text-align:right;white-space:nowrap;min-width:112px}.asset-name{font-weight:800;font-size:14px;letter-spacing:-.2px;margin-bottom:8px;line-height:1.2}.asset-meta{font-size:10px;color:var(--muted);margin-top:0;line-height:1.3;white-space:nowrap;letter-spacing:-.15px}.quote-ok{color:var(--ok)}.quote-manual{color:var(--muted)}.asset-value{text-align:right;white-space:nowrap}.asset-value .won{font-weight:800;font-size:13.5px}.asset-value .pct{font-size:11px;color:var(--muted);margin-top:4px}.asset-bottom{display:flex;justify-content:space-between;align-items:end;margin-top:11px}.profit{font-weight:750;font-size:12px}.profit.up{color:var(--up)}.profit.down{color:var(--down)}.weight-row{margin-top:13px}.weight-label{display:none}.bar{height:8px;background:#edf1f7;border-radius:999px;position:relative;overflow:visible;width:100%;min-width:90px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.weight-pct{position:absolute;top:50%;transform:translate(7px,-50%);font-size:11px;color:#174ea6;white-space:nowrap;font-weight:900;text-align:left;line-height:1}.target-row{font-size:10px;color:#7b879d;margin-top:11px;padding-left:0;line-height:1.45;word-break:keep-all}.target-row b{color:#334155;font-weight:800}.target-action{color:#174ea6;font-weight:800}.target-action.sell{color:#a3444b}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.tiny-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:5px 8px;font-size:10.5px;color:#59647a;margin-top:10px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.summary-box{background:#fff;border-radius:16px;padding:13px;box-shadow:var(--shadow)}.summary-box .k{font-size:10px;color:var(--muted)}.summary-box .v{font-size:14px;font-weight:800;margin-top:5px}.status-card{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border-radius:14px;padding:10px 12px;box-shadow:var(--shadow);margin-top:18px;margin-bottom:6px}.status-card .left{min-width:0}.status-card .title{font-size:11px;font-weight:800}.status-card .sub{font-size:10px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.status-pill{font-size:10px;border-radius:999px;padding:5px 8px;background:#eef8f3;color:var(--ok);font-weight:800}.bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(760px,100%);padding:10px 14px calc(10px + var(--safe-bottom));background:rgba(246,248,252,.92);backdrop-filter:blur(16px);display:grid;grid-template-columns:1fr;gap:10px;z-index:20}.nav-btn{border:0;border-radius:16px;padding:13px 10px;font-weight:800}.nav-btn.primary{background:var(--primary);color:#fff}.nav-btn.secondary{background:#fff;color:var(--text);box-shadow:var(--shadow)}.modal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:flex-end;z-index:100}.modal.show{display:flex}.sheet{background:#fff;width:min(760px,100%);margin:auto;border-radius:24px 24px 0 0;padding:18px 16px calc(24px + var(--safe-bottom));max-height:90vh;overflow:auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.sheet-head h3{margin:0;font-size:18px}.close{border:0;background:#f2f5fa;border-radius:10px;width:36px;height:36px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin:9px 0}.field label{display:block;font-size:11px;color:var(--muted);margin:0 0 5px 2px}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px;background:#fbfcfe;color:var(--text);outline:none}.checkrow{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}.checkrow .ct{font-size:12px;font-weight:700}.checkrow .cs{font-size:10px;color:var(--muted);margin-top:3px}.switch{position:relative;width:46px;height:26px;flex:0 0 auto}.switch input{display:none}.switch span{position:absolute;inset:0;background:#d7deea;border-radius:999px;transition:.2s}.switch span:after{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.18);transition:.2s}.switch input:checked+span{background:var(--primary)}.switch input:checked+span:after{transform:translateX(20px)}.sheet-actions{display:flex;gap:8px;margin-top:14px}.sheet-actions button{flex:1;border:0;border-radius:14px;padding:13px;font-weight:800}.save{background:var(--primary);color:#fff}.danger{background:#fff0f0;color:#c23d43;border:1px solid #ffd4d6!important}.settings-list{display:grid;gap:10px}.settings-btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;text-align:left}.settings-btn.primary{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:800}.note{font-size:11px;line-height:1.55;color:var(--muted);margin-top:8px}.empty{text-align:center;color:var(--muted);padding:28px 8px}.toast{position:fixed;left:50%;bottom:calc(90px + var(--safe-bottom));transform:translate(-50%,20px);background:#15223d;color:#fff;padding:10px 14px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:200;max-width:calc(100% - 30px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
@@ -36,6 +36,99 @@ background:#fff;border:1px solid #dbe4f3;box-shadow:0 8px 24px rgba(25,40,80,.12
 padding:8px 13px;font-size:11px;font-weight:850;color:#3769f6;opacity:0;transition:transform .18s ease,opacity .18s ease;pointer-events:none}
 .pull-refresh.show{opacity:1}.pull-refresh.ready{color:#174ea6}
 .manual-price-field.hidden{display:none}
+
+
+/* v23: 종목명 옆에 수량/평균/현재 표시 + 비중바 가독성 개선 */
+.asset-title-line{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  min-width:0;
+  margin-bottom:12px;
+}
+.asset-title-line .asset-name{
+  flex:1 1 auto;
+  min-width:0;
+  margin-bottom:0;
+  font-size:15px;
+  line-height:1.25;
+}
+.asset-inline-meta{
+  flex:0 0 auto;
+  font-size:11.5px;
+  line-height:1.25;
+  font-weight:750;
+  color:#6f7c94;
+  white-space:nowrap;
+  letter-spacing:-.18px;
+}
+.weight-row{margin-top:2px}
+.bar{
+  height:12px !important;
+  border-radius:999px;
+}
+.bar i{
+  height:100%;
+  border-radius:999px;
+}
+.weight-pct{
+  font-size:11px !important;
+  font-weight:850 !important;
+}
+.target-row{margin-top:12px}
+
+
+/* v24: 수정 버튼을 ⋯로 바꾸고 종목명 옆에 배치, 카드 높이 축소 */
+.asset{
+  padding:12px 13px 11px !important;
+}
+.asset-title-line{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:8px;
+}
+.asset-title-main{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  min-width:0;
+  flex:1 1 auto;
+}
+.asset-title-line .asset-name{
+  flex:0 1 auto;
+  min-width:0;
+  font-size:15px;
+  margin:0;
+}
+.asset-menu-btn{
+  flex:0 0 auto;
+  width:25px;
+  height:25px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:0;
+  background:transparent;
+  color:#6f7c94;
+  border-radius:7px;
+  padding:0;
+  margin:0;
+  font-size:19px;
+  line-height:1;
+  font-weight:850;
+}
+.asset-menu-btn:active{background:#f0f3f8}
+.asset-inline-meta{
+  font-size:11.5px;
+}
+.weight-row{margin-top:0}
+.target-row{margin-top:9px}
+.asset-right{
+  min-width:104px !important;
+}
+.asset-value .asset-pl{margin-top:5px !important}
+.asset-value .asset-rr{margin-top:3px !important}
 
 </style>
 </head>
@@ -73,7 +166,7 @@ padding:8px 13px;font-size:11px;font-weight:850;color:#3769f6;opacity:0;transiti
 <div class="note">자동 조회: 미국주식/ETF는 Yahoo Finance(프리장·정규장·애프터장 포함)를 우선 사용합니다. Yahoo에서 시세를 못 불러오면 해당 종목명을 알림으로 표시하고 기존 가격을 유지합니다. 한국주식/ETF는 네이버 증권, 비트코인은 CoinGecko/Upbit, USD/KRW 환율은 네이버 → Frankfurter 순으로 조회합니다.</div></div></div>
 
 <script>
-const SAMPLE={version:22,displayCurrency:"KRW",accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"],fx:1367.44,fxSource:"수동",fxUpdatedAt:"",updatedAt:"2026-09-16",priceUpdatedAt:"",apiUrl:"",autoRefresh:false,assets:[
+const SAMPLE={version:24,displayCurrency:"KRW",accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"],fx:1367.44,fxSource:"수동",fxUpdatedAt:"",updatedAt:"2026-09-16",priceUpdatedAt:"",apiUrl:"",autoRefresh:false,assets:[
 {id:1,account:"해외주식",name:"팔란티어",qty:1040,avg:15.5111,purchaseFx:1203.3600,cost:19412055,price:172.22,currency:"USD",market:"US",ticker:"PLTR",memo:"PLTR"},
 {id:2,account:"해외주식",name:"알파벳 C",qty:255,avg:327.3023,purchaseFx:1341.1800,cost:111937681,price:342.04,currency:"USD",market:"US",ticker:"GOOG",memo:"GOOG"},
 {id:3,account:"해외주식",name:"모더나",qty:70,avg:134.6172,purchaseFx:1378.0601,cost:12985741,price:144.50,currency:"USD",market:"US",ticker:"MRNA",memo:"MRNA"},
@@ -96,7 +189,7 @@ const SAMPLE={version:22,displayCurrency:"KRW",accounts:["해외주식","개인�
 const TICKER_MAP={"팔란티어":["US","PLTR"],"알파벳 C":["US","GOOG"],"모더나":["US","MRNA"],"비자":["US","V"],"SGOV":["US","SGOV"],"JAAA":["US","JAAA"],"RISE 대형고배당10TR":["KR","315960"],"RISE 미국나스닥100":["KR","368590"],"KIWOOM 미국S&P500모멘텀":["KR","0137V0"],"KODEX AI전력핵심설비":["KR","487240"],"SK하이닉스":["KR","000660"],"SOL 반도체후공정":["KR","475310"],"TIME 글로벌휴머노이드로봇산업액티브":["KR","0185L0"],"TIME 글로벌AI인공지능액티브":["KR","456600"],"ACE 미국S&P500미국채혼합50액티브":["KR","438080"],"KoAct 미국나스닥성장기업액티브":["KR","0015B0"],"RISE 삼성전자SK하이닉스채권혼합50":["KR","0162Z0"],"비트코인":["CRYPTO","BTC"]};
 const COLORS=["#3769f6","#7a5cf1","#14a0a0","#f59f45","#e45c81","#38a169","#9b6b43","#64748b","#d97706","#0ea5e9"];
 let state=loadState(),filter="전체",allocMode="account",deferredPrompt=null;
-function loadState(){let s=null;try{s=JSON.parse(localStorage.getItem("portfolioMobileV1")||"null")}catch(e){}if(!s)s=structuredClone(SAMPLE);s.version=22;s.displayCurrency=s.displayCurrency||"KRW";s.accounts=Array.isArray(s.accounts)&&s.accounts.length?s.accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"];s.apiUrl=s.apiUrl||"";s.autoRefresh=!!s.autoRefresh;s.priceUpdatedAt=s.priceUpdatedAt||"";s.fxUpdatedAt=s.fxUpdatedAt||"";s.fxSource=s.fxSource||"수동";s.assets=(s.assets||[]).map(a=>{
+function loadState(){let s=null;try{s=JSON.parse(localStorage.getItem("portfolioMobileV1")||"null")}catch(e){}if(!s)s=structuredClone(SAMPLE);s.version=24;s.displayCurrency=s.displayCurrency||"KRW";s.accounts=Array.isArray(s.accounts)&&s.accounts.length?s.accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"];s.apiUrl=s.apiUrl||"";s.autoRefresh=!!s.autoRefresh;s.priceUpdatedAt=s.priceUpdatedAt||"";s.fxUpdatedAt=s.fxUpdatedAt||"";s.fxSource=s.fxSource||"수동";s.assets=(s.assets||[]).map(a=>{
   if(a.name==="RISE 삼성전자SK하이닉스채권혼합50" && (String(a.ticker||"").toUpperCase()==="016220" || !a.ticker)){
     a.ticker="0162Z0";
     a.market="KR";
@@ -154,7 +247,9 @@ function renderAssets(){
     const symbol=a.currency==="USD"?"$":"₩";
     const avgText=symbol+Number(a.avg||0).toLocaleString("ko-KR",{maximumFractionDigits:4});
     const currentText=symbol+Number(a.price||0).toLocaleString("ko-KR",{maximumFractionDigits:4});
-    const metaText=a.market==="CASH"?`현금 · ${currentText}`:`${Number(a.qty).toLocaleString("ko-KR")}${unit} · 평균 ${avgText} · 현재 ${currentText} · 수익률 ${pct(rr)}`;
+    const metaText=a.market==="CASH"
+      ? `현금 ${currentText}`
+      : `${Number(a.qty).toLocaleString("ko-KR")}${unit} · 평균 ${avgText} · 현재 ${currentText}`;
 
     let targetText='목표비중 <b>미설정</b>';
     if(target!==null){
@@ -188,8 +283,13 @@ function renderAssets(){
     return `<div class="asset">
       <div class="asset-top">
         <div class="asset-left">
-          <div class="asset-name">${a.name}</div>
-          <div class="asset-meta">${metaText}</div>
+          <div class="asset-title-line">
+            <div class="asset-title-main">
+              <div class="asset-name">${a.name}</div>
+              <button class="asset-menu-btn" type="button" aria-label="${a.name} 수정" onclick="openAsset(${a.id})">⋯</button>
+            </div>
+            <div class="asset-inline-meta">${metaText}</div>
+          </div>
           <div class="weight-row">
             <div class="bar" title="전체 자산 비중 ${w.toFixed(2)}%">
               <i style="width:${visualW}%"></i>
@@ -204,7 +304,6 @@ function renderAssets(){
             <div class="asset-pl ${pl>=0?"up":"down"}">${pl>=0?"+":""}${money(pl)}</div>
             <div class="asset-rr ${rr>=0?"up":"down"}">${pct(rr)}</div>
           </div>
-          <button class="tiny-btn" onclick="openAsset(${a.id})">수정</button>
         </div>
       </div>
     </div>`;
