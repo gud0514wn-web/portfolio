@@ -44,7 +44,7 @@ function handleSyncAction_(action,p){
   try{
     if(action==='syncGet'){
       var assets=readAssetsForKey_(ash,key),meta=readMetaForKey_(msh,key);
-      return{ok:true,assets:assets,accounts:meta.accounts,updatedAt:meta.updatedAt||latestAssetUpdatedAt_(ash,key),spreadsheetUrl:ss.getUrl()};
+      return{ok:true,assets:assets,accounts:meta.accounts,goalAssetTarget:Number(meta.goalAssetTarget||0),updatedAt:meta.updatedAt||latestAssetUpdatedAt_(ash,key),spreadsheetUrl:ss.getUrl()};
     }
     if(action==='syncUpsert'){upsertAsset_(ash,key,JSON.parse(String(p.data||'{}')));return{ok:true,updatedAt:new Date().toISOString()}}
     if(action==='syncBatchUpsert'){
@@ -55,7 +55,8 @@ function handleSyncAction_(action,p){
     if(action==='syncClear'){clearKeyAssets_(ash,key);return{ok:true,updatedAt:new Date().toISOString()}}
     if(action==='syncMeta'){
       var acc=[];try{acc=JSON.parse(String(p.accounts||'[]'))}catch(e){}if(!Array.isArray(acc))acc=[];
-      upsertMeta_(msh,key,acc);return{ok:true,updatedAt:new Date().toISOString()}
+      var goalAssetTarget=Number(p.goalAssetTarget||0);
+      upsertMeta_(msh,key,acc,goalAssetTarget);return{ok:true,updatedAt:new Date().toISOString()}
     }
     if(action==='syncHistoryUpsert'){
       var snap=JSON.parse(String(p.data||'{}'));
@@ -176,8 +177,24 @@ function clearKeyAssets_(sh,key){var last=sh.getLastRow();if(last<2)return;var v
 function readAssetsForKey_(sh,key){var last=sh.getLastRow();if(last<2)return[];var v=sh.getRange(2,1,last-1,15).getValues(),o=[];v.forEach(function(r){if(String(r[0])===key)o.push(rowToAsset_(r))});return o}
 function latestAssetUpdatedAt_(sh,key){var last=sh.getLastRow();if(last<2)return'';var v=sh.getRange(2,1,last-1,15).getValues(),x='';v.forEach(function(r){if(String(r[0])===key&&String(r[14]||'')>x)x=String(r[14]||'')});return x}
 function findMetaRow_(sh,key){var last=sh.getLastRow();if(last<2)return-1;var v=sh.getRange(2,1,last-1,1).getValues();for(var i=0;i<v.length;i++)if(String(v[i][0])===key)return i+2;return-1}
-function upsertMeta_(sh,key,accounts){var row=[key,JSON.stringify(accounts||[]),new Date().toISOString()],n=findMetaRow_(sh,key);if(n>0)sh.getRange(n,1,1,3).setValues([row]);else sh.appendRow(row)}
-function readMetaForKey_(sh,key){var n=findMetaRow_(sh,key);if(n<0)return{accounts:[],updatedAt:''};var r=sh.getRange(n,1,1,3).getValues()[0],a=[];try{a=JSON.parse(String(r[1]||'[]'))}catch(e){}if(!Array.isArray(a))a=[];return{accounts:a,updatedAt:String(r[2]||'')}}
+function upsertMeta_(sh,key,accounts,goalAssetTarget){
+  var payload={accounts:Array.isArray(accounts)?accounts:[],goalAssetTarget:Number(goalAssetTarget||0)};
+  var row=[key,JSON.stringify(payload),new Date().toISOString()],n=findMetaRow_(sh,key);
+  if(n>0)sh.getRange(n,1,1,3).setValues([row]);else sh.appendRow(row)
+}
+function readMetaForKey_(sh,key){
+  var n=findMetaRow_(sh,key);
+  if(n<0)return{accounts:[],goalAssetTarget:0,updatedAt:''};
+  var r=sh.getRange(n,1,1,3).getValues()[0],raw=null,accounts=[],goalAssetTarget=0;
+  try{raw=JSON.parse(String(r[1]||'[]'))}catch(e){}
+  if(Array.isArray(raw)){
+    accounts=raw;
+  }else if(raw&&typeof raw==='object'){
+    accounts=Array.isArray(raw.accounts)?raw.accounts:[];
+    goalAssetTarget=Number(raw.goalAssetTarget||0);
+  }
+  return{accounts:accounts,goalAssetTarget:goalAssetTarget,updatedAt:String(r[2]||'')}
+}
 
 
 function findHistoryRow_(sh,key,date){

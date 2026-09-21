@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="icon" href="icon-192.png" />
-<title>내 자산 포트폴리오 v53</title>
+<title>내 자산 포트폴리오 v54</title>
 <style>
 :root{--bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#7b879d;--line:#e8edf5;--primary:#3769f6;--up:#e5484d;--down:#2f6fed;--ok:#159a63;--warn:#d98310;--shadow:0 10px 30px rgba(25,40,80,.08);--safe-top:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-bottom)}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Roboto,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}.app{max-width:760px;margin:auto;padding:calc(14px + var(--safe-top)) 14px calc(92px + var(--safe-bottom))}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px}.brand{min-width:0}.brand h1{font-size:21px;margin:0;font-weight:800;letter-spacing:-.5px}.brand .date{display:none}.top-actions{display:flex;gap:7px}.icon-btn{border:0;background:#fff;border-radius:13px;padding:10px 11px;box-shadow:var(--shadow);color:var(--text);white-space:nowrap}.icon-btn.refreshing{opacity:.55;pointer-events:none}.install-btn{display:none;color:var(--primary);font-weight:800}.hero{background:linear-gradient(135deg,#15223d,#284c9d);border-radius:24px;color:#fff;padding:20px;box-shadow:0 18px 38px rgba(26,53,115,.2)}.hero-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.hero .label{font-size:12px;opacity:.75}.hero-return{font-size:15px;font-weight:850;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap}.hero-return.up{color:#ffd5d8}.hero-return.down{color:#d9e6ff}.hero .total{font-size:30px;font-weight:850;letter-spacing:-1px;margin-top:5px}.hero-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.mini{background:rgba(255,255,255,.1);padding:12px;border-radius:15px}.mini .k{font-size:11px;opacity:.75}.mini .v{font-size:15px;font-weight:750;margin-top:3px}.section{margin-top:18px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px}.section-title h2{font-size:16px;margin:0}.linkbtn{border:0;background:transparent;color:var(--primary);font-weight:700;font-size:12px}.card{background:var(--card);border-radius:20px;padding:16px;box-shadow:var(--shadow)}.alloc-wrap{display:flex;align-items:center;gap:18px}.donut{width:150px;aspect-ratio:1;border-radius:50%;position:relative;flex:0 0 auto}.donut:after{content:"";position:absolute;inset:22px;background:#fff;border-radius:50%;box-shadow:inset 0 0 0 1px #f1f4f9}.donut-center{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;flex-direction:column;pointer-events:none}.donut-center b{font-size:17px}.donut-center span{font-size:10px;color:var(--muted);margin-top:2px}.legend{flex:1;min-width:0}.legend-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin:9px 0}.legend-row .name{display:flex;align-items:center;min-width:0}.dot{width:9px;height:9px;border-radius:50%;margin-right:7px;flex:0 0 auto}.legend-row .name span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chips{display:flex;gap:7px;overflow:auto;padding-bottom:3px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{border:1px solid var(--line);background:#fff;color:#59647a;padding:8px 11px;border-radius:999px;font-size:12px;white-space:nowrap}.chip.active{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:700}.asset-list{display:flex;flex-direction:column;gap:12px;margin-top:10px}.asset{background:#fff;border-radius:18px;padding:15px 14px 14px;box-shadow:0 6px 18px rgba(36,52,85,.055);border:1px solid #f0f3f8}.asset-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.asset-left{flex:1;min-width:0}.asset-right{flex:0 0 auto;text-align:right;white-space:nowrap;min-width:112px}.asset-name{font-weight:800;font-size:14px;letter-spacing:-.2px;margin-bottom:8px;line-height:1.2}.asset-meta{font-size:10px;color:var(--muted);margin-top:0;line-height:1.3;white-space:nowrap;letter-spacing:-.15px}.quote-ok{color:var(--ok)}.quote-manual{color:var(--muted)}.asset-value{text-align:right;white-space:nowrap}.asset-value .won{font-weight:800;font-size:13.5px}.asset-value .pct{font-size:11px;color:var(--muted);margin-top:4px}.asset-bottom{display:flex;justify-content:space-between;align-items:end;margin-top:11px}.profit{font-weight:750;font-size:12px}.profit.up{color:var(--up)}.profit.down{color:var(--down)}.weight-row{margin-top:13px}.weight-label{display:none}.bar{height:8px;background:#edf1f7;border-radius:999px;position:relative;overflow:visible;width:100%;min-width:90px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.weight-pct{position:absolute;top:50%;transform:translate(7px,-50%);font-size:11px;color:#174ea6;white-space:nowrap;font-weight:900;text-align:left;line-height:1}.target-row{font-size:10px;color:#7b879d;margin-top:11px;padding-left:0;line-height:1.45;word-break:keep-all}.target-row b{color:#334155;font-weight:800}.target-action{color:#174ea6;font-weight:800}.target-action.sell{color:#a3444b}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.tiny-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:5px 8px;font-size:10.5px;color:#59647a;margin-top:10px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.summary-box{background:#fff;border-radius:16px;padding:13px;box-shadow:var(--shadow)}.summary-box .k{font-size:10px;color:var(--muted)}.summary-box .v{font-size:14px;font-weight:800;margin-top:5px}.status-card{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border-radius:14px;padding:10px 12px;box-shadow:var(--shadow);margin-top:18px;margin-bottom:6px}.status-card .left{min-width:0}.status-card .title{font-size:11px;font-weight:800}.status-card .sub{font-size:10px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.status-pill{font-size:10px;border-radius:999px;padding:5px 8px;background:#eef8f3;color:var(--ok);font-weight:800}.bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(760px,100%);padding:10px 14px calc(10px + var(--safe-bottom));background:rgba(246,248,252,.92);backdrop-filter:blur(16px);display:grid;grid-template-columns:1fr;gap:10px;z-index:20}.nav-btn{border:0;border-radius:16px;padding:13px 10px;font-weight:800}.nav-btn.primary{background:var(--primary);color:#fff}.nav-btn.secondary{background:#fff;color:var(--text);box-shadow:var(--shadow)}.modal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:flex-end;z-index:100}.modal.show{display:flex}.sheet{background:#fff;width:min(760px,100%);margin:auto;border-radius:24px 24px 0 0;padding:18px 16px calc(24px + var(--safe-bottom));max-height:90vh;overflow:auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.sheet-head h3{margin:0;font-size:18px}.close{border:0;background:#f2f5fa;border-radius:10px;width:36px;height:36px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin:9px 0}.field label{display:block;font-size:11px;color:var(--muted);margin:0 0 5px 2px}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px;background:#fbfcfe;color:var(--text);outline:none}.checkrow{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}.checkrow .ct{font-size:12px;font-weight:700}.checkrow .cs{font-size:10px;color:var(--muted);margin-top:3px}.switch{position:relative;width:46px;height:26px;flex:0 0 auto}.switch input{display:none}.switch span{position:absolute;inset:0;background:#d7deea;border-radius:999px;transition:.2s}.switch span:after{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.18);transition:.2s}.switch input:checked+span{background:var(--primary)}.switch input:checked+span:after{transform:translateX(20px)}.sheet-actions{display:flex;gap:8px;margin-top:14px}.sheet-actions button{flex:1;border:0;border-radius:14px;padding:13px;font-weight:800}.save{background:var(--primary);color:#fff}.danger{background:#fff0f0;color:#c23d43;border:1px solid #ffd4d6!important}.settings-list{display:grid;gap:10px}.settings-btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;text-align:left}.settings-btn.primary{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:800}.note{font-size:11px;line-height:1.55;color:var(--muted);margin-top:8px}.empty{text-align:center;color:var(--muted);padding:28px 8px}.toast{position:fixed;left:50%;bottom:calc(90px + var(--safe-bottom));transform:translate(-50%,20px);background:#15223d;color:#fff;padding:10px 14px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:200;max-width:calc(100% - 30px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
@@ -2339,6 +2339,109 @@ html{
   }
 }
 
+
+/* =========================================================
+   v54: 자산변화 목표자산 진행률
+   ========================================================= */
+.goal-progress-card{
+  background:#fff;
+  border:1px solid #e8edf5;
+  border-radius:16px;
+  padding:11px 12px 12px;
+  margin-top:10px;
+  box-shadow:0 7px 20px rgba(25,40,80,.045);
+}
+.goal-progress-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.goal-progress-values{
+  display:flex;
+  align-items:center;
+  min-width:0;
+  gap:5px;
+  color:#68758d;
+  font-size:10px;
+  white-space:nowrap;
+}
+.goal-progress-values b{
+  font-weight:800;
+  color:#6f7c92;
+}
+.goal-progress-values strong{
+  font-size:11px;
+  font-weight:900;
+  color:#26334b;
+}
+.goal-divider{
+  color:#b5bdca;
+}
+.goal-target-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  border:0;
+  padding:0;
+  margin:0;
+  background:transparent;
+  color:inherit;
+  white-space:nowrap;
+}
+.goal-target-btn strong{
+  color:#3769f6;
+}
+.goal-edit-mark{
+  font-size:10px;
+  color:#8692a6;
+  transform:translateY(-.5px);
+}
+.goal-progress-pct{
+  flex:0 0 auto;
+  font-size:12px;
+  font-weight:900;
+  color:#3769f6;
+  white-space:nowrap;
+}
+.goal-progress-bar{
+  position:relative;
+  width:100%;
+  height:9px;
+  margin-top:9px;
+  border-radius:999px;
+  background:#edf1f7;
+  overflow:hidden;
+}
+.goal-progress-bar i{
+  display:block;
+  width:0;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#3769f6,#6f91ff);
+  transition:width .25s ease;
+}
+
+@media(max-width:430px){
+  .goal-progress-card{
+    padding:10px 11px 11px;
+  }
+  .goal-progress-values{
+    gap:4px;
+    font-size:9.5px;
+  }
+  .goal-progress-values strong{
+    font-size:10.4px;
+  }
+  .goal-progress-pct{
+    font-size:11.2px;
+  }
+  .goal-progress-bar{
+    height:8px;
+    margin-top:8px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2360,6 +2463,17 @@ html{
     <section class="section" style="margin-top:0">
       <div class="section-title history-section-head"><h2>자산 변화</h2><button class="linkbtn history-load-btn" onclick="loadHistory(false)"><span aria-hidden="true">↻</span><span>불러오기</span></button></div>
       <div class="history-sub full">새로고침/동기화 시 같은 날짜의 최고 총자산만 Google Sheets에 보관합니다.</div>
+      <div class="goal-progress-card">
+        <div class="goal-progress-top">
+          <div class="goal-progress-values">
+            <span><b>현재자산</b> <strong id="goalCurrentAsset">0.0억원</strong></span>
+            <span class="goal-divider">/</span>
+            <button type="button" class="goal-target-btn" onclick="editGoalAssetTarget()" title="목표금액 수정"><b>목표금액</b> <strong id="goalTargetAsset">설정</strong><span class="goal-edit-mark">✎</span></button>
+          </div>
+          <div class="goal-progress-pct" id="goalProgressPct">0.0%</div>
+        </div>
+        <div class="goal-progress-bar"><i id="goalProgressFill"></i></div>
+      </div>
       <div class="history-card">
         <div class="history-toolbar"><div class="history-range"><button class="active" data-range="30" onclick="setHistoryRange(30,this)">30일</button><button data-range="90" onclick="setHistoryRange(90,this)">90일</button><button data-range="0" onclick="setHistoryRange(0,this)">전체</button></div><div class="history-latest" id="historyLatest"></div></div>
         <div class="history-chart-wrap"><canvas id="historyChart"></canvas></div>
@@ -2404,7 +2518,7 @@ html{
 <div class="note">자동 조회: 미국주식/ETF는 Yahoo Finance(프리장·정규장·애프터장 포함)를 우선 사용합니다. Yahoo에서 시세를 못 불러오면 해당 종목명을 알림으로 표시하고 기존 가격을 유지합니다. 한국주식/ETF는 네이버 증권, 비트코인은 CoinGecko/Upbit, USD/KRW 환율은 Yahoo Finance 1분 시세 → 네이버 → Frankfurter 순으로 조회합니다.</div></div></div>
 
 <script>
-const SAMPLE={version:53,displayCurrency:"KRW",cloudSync:false,syncPending:[],syncLastAt:"",syncSheetUrl:"",accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"],fx:1367.44,fxSource:"수동",fxUpdatedAt:"",updatedAt:"2026-09-16",priceUpdatedAt:"",apiUrl:"",autoRefresh:false,assets:[
+const SAMPLE={version:54,displayCurrency:"KRW",cloudSync:false,syncPending:[],syncLastAt:"",syncSheetUrl:"",accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"],fx:1367.44,fxSource:"수동",fxUpdatedAt:"",updatedAt:"2026-09-16",priceUpdatedAt:"",apiUrl:"",autoRefresh:false,assets:[
 {id:1,account:"해외주식",name:"팔란티어",qty:1040,avg:15.5111,purchaseFx:1203.3600,cost:19412055,price:172.22,currency:"USD",market:"US",ticker:"PLTR",memo:"PLTR"},
 {id:2,account:"해외주식",name:"알파벳 C",qty:255,avg:327.3023,purchaseFx:1341.1800,cost:111937681,price:342.04,currency:"USD",market:"US",ticker:"GOOG",memo:"GOOG"},
 {id:3,account:"해외주식",name:"모더나",qty:70,avg:134.6172,purchaseFx:1378.0601,cost:12985741,price:144.50,currency:"USD",market:"US",ticker:"MRNA",memo:"MRNA"},
@@ -2452,8 +2566,8 @@ let mainView="portfolio",
     historyDetailCache=initialHistoryCache.details&&typeof initialHistoryCache.details==="object"?initialHistoryCache.details:{};
 
 
-function loadState(){let s=null;try{s=JSON.parse(localStorage.getItem("portfolioMobileV1")||"null")}catch(e){}if(!s)s=structuredClone(SAMPLE);s.version=53;
-s.displayCurrency="KRW";
+function loadState(){let s=null;try{s=JSON.parse(localStorage.getItem("portfolioMobileV1")||"null")}catch(e){}if(!s)s=structuredClone(SAMPLE);s.version=54;
+s.displayCurrency="KRW";s.goalAssetTarget=Number(s.goalAssetTarget||0);
 s.assets=(s.assets||[]).map(a=>{
   if(a&&a.market==="KR"){
     const t=String(a.ticker||"").trim();
@@ -2529,6 +2643,7 @@ function fmtTime(x){if(!x)return "";try{return new Intl.DateTimeFormat("ko-KR",{
 function render(){
   const t=totals();
   const d=dailyTotals();
+  renderGoalProgress();
   totalValue.textContent=money(t.value);
   totalCost.textContent=money(t.cost);
 
@@ -2933,7 +3048,7 @@ async function cloudDeleteAsset(id){
   state.syncLastAt=data.updatedAt||new Date().toISOString();persist(false);updateCloudSyncStatus();return data;
 }
 async function cloudSaveMeta(){
-  assertCloudReady();const data=await jsonp(state.apiUrl,cloudParams({action:"syncMeta",accounts:JSON.stringify(state.accounts||[])}),25000);
+  assertCloudReady();const data=await jsonp(state.apiUrl,cloudParams({action:"syncMeta",accounts:JSON.stringify(state.accounts||[]),goalAssetTarget:String(Number(state.goalAssetTarget||0))}),25000);
   if(!data||data.ok===false)throw new Error(data?.message||"계좌 정보 저장 실패");
   state.syncLastAt=data.updatedAt||new Date().toISOString();persist(false);updateCloudSyncStatus();return data;
 }
@@ -2955,7 +3070,7 @@ async function pushAllToCloud(silent=false){
     r=await jsonp(state.apiUrl,cloudParams({action:"syncBatchUpsert",data:JSON.stringify(chunk)}),30000);
     if(!r||r.ok===false)throw new Error(r?.message||"클라우드 업로드 실패");
   }
-  r=await jsonp(state.apiUrl,cloudParams({action:"syncMeta",accounts:JSON.stringify(state.accounts||[])}),25000);
+  r=await jsonp(state.apiUrl,cloudParams({action:"syncMeta",accounts:JSON.stringify(state.accounts||[]),goalAssetTarget:String(Number(state.goalAssetTarget||0))}),25000);
   if(!r||r.ok===false)throw new Error(r?.message||"계좌 정보 업로드 실패");
   state.syncPending=[];state.syncLastAt=r.updatedAt||new Date().toISOString();persist(false);updateCloudSyncStatus();
   if(!silent)toastMsg("현재 기기 데이터를 클라우드에 저장했습니다.");
@@ -2977,6 +3092,7 @@ async function pullCloudState(silent=false,fromButton=false){
       return remote;
     });
     state.accounts=Array.isArray(data.accounts)&&data.accounts.length?data.accounts:[...new Set(state.assets.map(a=>a.account).filter(Boolean))];
+    if(Number(data.goalAssetTarget)>0)state.goalAssetTarget=Number(data.goalAssetTarget);
     state.cloudSync=true;state.syncPending=[];state.syncLastAt=data.updatedAt||new Date().toISOString();if(data.spreadsheetUrl)state.syncSheetUrl=data.spreadsheetUrl;
     persist(false);render();updateCloudSyncStatus();if(!silent)toastMsg("클라우드 데이터를 불러왔습니다.");
   }catch(e){console.warn(e);if(!silent)alert(e.message||"클라우드 동기화에 실패했습니다.")}
@@ -3085,7 +3201,48 @@ async function loadHistory(silent=true){
     renderHistory();
   }
 }
+
+function formatGoalEok(v){
+  const n=Number(v||0);
+  if(!(n>0))return "설정";
+  return (n/100000000).toFixed(1)+"억원";
+}
+function renderGoalProgress(){
+  const curEl=document.getElementById("goalCurrentAsset"),
+        targetEl=document.getElementById("goalTargetAsset"),
+        pctEl=document.getElementById("goalProgressPct"),
+        fillEl=document.getElementById("goalProgressFill");
+  if(!curEl||!targetEl||!pctEl||!fillEl)return;
+  const current=Number(totals().value||0);
+  const target=Number(state.goalAssetTarget||0);
+  const pct=target>0?current/target*100:0;
+  curEl.textContent=(current/100000000).toFixed(1)+"억원";
+  targetEl.textContent=formatGoalEok(target);
+  pctEl.textContent=target>0?pct.toFixed(1)+"%":"0.0%";
+  fillEl.style.width=Math.max(0,Math.min(100,pct))+"%";
+}
+function editGoalAssetTarget(){
+  const current=Number(state.goalAssetTarget||0);
+  const initial=current>0?(current/100000000).toFixed(1):"";
+  const raw=prompt("목표 자산금액을 억원 단위로 입력해 주세요.\\n예: 10 입력 → 10.0억원",initial);
+  if(raw===null)return;
+  const cleaned=String(raw).replace(/[,억\s]/g,"");
+  const eok=Number(cleaned);
+  if(!Number.isFinite(eok)||eok<=0){
+    alert("0보다 큰 숫자로 입력해 주세요.");
+    return;
+  }
+  state.goalAssetTarget=Math.round(eok*100000000);
+  persist(false);
+  renderGoalProgress();
+  if(state.cloudSync){
+    cloudSaveMeta().catch(()=>queueSyncPending({type:"meta"}));
+  }
+  toastMsg("목표 자산금액을 저장했습니다.");
+}
+
 function renderHistory(){
+  renderGoalProgress();
   const list=document.getElementById("historyList"),latest=document.getElementById("historyLatest");
   if(!list||!latest)return;
   if(!historyData.length){
