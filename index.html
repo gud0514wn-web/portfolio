@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="icon" href="icon-192.png" />
-<title>내 자산 포트폴리오 v69</title>
+<title>내 자산 포트폴리오 v70</title>
 <style>
 :root{--bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#7b879d;--line:#e8edf5;--primary:#3769f6;--up:#e5484d;--down:#2f6fed;--ok:#159a63;--warn:#d98310;--shadow:0 10px 30px rgba(25,40,80,.08);--safe-top:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-bottom)}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Roboto,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}.app{max-width:760px;margin:auto;padding:calc(14px + var(--safe-top)) 14px calc(92px + var(--safe-bottom))}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px}.brand{min-width:0}.brand h1{font-size:21px;margin:0;font-weight:800;letter-spacing:-.5px}.brand .date{display:none}.top-actions{display:flex;gap:7px}.icon-btn{border:0;background:#fff;border-radius:13px;padding:10px 11px;box-shadow:var(--shadow);color:var(--text);white-space:nowrap}.icon-btn.refreshing{opacity:.55;pointer-events:none}.install-btn{display:none;color:var(--primary);font-weight:800}.hero{background:linear-gradient(135deg,#15223d,#284c9d);border-radius:24px;color:#fff;padding:20px;box-shadow:0 18px 38px rgba(26,53,115,.2)}.hero-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.hero .label{font-size:12px;opacity:.75}.hero-return{font-size:15px;font-weight:850;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap}.hero-return.up{color:#ffd5d8}.hero-return.down{color:#d9e6ff}.hero .total{font-size:30px;font-weight:850;letter-spacing:-1px;margin-top:5px}.hero-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.mini{background:rgba(255,255,255,.1);padding:12px;border-radius:15px}.mini .k{font-size:11px;opacity:.75}.mini .v{font-size:15px;font-weight:750;margin-top:3px}.section{margin-top:18px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px}.section-title h2{font-size:16px;margin:0}.linkbtn{border:0;background:transparent;color:var(--primary);font-weight:700;font-size:12px}.card{background:var(--card);border-radius:20px;padding:16px;box-shadow:var(--shadow)}.alloc-wrap{display:flex;align-items:center;gap:18px}.donut{width:150px;aspect-ratio:1;border-radius:50%;position:relative;flex:0 0 auto}.donut:after{content:"";position:absolute;inset:22px;background:#fff;border-radius:50%;box-shadow:inset 0 0 0 1px #f1f4f9}.donut-center{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;flex-direction:column;pointer-events:none}.donut-center b{font-size:17px}.donut-center span{font-size:10px;color:var(--muted);margin-top:2px}.legend{flex:1;min-width:0}.legend-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin:9px 0}.legend-row .name{display:flex;align-items:center;min-width:0}.dot{width:9px;height:9px;border-radius:50%;margin-right:7px;flex:0 0 auto}.legend-row .name span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chips{display:flex;gap:7px;overflow:auto;padding-bottom:3px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{border:1px solid var(--line);background:#fff;color:#59647a;padding:8px 11px;border-radius:999px;font-size:12px;white-space:nowrap}.chip.active{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:700}.asset-list{display:flex;flex-direction:column;gap:12px;margin-top:10px}.asset{background:#fff;border-radius:18px;padding:15px 14px 14px;box-shadow:0 6px 18px rgba(36,52,85,.055);border:1px solid #f0f3f8}.asset-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.asset-left{flex:1;min-width:0}.asset-right{flex:0 0 auto;text-align:right;white-space:nowrap;min-width:112px}.asset-name{font-weight:800;font-size:14px;letter-spacing:-.2px;margin-bottom:8px;line-height:1.2}.asset-meta{font-size:10px;color:var(--muted);margin-top:0;line-height:1.3;white-space:nowrap;letter-spacing:-.15px}.quote-ok{color:var(--ok)}.quote-manual{color:var(--muted)}.asset-value{text-align:right;white-space:nowrap}.asset-value .won{font-weight:800;font-size:13.5px}.asset-value .pct{font-size:11px;color:var(--muted);margin-top:4px}.asset-bottom{display:flex;justify-content:space-between;align-items:end;margin-top:11px}.profit{font-weight:750;font-size:12px}.profit.up{color:var(--up)}.profit.down{color:var(--down)}.weight-row{margin-top:13px}.weight-label{display:none}.bar{height:8px;background:#edf1f7;border-radius:999px;position:relative;overflow:visible;width:100%;min-width:90px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.weight-pct{position:absolute;top:50%;transform:translate(7px,-50%);font-size:11px;color:#174ea6;white-space:nowrap;font-weight:900;text-align:left;line-height:1}.target-row{font-size:10px;color:#7b879d;margin-top:11px;padding-left:0;line-height:1.45;word-break:keep-all}.target-row b{color:#334155;font-weight:800}.target-action{color:#174ea6;font-weight:800}.target-action.sell{color:#a3444b}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.tiny-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:5px 8px;font-size:10.5px;color:#59647a;margin-top:10px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.summary-box{background:#fff;border-radius:16px;padding:13px;box-shadow:var(--shadow)}.summary-box .k{font-size:10px;color:var(--muted)}.summary-box .v{font-size:14px;font-weight:800;margin-top:5px}.status-card{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border-radius:14px;padding:10px 12px;box-shadow:var(--shadow);margin-top:18px;margin-bottom:6px}.status-card .left{min-width:0}.status-card .title{font-size:11px;font-weight:800}.status-card .sub{font-size:10px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.status-pill{font-size:10px;border-radius:999px;padding:5px 8px;background:#eef8f3;color:var(--ok);font-weight:800}.bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(760px,100%);padding:10px 14px calc(10px + var(--safe-bottom));background:rgba(246,248,252,.92);backdrop-filter:blur(16px);display:grid;grid-template-columns:1fr;gap:10px;z-index:20}.nav-btn{border:0;border-radius:16px;padding:13px 10px;font-weight:800}.nav-btn.primary{background:var(--primary);color:#fff}.nav-btn.secondary{background:#fff;color:var(--text);box-shadow:var(--shadow)}.modal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:flex-end;z-index:100}.modal.show{display:flex}.sheet{background:#fff;width:min(760px,100%);margin:auto;border-radius:24px 24px 0 0;padding:18px 16px calc(24px + var(--safe-bottom));max-height:90vh;overflow:auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.sheet-head h3{margin:0;font-size:18px}.close{border:0;background:#f2f5fa;border-radius:10px;width:36px;height:36px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin:9px 0}.field label{display:block;font-size:11px;color:var(--muted);margin:0 0 5px 2px}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px;background:#fbfcfe;color:var(--text);outline:none}.checkrow{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}.checkrow .ct{font-size:12px;font-weight:700}.checkrow .cs{font-size:10px;color:var(--muted);margin-top:3px}.switch{position:relative;width:46px;height:26px;flex:0 0 auto}.switch input{display:none}.switch span{position:absolute;inset:0;background:#d7deea;border-radius:999px;transition:.2s}.switch span:after{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.18);transition:.2s}.switch input:checked+span{background:var(--primary)}.switch input:checked+span:after{transform:translateX(20px)}.sheet-actions{display:flex;gap:8px;margin-top:14px}.sheet-actions button{flex:1;border:0;border-radius:14px;padding:13px;font-weight:800}.save{background:var(--primary);color:#fff}.danger{background:#fff0f0;color:#c23d43;border:1px solid #ffd4d6!important}.settings-list{display:grid;gap:10px}.settings-btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;text-align:left}.settings-btn.primary{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:800}.note{font-size:11px;line-height:1.55;color:var(--muted);margin-top:8px}.empty{text-align:center;color:var(--muted);padding:28px 8px}.toast{position:fixed;left:50%;bottom:calc(90px + var(--safe-bottom));transform:translate(-50%,20px);background:#15223d;color:#fff;padding:10px 14px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:200;max-width:calc(100% - 30px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
@@ -3007,6 +3007,39 @@ html,body,.app{background:#101722 !important;color:var(--text) !important}
  .history-day-head .history-arrow{width:28px !important;min-width:28px !important;height:28px !important}
 }
 
+
+/* v70: 추가 투자금으로 목표비중에 맞춰 사는 주식 수 계산 */
+.contribution-launch{margin-top:14px;padding:15px;border:1px solid #3a5278;border-radius:16px;background:#1b2d49}
+.contribution-launch h2{margin:0 0 5px;font-size:15px;color:#eff5ff}
+.contribution-launch p{margin:0 0 12px;color:#b4c6e0;font-size:12px;line-height:1.55;word-break:keep-all}
+.contribution-open{width:100%;border:1px solid #547fcb;border-radius:11px;background:#2c65db;color:#fff;padding:12px;font-size:13px;font-weight:800;cursor:pointer}
+#contributionModal .sheet{width:min(430px,100%);margin:auto auto 0;max-height:90vh;max-height:90dvh;overscroll-behavior:contain}
+#contributionModal .sheet-head h3{font-size:17px}
+.contribution-intro{margin:0 0 12px;font-size:12px;line-height:1.6;color:#b4c6e0;word-break:keep-all}
+.contribution-quick{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 12px}
+.contribution-quick button{border:1px solid #405779;background:#243955;color:#c8ddff;border-radius:9px;padding:8px 11px;font-size:12px;cursor:pointer}
+.contribution-context{font-size:11px;line-height:1.6;color:#a6b4ca;margin:8px 0;overflow-wrap:anywhere}
+.contribution-message{border:1px solid #40516b;border-radius:12px;padding:12px;background:#142033;font-size:12px;line-height:1.6;color:#d5e3fa;word-break:keep-all}
+.contribution-message.error{border-color:#885060;background:#352531;color:#ffc0ca}
+.contribution-summary{padding:11px 12px;background:#122038;border:1px solid #3a5278;border-radius:12px;margin:12px 0}
+.contribution-summary>div{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:3px 8px;font-size:12px;line-height:1.8;color:#b9c7db}
+.contribution-summary strong{color:#eff5ff;white-space:nowrap;font-variant-numeric:tabular-nums;font-size:14px}
+.contribution-summary .remaining strong{color:#a7ccff}
+.contribution-list{display:grid;gap:8px}
+.contribution-stock{border:1px solid #344762;border-radius:12px;padding:11px 12px;background:#162235;min-width:0}
+.contribution-stock-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:start}
+.contribution-stock-name{font-size:13px;font-weight:800;color:#eff5ff;overflow-wrap:anywhere}
+.contribution-stock-account{color:#a6b4ca;font-size:11px;line-height:1.5;margin-top:3px;overflow-wrap:anywhere}
+.contribution-stock-qty{color:#a7ccff;font-size:17px;font-weight:850;white-space:nowrap;font-variant-numeric:tabular-nums}
+.contribution-stock-cost{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:3px 8px;margin-top:8px;color:#a6b4ca;font-size:11px;line-height:1.6}
+.contribution-stock-cost strong{font-size:13px;color:#eff5ff;white-space:nowrap}
+.contribution-stock-weight{margin-top:5px;font-size:11px;line-height:1.6;color:#b4c6e0;overflow-wrap:anywhere}
+.contribution-other{margin-top:12px;font-size:11px;line-height:1.6;color:#a6b4ca}
+.contribution-other summary{cursor:pointer;padding:5px 0;color:#bcd3f5}
+.contribution-other p{margin:5px 0;overflow-wrap:anywhere}
+.contribution-footnote{font-size:11px;line-height:1.65;color:#a6b4ca;margin:12px 0 0;word-break:keep-all}
+.contribution-open:focus-visible,.contribution-quick button:focus-visible{outline:2px solid #b4d0ff;outline-offset:3px}
+
 </style>
 </head>
 <body>
@@ -3022,6 +3055,12 @@ html,body,.app{background:#101722 !important;color:var(--text) !important}
 <section class="section"><div class="section-title"><h2>자산 배분</h2><button class="linkbtn" onclick="toggleAllocMode()">계좌별/자산별</button></div><div class="card allocation-card"><div class="alloc-bar" id="allocBar" title="자산 배분"></div><div class="alloc-grid" id="legend"></div></div></section>
   <section class="section"><div class="section-title"><h2>보유 자산</h2></div><div class="chips" id="chips"></div><div class="asset-list" id="assetList"></div></section>
   <div class="status-card"><div class="left"><div class="title">시세 · 환율 업데이트</div><div class="sub" id="quoteStatus">아직 자동 시세를 불러오지 않았습니다.</div><div class="sub" id="fxStatus">USD/KRW 수동값 사용 중</div></div><div class="status-pill" id="quotePill">수동</div></div>
+
+  <section class="contribution-launch" aria-labelledby="contributionLaunchTitle">
+    <h2 id="contributionLaunchTitle">월급날 · 추가 투자</h2>
+    <p>투자할 금액을 넣으면 목표비중에 맞춰 살 주식 수를 계산해 드려요.</p>
+    <button type="button" id="contributionOpenBtn" class="contribution-open" onclick="openContributionPlan()">추가 투자금 배분 계산</button>
+  </section>
   </div>
 
   <div class="app-view hidden" id="historyView">
@@ -3053,6 +3092,19 @@ html,body,.app{background:#101722 !important;color:var(--text) !important}
 <div class="bottom-nav" id="bottomNav"><button class="nav-btn primary" onclick="openAsset()">+ 자산 추가</button></div>
 <div class="toast" id="toast"></div>
 
+
+<div class="modal" id="contributionModal" onclick="if(event.target===this)closeContributionPlan()" onkeydown="handleContributionKey(event)">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="contributionTitle" tabindex="-1">
+    <div class="sheet-head"><h3 id="contributionTitle">추가 투자금 배분</h3><button type="button" class="close" aria-label="추가 투자금 배분 닫기" onclick="closeContributionPlan()">✕</button></div>
+    <p class="contribution-intro">목표비중보다 부족한 주식·ETF에 추가금을 나눠 배분합니다. 전체 포트폴리오 기준으로 계산하며 매도 없이 1주 단위로 살 수량을 보여줘요.</p>
+    <div class="field"><label for="contributionAmount">이번에 새로 넣을 투자금 (원)</label><input id="contributionAmount" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 1,000,000" oninput="updateContributionPlan()" aria-describedby="contributionContext"></div>
+    <div class="contribution-quick"><button type="button" onclick="setContributionAmount(500000)">50만원</button><button type="button" onclick="setContributionAmount(1000000)">100만원</button><button type="button" onclick="setContributionAmount(3000000)">300만원</button></div>
+    <div class="contribution-context" id="contributionContext"></div>
+    <div id="contributionResult" aria-live="polite" aria-atomic="true"></div>
+    <p class="contribution-footnote">목표비중은 각 종목의 수정 창에서 설정해 주세요. 현금·암호화폐·수동자산은 총자산과 목표비중 합계에 포함하고, 매수 수량은 주식·ETF만 계산합니다. 기존 현금을 쓰려면 추가금에 다시 포함하지 마세요.</p>
+  </div>
+</div>
+
 <div class="modal" id="assetModal"><div class="sheet"><div class="sheet-head"><h3 id="modalTitle">자산 추가</h3><button class="close" onclick="closeAsset()">✕</button></div><input type="hidden" id="assetId">
 <div class="grid2"><div class="account-field-wrap"><div class="field"><label>계좌 / 구분</label><select id="account"></select></div><button type="button" class="account-add-btn" onclick="addAccount()">+ 계좌</button></div><div class="field"><label>종목명</label><input id="name" placeholder="예: 알파벳 C"></div></div>
 <div class="grid2" id="holdingFields"><div class="field"><label>보유수량</label><input id="qty" type="number" step="any" inputmode="decimal" oninput="updateAutoCost()"></div><div class="field"><label>평균단가</label><input id="avg" type="number" step="any" inputmode="decimal" oninput="updateAutoCost()"></div></div>
@@ -3083,7 +3135,7 @@ html,body,.app{background:#101722 !important;color:var(--text) !important}
 <div class="note">자동 조회: 미국주식/ETF는 Yahoo Finance(프리장·정규장·애프터장 포함)를 우선 사용합니다. Yahoo에서 시세를 못 불러오면 해당 종목명을 알림으로 표시하고 기존 가격을 유지합니다. 한국주식/ETF는 네이버 증권, 비트코인은 CoinGecko/Upbit, USD/KRW 환율은 Yahoo Finance 1분 시세 → 네이버 → Frankfurter 순으로 조회합니다.</div></div></div>
 
 <script>
-const APP_VERSION=69;
+const APP_VERSION=70;
 const SAMPLE={version:APP_VERSION,displayCurrency:"KRW",cloudSync:false,syncPending:[],syncLastAt:"",syncSheetUrl:"",accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"],fx:1367.44,fxSource:"수동",fxUpdatedAt:"",updatedAt:"2026-09-16",priceUpdatedAt:"",apiUrl:"",autoRefresh:false,assets:[
 {id:1,account:"해외주식",name:"팔란티어",qty:1040,avg:15.5111,purchaseFx:1203.3600,cost:19412055,price:172.22,currency:"USD",market:"US",ticker:"PLTR",memo:"PLTR"},
 {id:2,account:"해외주식",name:"알파벳 C",qty:255,avg:327.3023,purchaseFx:1341.1800,cost:111937681,price:342.04,currency:"USD",market:"US",ticker:"GOOG",memo:"GOOG"},
@@ -3266,6 +3318,7 @@ function render(){
   if(state.fxUpdatedAt){fxStatus.textContent=`USD/KRW ${Number(state.fx).toLocaleString("ko-KR",{maximumFractionDigits:2})} · ${state.fxSource||"자동"} · ${fmtTime(state.fxUpdatedAt)}`}
   else{fxStatus.textContent=`USD/KRW ${Number(state.fx).toLocaleString("ko-KR",{maximumFractionDigits:2})} · 수동값`}
   renderAllocation();renderChips();renderAssets();
+  if(document.getElementById("contributionModal").classList.contains("show"))updateContributionPlan();
 }
 function groups(){const map={};state.assets.forEach(a=>{let key=allocMode==="account"?a.account:((a.market==="CASH"||a.memo==="현금성")?"현금성":a.name==="비트코인"?"암호화폐":a.currency==="USD"?"해외 개별자산":"국내/연금");map[key]=(map[key]||0)+valueOf(a)});return Object.entries(map).sort((a,b)=>b[1]-a[1])}
 function renderAllocation(){
@@ -3381,6 +3434,103 @@ function renderAssets(){
     </div>`;
   }).join(""):"<div class='empty'>보유 자산이 없습니다.</div>";
 }
+
+// 계산만 수행한다. 보유수량, 매입금액, 저장 상태와 클라우드는 수정하지 않는다.
+function buildContributionPlan(assets,fx,budget){
+  const fail=error=>({error});
+  if(!Number.isSafeInteger(budget)||budget<=0)return fail("추가 투자금을 1원 이상의 정수로 입력해 주세요.");
+  let targetSum=0,total=0,unset=0,nonStock=0;
+  const entries=[];
+  for(const [index,a] of assets.entries()){
+    const qty=Number(a.qty??0),price=Number(a.price??0),rate=a.currency==="USD"?Number(fx):1;
+    const hasTarget=a.targetWeight!==""&&a.targetWeight!=null;
+    const target=hasTarget?Number(a.targetWeight):null;
+    if(hasTarget&&(!Number.isFinite(target)||target<0||target>100))return fail(`${a.name||"종목"}의 목표비중을 0~100%로 수정해 주세요.`);
+    if(hasTarget)targetSum+=target;else unset++;
+    if(!Number.isFinite(qty)||qty<0)return fail(`${a.name||"종목"}의 보유수량을 확인해 주세요.`);
+    const hasPrice=Number.isFinite(price)&&price>0&&Number.isFinite(rate)&&rate>0;
+    if(qty>0&&!hasPrice)return fail(`${a.name||"종목"}의 현재가격 또는 환율이 없어 총자산을 계산할 수 없습니다. 시세를 새로고침하거나 값을 수정해 주세요.`);
+    const rawUnit=hasPrice?price*rate:0,value=qty>0?qty*rawUnit:0;
+    if(!Number.isFinite(value)||!Number.isSafeInteger(Math.ceil(value)))return fail("평가금액이 계산 가능한 범위를 벗어났습니다. 보유수량과 가격을 확인해 주세요.");
+    total+=value;
+    if(!["US","KR"].includes(a.market)){if(target>0)nonStock++;continue;}
+    if(!(target>0))continue;
+    entries.push({index,name:a.name||"이름 없음",account:a.account||"계좌 미지정",ticker:a.ticker||"",target,value,rawUnit,unit:Math.ceil(rawUnit),hasPrice,qty:0,cost:0});
+  }
+  if(targetSum>100+1e-8)return fail(`목표비중 합계가 ${targetSum.toFixed(2)}%입니다. 전체 종목의 합계를 100% 이하로 맞춰 주세요.`);
+  const postTotal=total+budget;
+  if(!Number.isSafeInteger(Math.ceil(postTotal)))return fail("투자금과 총자산이 계산 가능한 범위를 벗어났습니다.");
+  if(!entries.length)return fail("목표비중이 설정된 주식·ETF가 없습니다. 종목 수정에서 목표비중을 먼저 입력해 주세요.");
+  for(const r of entries){
+    r.targetValue=postTotal*r.target/100;
+    r.gap=Math.max(0,r.targetValue-r.value);
+    // 달러 주식은 환산된 1주 금액을 원 단위로 올림해 예산 초과를 방지한다.
+    r.maxShares=r.hasPrice?Math.floor(r.gap/r.unit):0;
+    r.beforeWeight=total?r.value/total*100:0;
+  }
+  const available=entries.filter(r=>r.hasPrice&&r.maxShares>0);
+  const totalGap=available.reduce((s,r)=>s+r.gap,0),allocation=Math.min(budget,totalGap);
+  let spent=0;
+  // 부족한 금액에 비례해서 우선 배분한 뒤 정수 주식 수로 내림한다.
+  for(const r of available){
+    r.qty=Math.min(r.maxShares,Math.floor((allocation*(r.gap/totalGap))/r.unit));
+    r.cost=r.qty*r.unit;spent+=r.cost;
+  }
+  // 1주 단위 내림으로 생긴 잔액은 남은 부족금액이 큰 종목부터 배분한다.
+  // 종목당 한 번씩 일괄 계산하므로 큰 투자금에도 주식 수만큼 반복하지 않는다.
+  const ordered=[...available].sort((a,b)=>(b.gap-b.cost)-(a.gap-a.cost)||a.index-b.index);
+  for(const r of ordered){
+    const extra=Math.min(r.maxShares-r.qty,Math.floor((budget-spent)/r.unit));
+    r.qty+=extra;r.cost=r.qty*r.unit;spent+=extra*r.unit;
+  }
+  for(const r of entries){
+    r.afterWeight=(r.value+r.qty*r.rawUnit)/postTotal*100;
+    r.reason=!r.hasPrice?"현재가격 또는 환율 확인 필요":r.gap===0?"추가금 반영 후에도 목표비중 이상":r.maxShares===0?"1주 매수 시 목표비중 초과":"이번 배분 금액으로 1주 매수 어려움";
+  }
+  return {budget,total,postTotal,targetSum,unset,nonStock,spent,remaining:budget-spent,rows:entries.filter(r=>r.qty>0),notBought:entries.filter(r=>r.qty===0)};
+}
+function openContributionPlan(){
+  const modal=document.getElementById("contributionModal"),sheet=modal.querySelector(".sheet");
+  modal.classList.add("show");updateContributionPlan();
+  sheet.scrollTop=0;sheet.scrollLeft=0;sheet.focus({preventScroll:true});
+  requestAnimationFrame(()=>{sheet.scrollTop=0;sheet.scrollLeft=0});
+}
+function closeContributionPlan(){
+  document.getElementById("contributionModal").classList.remove("show");
+  document.getElementById("contributionOpenBtn").focus({preventScroll:true});
+}
+function handleContributionKey(e){
+  if(e.key==="Escape"){e.preventDefault();closeContributionPlan();return;}
+  if(e.key!=="Tab")return;
+  const sheet=document.getElementById("contributionModal").querySelector(".sheet");
+  const items=Array.from(sheet.querySelectorAll('button,input,summary,[tabindex="0"]'));
+  const first=items[0],last=items[items.length-1];
+  if(e.shiftKey&&(document.activeElement===first||document.activeElement===sheet)){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+}
+function setContributionAmount(amount){
+  document.getElementById("contributionAmount").value=amount.toLocaleString("ko-KR");updateContributionPlan();
+}
+function updateContributionPlan(){
+  const result=document.getElementById("contributionResult"),context=document.getElementById("contributionContext");
+  const raw=document.getElementById("contributionAmount").value.trim();
+  context.textContent=`저장된 현재가격 기준 · 시세 ${state.priceUpdatedAt?fmtTime(state.priceUpdatedAt):"수동 / 저장값"} · USD/KRW ${Number(state.fx).toLocaleString("ko-KR",{maximumFractionDigits:2})}`;
+  const message=(s,error=false)=>`<div class="contribution-message${error?" error":""}">${escapeHtml(s)}</div>`;
+  if(!raw){result.innerHTML=message("추가 투자금을 입력하거나 위의 금액 버튼을 눌러 주세요.");return;}
+  const budget=/^(?:\d+|\d{1,3}(?:,\d{3})+)$/.test(raw)?Number(raw.replaceAll(",","")):NaN;
+  const p=buildContributionPlan(state.assets,state.fx,budget);
+  if(p.error){result.innerHTML=message(p.error,true);return;}
+  const summary=`<div class="contribution-summary"><div><span>추가 투자금</span><strong>${won(p.budget)}</strong></div><div><span>예상 매수금액</span><strong>${won(p.spent)}</strong></div><div class="remaining"><span>남는 금액</span><strong>${won(p.remaining)}</strong></div></div>`;
+  const rows=p.rows.map(r=>`<div class="contribution-stock"><div class="contribution-stock-top"><div><div class="contribution-stock-name">${escapeHtml(r.name)}</div><div class="contribution-stock-account">${escapeHtml(r.account)}${r.ticker?` · ${escapeHtml(r.ticker)}`:""}</div></div><div class="contribution-stock-qty">${r.qty.toLocaleString("ko-KR")}주</div></div><div class="contribution-stock-cost"><span>1주 약 ${won(r.unit)}</span><strong>${won(r.cost)}</strong></div><div class="contribution-stock-weight">비중 ${r.beforeWeight.toFixed(2)}% → ${r.afterWeight.toFixed(2)}% · 목표 ${r.target.toFixed(2)}%</div></div>`).join("");
+  const notBought=p.notBought.length?`<details class="contribution-other"><summary>이번에 매수하지 않는 종목 ${p.notBought.length}개</summary>${p.notBought.map(r=>`<p>${escapeHtml(r.name)} · ${escapeHtml(r.account)}<br>${escapeHtml(r.reason)}</p>`).join("")}</details>`:"";
+  const notes=[`전체 목표비중 합계 ${p.targetSum.toFixed(2)}%. 비중은 새 투자금을 더한 총자산 기준입니다.`];
+  if(p.unset)notes.push(`목표비중 미설정 ${p.unset}개 자산은 매수 배분에서 제외했습니다.`);
+  if(p.nonStock)notes.push(`목표비중이 있는 현금·암호화폐·수동자산 ${p.nonStock}개는 주식 매수 목록에서 제외했습니다.`);
+  notes.push("부족금액에 비례해 배분하고, 1주 단위 잔액은 부족금액이 큰 종목부터 사용합니다. 목표비중을 넘겨 사지 않으므로 잔액이 생길 수 있어요.");
+  notes.push("수수료·환전 비용은 제외했습니다. 미국 주식의 원화 환산 금액은 1주마다 원 단위로 올림합니다. 계산 결과는 보유 내역에 자동 반영되지 않습니다.");
+  result.innerHTML=summary+(rows?`<div class="contribution-list">${rows}</div>`:message("이번 금액으로 목표비중 안에서 살 수 있는 주식이 없습니다. 아래 종목별 사유를 확인해 주세요."))+notBought+`<p class="contribution-footnote">${notes.map(escapeHtml).join("<br>")}</p>`;
+}
+
 function setFilter(v){filter=v;renderChips();renderAssets()}function toggleDisplayCurrency(){state.displayCurrency="KRW";persist(false);render()}function toggleAllocMode(){allocMode=allocMode==="account"?"asset":"account";renderAllocation()}
 function renderAccountOptions(selected){
   const sel=document.getElementById("account");
