@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="icon" href="icon-192.png" />
-<title>내 자산 포트폴리오 v70</title>
+<title>내 자산 포트폴리오 v71</title>
 <style>
 :root{--bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#7b879d;--line:#e8edf5;--primary:#3769f6;--up:#e5484d;--down:#2f6fed;--ok:#159a63;--warn:#d98310;--shadow:0 10px 30px rgba(25,40,80,.08);--safe-top:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-bottom)}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Roboto,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}.app{max-width:760px;margin:auto;padding:calc(14px + var(--safe-top)) 14px calc(92px + var(--safe-bottom))}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px}.brand{min-width:0}.brand h1{font-size:21px;margin:0;font-weight:800;letter-spacing:-.5px}.brand .date{display:none}.top-actions{display:flex;gap:7px}.icon-btn{border:0;background:#fff;border-radius:13px;padding:10px 11px;box-shadow:var(--shadow);color:var(--text);white-space:nowrap}.icon-btn.refreshing{opacity:.55;pointer-events:none}.install-btn{display:none;color:var(--primary);font-weight:800}.hero{background:linear-gradient(135deg,#15223d,#284c9d);border-radius:24px;color:#fff;padding:20px;box-shadow:0 18px 38px rgba(26,53,115,.2)}.hero-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.hero .label{font-size:12px;opacity:.75}.hero-return{font-size:15px;font-weight:850;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap}.hero-return.up{color:#ffd5d8}.hero-return.down{color:#d9e6ff}.hero .total{font-size:30px;font-weight:850;letter-spacing:-1px;margin-top:5px}.hero-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.mini{background:rgba(255,255,255,.1);padding:12px;border-radius:15px}.mini .k{font-size:11px;opacity:.75}.mini .v{font-size:15px;font-weight:750;margin-top:3px}.section{margin-top:18px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px}.section-title h2{font-size:16px;margin:0}.linkbtn{border:0;background:transparent;color:var(--primary);font-weight:700;font-size:12px}.card{background:var(--card);border-radius:20px;padding:16px;box-shadow:var(--shadow)}.alloc-wrap{display:flex;align-items:center;gap:18px}.donut{width:150px;aspect-ratio:1;border-radius:50%;position:relative;flex:0 0 auto}.donut:after{content:"";position:absolute;inset:22px;background:#fff;border-radius:50%;box-shadow:inset 0 0 0 1px #f1f4f9}.donut-center{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;flex-direction:column;pointer-events:none}.donut-center b{font-size:17px}.donut-center span{font-size:10px;color:var(--muted);margin-top:2px}.legend{flex:1;min-width:0}.legend-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin:9px 0}.legend-row .name{display:flex;align-items:center;min-width:0}.dot{width:9px;height:9px;border-radius:50%;margin-right:7px;flex:0 0 auto}.legend-row .name span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chips{display:flex;gap:7px;overflow:auto;padding-bottom:3px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{border:1px solid var(--line);background:#fff;color:#59647a;padding:8px 11px;border-radius:999px;font-size:12px;white-space:nowrap}.chip.active{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:700}.asset-list{display:flex;flex-direction:column;gap:12px;margin-top:10px}.asset{background:#fff;border-radius:18px;padding:15px 14px 14px;box-shadow:0 6px 18px rgba(36,52,85,.055);border:1px solid #f0f3f8}.asset-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.asset-left{flex:1;min-width:0}.asset-right{flex:0 0 auto;text-align:right;white-space:nowrap;min-width:112px}.asset-name{font-weight:800;font-size:14px;letter-spacing:-.2px;margin-bottom:8px;line-height:1.2}.asset-meta{font-size:10px;color:var(--muted);margin-top:0;line-height:1.3;white-space:nowrap;letter-spacing:-.15px}.quote-ok{color:var(--ok)}.quote-manual{color:var(--muted)}.asset-value{text-align:right;white-space:nowrap}.asset-value .won{font-weight:800;font-size:13.5px}.asset-value .pct{font-size:11px;color:var(--muted);margin-top:4px}.asset-bottom{display:flex;justify-content:space-between;align-items:end;margin-top:11px}.profit{font-weight:750;font-size:12px}.profit.up{color:var(--up)}.profit.down{color:var(--down)}.weight-row{margin-top:13px}.weight-label{display:none}.bar{height:8px;background:#edf1f7;border-radius:999px;position:relative;overflow:visible;width:100%;min-width:90px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.weight-pct{position:absolute;top:50%;transform:translate(7px,-50%);font-size:11px;color:#174ea6;white-space:nowrap;font-weight:900;text-align:left;line-height:1}.target-row{font-size:10px;color:#7b879d;margin-top:11px;padding-left:0;line-height:1.45;word-break:keep-all}.target-row b{color:#334155;font-weight:800}.target-action{color:#174ea6;font-weight:800}.target-action.sell{color:#a3444b}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#79a1ff);border-radius:999px}.tiny-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:5px 8px;font-size:10.5px;color:#59647a;margin-top:10px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.summary-box{background:#fff;border-radius:16px;padding:13px;box-shadow:var(--shadow)}.summary-box .k{font-size:10px;color:var(--muted)}.summary-box .v{font-size:14px;font-weight:800;margin-top:5px}.status-card{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border-radius:14px;padding:10px 12px;box-shadow:var(--shadow);margin-top:18px;margin-bottom:6px}.status-card .left{min-width:0}.status-card .title{font-size:11px;font-weight:800}.status-card .sub{font-size:10px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.status-pill{font-size:10px;border-radius:999px;padding:5px 8px;background:#eef8f3;color:var(--ok);font-weight:800}.bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(760px,100%);padding:10px 14px calc(10px + var(--safe-bottom));background:rgba(246,248,252,.92);backdrop-filter:blur(16px);display:grid;grid-template-columns:1fr;gap:10px;z-index:20}.nav-btn{border:0;border-radius:16px;padding:13px 10px;font-weight:800}.nav-btn.primary{background:var(--primary);color:#fff}.nav-btn.secondary{background:#fff;color:var(--text);box-shadow:var(--shadow)}.modal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:flex-end;z-index:100}.modal.show{display:flex}.sheet{background:#fff;width:min(760px,100%);margin:auto;border-radius:24px 24px 0 0;padding:18px 16px calc(24px + var(--safe-bottom));max-height:90vh;overflow:auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.sheet-head h3{margin:0;font-size:18px}.close{border:0;background:#f2f5fa;border-radius:10px;width:36px;height:36px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin:9px 0}.field label{display:block;font-size:11px;color:var(--muted);margin:0 0 5px 2px}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px;background:#fbfcfe;color:var(--text);outline:none}.checkrow{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}.checkrow .ct{font-size:12px;font-weight:700}.checkrow .cs{font-size:10px;color:var(--muted);margin-top:3px}.switch{position:relative;width:46px;height:26px;flex:0 0 auto}.switch input{display:none}.switch span{position:absolute;inset:0;background:#d7deea;border-radius:999px;transition:.2s}.switch span:after{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.18);transition:.2s}.switch input:checked+span{background:var(--primary)}.switch input:checked+span:after{transform:translateX(20px)}.sheet-actions{display:flex;gap:8px;margin-top:14px}.sheet-actions button{flex:1;border:0;border-radius:14px;padding:13px;font-weight:800}.save{background:var(--primary);color:#fff}.danger{background:#fff0f0;color:#c23d43;border:1px solid #ffd4d6!important}.settings-list{display:grid;gap:10px}.settings-btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;text-align:left}.settings-btn.primary{background:#edf3ff;color:var(--primary);border-color:#cbd9ff;font-weight:800}.note{font-size:11px;line-height:1.55;color:var(--muted);margin-top:8px}.empty{text-align:center;color:var(--muted);padding:28px 8px}.toast{position:fixed;left:50%;bottom:calc(90px + var(--safe-bottom));transform:translate(-50%,20px);background:#15223d;color:#fff;padding:10px 14px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:200;max-width:calc(100% - 30px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
@@ -3040,6 +3040,39 @@ html,body,.app{background:#101722 !important;color:var(--text) !important}
 .contribution-footnote{font-size:11px;line-height:1.65;color:#a6b4ca;margin:12px 0 0;word-break:keep-all}
 .contribution-open:focus-visible,.contribution-quick button:focus-visible{outline:2px solid #b4d0ff;outline-offset:3px}
 
+
+/* v71: 투자금 누적 추가, 원화/달러 선택, 종목별 주수 직접 조정 */
+.contribution-amount-fields{display:grid;grid-template-columns:100px minmax(0,1fr);gap:9px}
+.contribution-amount-fields .field{min-width:0}
+.contribution-amount-fields select{font-size:13px;padding:12px 8px}
+.contribution-add-hint{font-size:11px;color:#a6b4ca;line-height:1.6;margin:0 0 8px;word-break:keep-all}
+.contribution-plan-mode{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px;margin:10px 0;font-size:11px;line-height:1.6;color:#b4c6e0}
+.contribution-plan-mode button{border:1px solid #405779;border-radius:8px;background:#243955;color:#c8ddff;padding:7px 9px;font-size:11px;cursor:pointer}
+.contribution-plan-mode button:disabled{opacity:.45;cursor:default}
+.contribution-summary strong small{display:block;text-align:right;font-size:10px;font-weight:500;color:#a6b4ca;line-height:1.4;margin-bottom:4px}
+.contribution-summary .over-budget strong{color:#ffb1bf}
+#contributionWarning{margin-bottom:10px}
+.contribution-qty-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.contribution-qty-label{font-size:10px;color:#a6b4ca}
+.contribution-qty-controls{display:flex;align-items:center;gap:3px;flex:none}
+.contribution-qty-controls button{width:28px;height:32px;padding:0;border:1px solid #48628c;border-radius:8px;background:#243955;color:#d3e5ff;font-size:17px;cursor:pointer}
+.contribution-qty-controls input{width:48px;min-width:0;height:32px;text-align:center;border:1px solid #48628c;border-radius:8px;background:#101b2b;color:#f0f5ff;font-size:13px;padding:5px 2px;outline:none;font-variant-numeric:tabular-nums}
+.contribution-qty-controls>span{font-size:11px;color:#b4c6e0;margin-right:2px}
+.contribution-qty-controls input:focus{border-color:#a7ccff;box-shadow:0 0 0 2px rgba(129,170,255,.15)}
+.contribution-qty-controls input[aria-invalid="true"]{border-color:#ff9baa}
+.contribution-qty-controls input:disabled,.contribution-qty-controls button:disabled{opacity:.45;cursor:default}
+.contribution-stock-weight.over-target{color:#ffb1bf}
+.contribution-stock-hint{font-size:10px;line-height:1.6;color:#98accb;margin-top:3px;overflow-wrap:anywhere}
+.contribution-other .contribution-list{margin-top:7px}
+@media(max-width:359px){
+ .contribution-amount-fields{grid-template-columns:90px minmax(0,1fr);gap:7px}
+ .contribution-stock{padding:10px}
+ .contribution-stock-top{gap:5px}
+ .contribution-stock-name{font-size:12px}
+ .contribution-qty-controls button{width:26px}
+ .contribution-qty-controls input{width:42px}
+}
+
 </style>
 </head>
 <body>
@@ -3097,8 +3130,9 @@ html,body,.app{background:#101722 !important;color:var(--text) !important}
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="contributionTitle" tabindex="-1">
     <div class="sheet-head"><h3 id="contributionTitle">추가 투자금 배분</h3><button type="button" class="close" aria-label="추가 투자금 배분 닫기" onclick="closeContributionPlan()">✕</button></div>
     <p class="contribution-intro">목표비중보다 부족한 주식·ETF에 추가금을 나눠 배분합니다. 전체 포트폴리오 기준으로 계산하며 매도 없이 1주 단위로 살 수량을 보여줘요.</p>
-    <div class="field"><label for="contributionAmount">이번에 새로 넣을 투자금 (원)</label><input id="contributionAmount" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 1,000,000" oninput="updateContributionPlan()" aria-describedby="contributionContext"></div>
-    <div class="contribution-quick"><button type="button" onclick="setContributionAmount(500000)">50만원</button><button type="button" onclick="setContributionAmount(1000000)">100만원</button><button type="button" onclick="setContributionAmount(3000000)">300만원</button></div>
+    <div class="contribution-amount-fields"><div class="field"><label for="contributionCurrency">투자금 통화</label><select id="contributionCurrency" onchange="changeContributionCurrency(this.value)"><option value="KRW">원화 (₩)</option><option value="USD">달러 ($)</option></select></div><div class="field"><label for="contributionAmount" id="contributionAmountLabel">추가 투자금 (원)</label><input id="contributionAmount" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 1,000,000" oninput="updateContributionPlan()" aria-describedby="contributionContext contributionAddHint"></div></div>
+    <div class="contribution-quick"><button type="button" id="contributionQuick500" onclick="addContributionAmount(500)">+ 50만원</button><button type="button" id="contributionQuick1000" onclick="addContributionAmount(1000)">+ 100만원</button><button type="button" id="contributionQuick3000" onclick="addContributionAmount(3000)">+ 300만원</button></div>
+    <p class="contribution-add-hint" id="contributionAddHint">버튼을 누를 때마다 투자금에 더해져요. 통화를 바꾸면 현재 금액을 환율로 환산합니다.</p>
     <div class="contribution-context" id="contributionContext"></div>
     <div id="contributionResult" aria-live="polite" aria-atomic="true"></div>
     <p class="contribution-footnote">목표비중은 각 종목의 수정 창에서 설정해 주세요. 현금·암호화폐·수동자산은 총자산과 목표비중 합계에 포함하고, 매수 수량은 주식·ETF만 계산합니다. 기존 현금을 쓰려면 추가금에 다시 포함하지 마세요.</p>
@@ -3135,7 +3169,7 @@ html,body,.app{background:#101722 !important;color:var(--text) !important}
 <div class="note">자동 조회: 미국주식/ETF는 Yahoo Finance(프리장·정규장·애프터장 포함)를 우선 사용합니다. Yahoo에서 시세를 못 불러오면 해당 종목명을 알림으로 표시하고 기존 가격을 유지합니다. 한국주식/ETF는 네이버 증권, 비트코인은 CoinGecko/Upbit, USD/KRW 환율은 Yahoo Finance 1분 시세 → 네이버 → Frankfurter 순으로 조회합니다.</div></div></div>
 
 <script>
-const APP_VERSION=70;
+const APP_VERSION=71;
 const SAMPLE={version:APP_VERSION,displayCurrency:"KRW",cloudSync:false,syncPending:[],syncLastAt:"",syncSheetUrl:"",accounts:["해외주식","개인연금","ISA","IRP","DC","암호화폐","현금","기타"],fx:1367.44,fxSource:"수동",fxUpdatedAt:"",updatedAt:"2026-09-16",priceUpdatedAt:"",apiUrl:"",autoRefresh:false,assets:[
 {id:1,account:"해외주식",name:"팔란티어",qty:1040,avg:15.5111,purchaseFx:1203.3600,cost:19412055,price:172.22,currency:"USD",market:"US",ticker:"PLTR",memo:"PLTR"},
 {id:2,account:"해외주식",name:"알파벳 C",qty:255,avg:327.3023,purchaseFx:1341.1800,cost:111937681,price:342.04,currency:"USD",market:"US",ticker:"GOOG",memo:"GOOG"},
@@ -3448,14 +3482,14 @@ function buildContributionPlan(assets,fx,budget){
     if(hasTarget&&(!Number.isFinite(target)||target<0||target>100))return fail(`${a.name||"종목"}의 목표비중을 0~100%로 수정해 주세요.`);
     if(hasTarget)targetSum+=target;else unset++;
     if(!Number.isFinite(qty)||qty<0)return fail(`${a.name||"종목"}의 보유수량을 확인해 주세요.`);
-    const hasPrice=Number.isFinite(price)&&price>0&&Number.isFinite(rate)&&rate>0;
+    const hasPrice=Number.isFinite(price)&&price>0&&Number.isFinite(rate)&&rate>0&&Number.isSafeInteger(Math.ceil(price*rate));
     if(qty>0&&!hasPrice)return fail(`${a.name||"종목"}의 현재가격 또는 환율이 없어 총자산을 계산할 수 없습니다. 시세를 새로고침하거나 값을 수정해 주세요.`);
     const rawUnit=hasPrice?price*rate:0,value=qty>0?qty*rawUnit:0;
     if(!Number.isFinite(value)||!Number.isSafeInteger(Math.ceil(value)))return fail("평가금액이 계산 가능한 범위를 벗어났습니다. 보유수량과 가격을 확인해 주세요.");
     total+=value;
     if(!["US","KR"].includes(a.market)){if(target>0)nonStock++;continue;}
     if(!(target>0))continue;
-    entries.push({index,name:a.name||"이름 없음",account:a.account||"계좌 미지정",ticker:a.ticker||"",target,value,rawUnit,unit:Math.ceil(rawUnit),hasPrice,qty:0,cost:0});
+    entries.push({index,key:JSON.stringify([a.id??index,a.account,a.market,a.currency,a.ticker,a.name]),name:a.name||"이름 없음",account:a.account||"계좌 미지정",ticker:a.ticker||"",target,value,rawUnit,unit:Math.ceil(rawUnit),hasPrice,qty:0,cost:0});
   }
   if(targetSum>100+1e-8)return fail(`목표비중 합계가 ${targetSum.toFixed(2)}%입니다. 전체 종목의 합계를 100% 이하로 맞춰 주세요.`);
   const postTotal=total+budget;
@@ -3489,9 +3523,131 @@ function buildContributionPlan(assets,fx,budget){
   }
   return {budget,total,postTotal,targetSum,unset,nonStock,spent,remaining:budget-spent,rows:entries.filter(r=>r.qty>0),notBought:entries.filter(r=>r.qty===0)};
 }
+// 팝업 안에서만 유지되는 계산 입력. 보유자산/클라우드에는 저장하지 않는다.
+let contributionInputCurrency="KRW",contributionManualQuantities=null;
+let contributionBasePlan=null,contributionCurrentPlan=null,contributionBudgetInfo=null;
+const contributionDollars=n=>"$\u2009"+Number(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+function readContributionBudget(allowZero=false){
+  const raw=document.getElementById("contributionAmount").value.trim(),usd=contributionInputCurrency==="USD";
+  if(!raw)return {blank:true};
+  const pattern=usd?/^(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d{1,2})?$/:/^(?:\d+|\d{1,3}(?:,\d{3})+)$/;
+  if(!pattern.test(raw))return {error:usd?"달러 투자금을 숫자로 입력해 주세요. 소수점 둘째 자리까지 입력할 수 있어요.":"원화 투자금을 1원 이상의 정수로 입력해 주세요."};
+  const parts=raw.replaceAll(",","").split("."),units=usd?Number(parts[0])*100+Number((parts[1]||"").padEnd(2,"0")):Number(parts[0]);
+  if(!Number.isSafeInteger(units)||units<(allowZero?0:1))return {error:usd?"달러 투자금을 0.01달러 이상으로 입력해 주세요.":"원화 투자금을 1원 이상의 정수로 입력해 주세요."};
+  const amount=usd?units/100:units,fx=Number(state.fx);
+  if(usd&&(!Number.isFinite(fx)||fx<=0))return {error:"달러 계산에 필요한 USD/KRW 환율을 설정하거나 새로고침해 주세요."};
+  // 달러 예산은 원화로 환산하고 1원 미만을 내려 예산 초과를 막는다.
+  const krw=usd?Math.floor(units*fx/100):units;
+  if(!Number.isSafeInteger(krw)||krw<(allowZero?0:1))return {error:"투자금이 계산 가능한 범위를 벗어났거나 환산 금액이 1원 미만입니다."};
+  return {amount,units,krw,currency:contributionInputCurrency,fx};
+}
+function updateContributionCurrencyUI(){
+  const usd=contributionInputCurrency==="USD",input=document.getElementById("contributionAmount");
+  document.getElementById("contributionCurrency").value=contributionInputCurrency;
+  document.getElementById("contributionAmountLabel").textContent=usd?"추가 투자금 (달러)":"추가 투자금 (원)";
+  input.placeholder=usd?"예: 1,000.00":"예: 1,000,000";
+  input.setAttribute("inputmode",usd?"decimal":"numeric");
+  for(const [base,wonLabel] of [[500,"50만원"],[1000,"100만원"],[3000,"300만원"]]){
+    document.getElementById("contributionQuick"+base).textContent="+\u2009"+(usd?base.toLocaleString("ko-KR")+"달러":wonLabel);
+  }
+}
+function changeContributionCurrency(currency){
+  if(!["KRW","USD"].includes(currency)||currency===contributionInputCurrency)return;
+  const previous=contributionInputCurrency,b=readContributionBudget(true),fx=Number(state.fx);
+  if(b.error||(!b.blank&&(!Number.isFinite(fx)||fx<=0))){
+    document.getElementById("contributionCurrency").value=previous;
+    toastMsg(b.error||"환산에 필요한 USD/KRW 환율을 먼저 설정해 주세요.");return;
+  }
+  contributionInputCurrency=currency;
+  if(!b.blank){
+    const converted=currency==="USD"?Math.floor(b.krw/fx*100)/100:b.krw;
+    document.getElementById("contributionAmount").value=converted.toLocaleString(currency==="USD"?"en-US":"ko-KR",currency==="USD"?{minimumFractionDigits:2,maximumFractionDigits:2}:{maximumFractionDigits:0});
+  }
+  updateContributionCurrencyUI();updateContributionPlan();
+}
+function addContributionAmount(base){
+  const b=readContributionBudget(true);
+  if(b.error){toastMsg(b.error);return;}
+  const usd=contributionInputCurrency==="USD",increment=usd?base*100:base*1000;
+  const units=(b.blank?0:b.units)+increment;
+  if(!Number.isSafeInteger(units)){toastMsg("투자금이 계산 가능한 범위를 벗어났습니다.");return;}
+  document.getElementById("contributionAmount").value=(usd?units/100:units).toLocaleString(usd?"en-US":"ko-KR",usd?{minimumFractionDigits:2,maximumFractionDigits:2}:{maximumFractionDigits:0});
+  updateContributionPlan();
+}
+function applyContributionQuantities(base,manual){
+  const entries=[...base.rows,...base.notBought].sort((a,b)=>a.index-b.index).map(r=>({...r,autoQty:r.qty}));
+  let spent=0,valid=true;
+  for(const r of entries){
+    const raw=manual?String(manual.get(r.key)??0):String(r.autoQty),qty=/^\d+$/.test(raw)?Number(raw):NaN;
+    r.inputValue=raw;
+    r.valid=Number.isSafeInteger(qty)&&qty>=0&&(r.hasPrice||qty===0)&&Number.isSafeInteger(qty*r.unit);
+    r.qty=r.valid?qty:null;r.cost=r.valid?qty*r.unit:null;
+    r.afterWeight=r.valid?(r.value+qty*r.rawUnit)/base.postTotal*100:null;
+    if(!r.valid)valid=false;else spent+=r.cost;
+  }
+  if(!Number.isSafeInteger(spent))valid=false;
+  return {...base,entries,valid,spent:valid?spent:null,remaining:valid?base.budget-spent:null,manual:!!manual};
+}
+function contributionPreviewMoney(krw){
+  return contributionInputCurrency==="USD"?contributionDollars(krw/Number(state.fx)):won(krw);
+}
+function contributionQuantityMarkup(r){
+  const disabled=r.hasPrice?"":" disabled",name=escapeHtml(r.name);
+  return `<div class="contribution-qty-wrap"><span class="contribution-qty-label">매수 주수</span><div class="contribution-qty-controls"><button type="button"${disabled} onclick="adjustContributionQuantity(${r.index},-1)" aria-label="${name} 1주 줄이기">−</button><input id="contributionQty${r.index}" type="text" inputmode="numeric" autocomplete="off" pattern="[0-9]*" value="${escapeHtml(r.inputValue)}"${disabled} aria-label="${name} 매수 주수" oninput="changeContributionQuantity(${r.index},this.value)"><span>주</span><button type="button"${disabled} onclick="adjustContributionQuantity(${r.index},1)" aria-label="${name} 1주 늘리기">+</button></div></div>`;
+}
+function contributionStockMarkup(r){
+  return `<div class="contribution-stock"><div class="contribution-stock-top"><div><div class="contribution-stock-name">${escapeHtml(r.name)}</div><div class="contribution-stock-account">${escapeHtml(r.account)}${r.ticker?` · ${escapeHtml(r.ticker)}`:""}</div></div>${contributionQuantityMarkup(r)}</div><div class="contribution-stock-cost"><span id="contributionUnit${r.index}"></span><strong id="contributionCost${r.index}"></strong></div><div class="contribution-stock-weight" id="contributionWeight${r.index}"></div><div class="contribution-stock-hint" id="contributionHint${r.index}"></div></div>`;
+}
+function renderContributionFigures(p,b){
+  const usd=contributionInputCurrency==="USD",summary=document.getElementById("contributionSummary"),warning=document.getElementById("contributionWarning");
+  const over=p.valid&&p.remaining<0;
+  const totalBudget=usd?contributionDollars(b.amount):won(b.krw);
+  const value=(krw,original)=>original||contributionPreviewMoney(krw);
+  const sub=krw=>usd?`<small>약 ${won(krw)}</small>`:"";
+  summary.innerHTML=`<div><span>추가 투자금</span><strong>${totalBudget}${sub(b.krw)}</strong></div><div><span>예상 매수금액</span><strong>${p.valid?value(p.spent):"—"}${p.valid?sub(p.spent):""}</strong></div><div class="remaining${over?" over-budget":""}"><span>${over?"부족한 금액":"남는 금액"}</span><strong>${p.valid?value(Math.abs(p.remaining)):"—"}${p.valid?sub(Math.abs(p.remaining)):""}</strong></div>`;
+  document.getElementById("contributionMode").textContent=p.manual?"직접 조정 · 금액을 바꿔도 주수 유지":"목표비중에 따른 자동 배분";
+  const reset=document.getElementById("contributionReset");reset.disabled=!p.manual;
+  const notices=[];
+  if(!p.valid)notices.push("매수 주수를 0 이상의 정수로 확인해 주세요. 유효한 주수가 입력되면 합계와 잔액을 다시 표시합니다.");
+  if(over)notices.push(`투자금보다 ${contributionPreviewMoney(-p.remaining)} 더 필요합니다. 매수 주수를 줄이거나 투자금을 추가해 주세요.`);
+  const excess=p.entries.filter(r=>r.valid&&r.qty>0&&r.afterWeight>r.target+1e-8);
+  if(excess.length)notices.push(`직접 조정한 ${excess.length}개 종목이 목표비중을 넘습니다.`);
+  warning.textContent=notices.join(" ");warning.hidden=!notices.length;
+  for(const r of p.entries){
+    const input=document.getElementById("contributionQty"+r.index);
+    if(input!==document.activeElement&&input.value!==r.inputValue)input.value=r.inputValue;
+    input.setAttribute("aria-invalid",String(!r.valid));
+    document.getElementById("contributionUnit"+r.index).textContent=r.hasPrice?`1주 약 ${contributionPreviewMoney(r.unit)}`:"가격 / 환율 확인 필요";
+    document.getElementById("contributionCost"+r.index).textContent=r.valid&&r.hasPrice?contributionPreviewMoney(r.cost):"—";
+    const weight=document.getElementById("contributionWeight"+r.index);
+    weight.textContent=`비중 ${r.beforeWeight.toFixed(2)}% → ${r.valid?r.afterWeight.toFixed(2)+"%":"—"} · 목표 ${r.target.toFixed(2)}%`;
+    weight.classList.toggle("over-target",r.valid&&r.qty>0&&r.afterWeight>r.target+1e-8);
+    document.getElementById("contributionHint"+r.index).textContent=!r.valid?"0 이상의 정수로 입력해 주세요.":r.qty===0?r.reason:`자동 계산 ${r.autoQty.toLocaleString("ko-KR")}주${p.manual&&r.qty!==r.autoQty?" · 직접 조정":""}`;
+  }
+}
+function changeContributionQuantity(index,raw){
+  const row=contributionCurrentPlan?.entries.find(r=>r.index===index);
+  if(!row||!row.hasPrice)return;
+  if(!contributionManualQuantities)contributionManualQuantities=new Map(contributionCurrentPlan.entries.map(r=>[r.key,String(r.qty)]));
+  contributionManualQuantities.set(row.key,String(raw));
+  contributionCurrentPlan=applyContributionQuantities(contributionBasePlan,contributionManualQuantities);
+  renderContributionFigures(contributionCurrentPlan,contributionBudgetInfo);
+}
+function adjustContributionQuantity(index,delta){
+  const row=contributionCurrentPlan?.entries.find(r=>r.index===index);
+  if(!row||!row.hasPrice)return;
+  const raw=document.getElementById("contributionQty"+index).value;
+  const current=/^\d+$/.test(raw)?Number(raw):NaN;
+  if(!Number.isSafeInteger(current)||current<0){toastMsg("매수 주수를 0 이상의 정수로 입력해 주세요.");return;}
+  const next=Math.max(0,current+delta);
+  if(!Number.isSafeInteger(next)){toastMsg("매수 주수가 계산 가능한 범위를 벗어났습니다.");return;}
+  document.getElementById("contributionQty"+index).value=String(next);
+  changeContributionQuantity(index,String(next));
+}
+function resetContributionQuantities(){contributionManualQuantities=null;updateContributionPlan();}
 function openContributionPlan(){
   const modal=document.getElementById("contributionModal"),sheet=modal.querySelector(".sheet");
-  modal.classList.add("show");updateContributionPlan();
+  modal.classList.add("show");updateContributionCurrencyUI();updateContributionPlan();
   sheet.scrollTop=0;sheet.scrollLeft=0;sheet.focus({preventScroll:true});
   requestAnimationFrame(()=>{sheet.scrollTop=0;sheet.scrollLeft=0});
 }
@@ -3503,32 +3659,33 @@ function handleContributionKey(e){
   if(e.key==="Escape"){e.preventDefault();closeContributionPlan();return;}
   if(e.key!=="Tab")return;
   const sheet=document.getElementById("contributionModal").querySelector(".sheet");
-  const items=Array.from(sheet.querySelectorAll('button,input,summary,[tabindex="0"]'));
+  const items=Array.from(sheet.querySelectorAll('button:not([disabled]),input:not([disabled]),select:not([disabled]),summary,[tabindex="0"]'));
   const first=items[0],last=items[items.length-1];
+  if(!first)return;
   if(e.shiftKey&&(document.activeElement===first||document.activeElement===sheet)){e.preventDefault();last.focus();}
   else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
 }
-function setContributionAmount(amount){
-  document.getElementById("contributionAmount").value=amount.toLocaleString("ko-KR");updateContributionPlan();
-}
 function updateContributionPlan(){
   const result=document.getElementById("contributionResult"),context=document.getElementById("contributionContext");
-  const raw=document.getElementById("contributionAmount").value.trim();
   context.textContent=`저장된 현재가격 기준 · 시세 ${state.priceUpdatedAt?fmtTime(state.priceUpdatedAt):"수동 / 저장값"} · USD/KRW ${Number(state.fx).toLocaleString("ko-KR",{maximumFractionDigits:2})}`;
   const message=(s,error=false)=>`<div class="contribution-message${error?" error":""}">${escapeHtml(s)}</div>`;
-  if(!raw){result.innerHTML=message("추가 투자금을 입력하거나 위의 금액 버튼을 눌러 주세요.");return;}
-  const budget=/^(?:\d+|\d{1,3}(?:,\d{3})+)$/.test(raw)?Number(raw.replaceAll(",","")):NaN;
-  const p=buildContributionPlan(state.assets,state.fx,budget);
-  if(p.error){result.innerHTML=message(p.error,true);return;}
-  const summary=`<div class="contribution-summary"><div><span>추가 투자금</span><strong>${won(p.budget)}</strong></div><div><span>예상 매수금액</span><strong>${won(p.spent)}</strong></div><div class="remaining"><span>남는 금액</span><strong>${won(p.remaining)}</strong></div></div>`;
-  const rows=p.rows.map(r=>`<div class="contribution-stock"><div class="contribution-stock-top"><div><div class="contribution-stock-name">${escapeHtml(r.name)}</div><div class="contribution-stock-account">${escapeHtml(r.account)}${r.ticker?` · ${escapeHtml(r.ticker)}`:""}</div></div><div class="contribution-stock-qty">${r.qty.toLocaleString("ko-KR")}주</div></div><div class="contribution-stock-cost"><span>1주 약 ${won(r.unit)}</span><strong>${won(r.cost)}</strong></div><div class="contribution-stock-weight">비중 ${r.beforeWeight.toFixed(2)}% → ${r.afterWeight.toFixed(2)}% · 목표 ${r.target.toFixed(2)}%</div></div>`).join("");
-  const notBought=p.notBought.length?`<details class="contribution-other"><summary>이번에 매수하지 않는 종목 ${p.notBought.length}개</summary>${p.notBought.map(r=>`<p>${escapeHtml(r.name)} · ${escapeHtml(r.account)}<br>${escapeHtml(r.reason)}</p>`).join("")}</details>`:"";
-  const notes=[`전체 목표비중 합계 ${p.targetSum.toFixed(2)}%. 비중은 새 투자금을 더한 총자산 기준입니다.`];
+  const b=readContributionBudget();
+  contributionBasePlan=null;contributionCurrentPlan=null;contributionBudgetInfo=b;
+  if(b.blank){result.innerHTML=message("추가 투자금을 입력하거나 위의 + 금액 버튼을 눌러 주세요.");return;}
+  if(b.error){result.innerHTML=message(b.error,true);return;}
+  const base=buildContributionPlan(state.assets,state.fx,b.krw);
+  if(base.error){result.innerHTML=message(base.error,true);return;}
+  contributionBasePlan=base;
+  const p=applyContributionQuantities(base,contributionManualQuantities);contributionCurrentPlan=p;
+  const main=p.entries.filter(r=>r.autoQty>0||r.qty>0),other=p.entries.filter(r=>!(r.autoQty>0||r.qty>0));
+  const notes=[`전체 목표비중 합계 ${p.targetSum.toFixed(2)}%. 예상 비중은 추가금을 더한 총자산 기준입니다.`];
   if(p.unset)notes.push(`목표비중 미설정 ${p.unset}개 자산은 매수 배분에서 제외했습니다.`);
   if(p.nonStock)notes.push(`목표비중이 있는 현금·암호화폐·수동자산 ${p.nonStock}개는 주식 매수 목록에서 제외했습니다.`);
-  notes.push("부족금액에 비례해 배분하고, 1주 단위 잔액은 부족금액이 큰 종목부터 사용합니다. 목표비중을 넘겨 사지 않으므로 잔액이 생길 수 있어요.");
-  notes.push("수수료·환전 비용은 제외했습니다. 미국 주식의 원화 환산 금액은 1주마다 원 단위로 올림합니다. 계산 결과는 보유 내역에 자동 반영되지 않습니다.");
-  result.innerHTML=summary+(rows?`<div class="contribution-list">${rows}</div>`:message("이번 금액으로 목표비중 안에서 살 수 있는 주식이 없습니다. 아래 종목별 사유를 확인해 주세요."))+notBought+`<p class="contribution-footnote">${notes.map(escapeHtml).join("<br>")}</p>`;
+  notes.push("자동 배분은 부족금액에 비례하고 목표비중을 넘겨 사지 않습니다. 주수를 직접 바꾸면 합계·잔액·비중을 다시 계산하며, 금액이나 통화를 바꿔도 직접 조정한 주수는 유지됩니다.");
+  notes.push("원화·달러 전환 시 저장된 환율로 환산합니다. 달러 투자금은 소수점 둘째 자리까지 입력할 수 있어요. 달러 예산은 원 단위로 내림하고, 주식의 원화 1주 금액은 올림해 계산합니다.");
+  notes.push("수수료·환전 비용은 제외했습니다. 계산 결과는 보유 내역에 자동 반영되지 않습니다.");
+  result.innerHTML=`<div id="contributionSummary" class="contribution-summary"></div><div class="contribution-plan-mode"><span id="contributionMode"></span><button type="button" id="contributionReset" onclick="resetContributionQuantities()">자동 배분으로 복원</button></div><div class="contribution-message error" id="contributionWarning" role="status" hidden></div>`+(main.length?`<div class="contribution-list">${main.map(contributionStockMarkup).join("")}</div>`:message("자동 배분으로 살 수 있는 주식이 없습니다. 아래 기타 종목에서 주수를 직접 조정할 수 있어요."))+(other.length?`<details class="contribution-other"><summary>기타 종목 · 직접 주수 조정 (${other.length}개)</summary><div class="contribution-list">${other.map(contributionStockMarkup).join("")}</div></details>`:"")+`<p class="contribution-footnote">${notes.map(escapeHtml).join("<br>")}</p>`;
+  renderContributionFigures(p,b);
 }
 
 function setFilter(v){filter=v;renderChips();renderAssets()}function toggleDisplayCurrency(){state.displayCurrency="KRW";persist(false);render()}function toggleAllocMode(){allocMode=allocMode==="account"?"asset":"account";renderAllocation()}
